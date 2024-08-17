@@ -14,11 +14,13 @@ const CLOTHING_MIN_SCALE = 0.5
 
 var belt_state: BeltState = BeltState.MOVE_ANIMAL_IN
 var resizing: bool = false
+var score: int = 0
 
 @onready var current_animal: Node2D = $CurrentAnimal
 @onready var current_clothing: Node2D = $CurrentClothing
 @onready var grow_tool: Node2D = $GrowTool
 @onready var shrink_tool: Node2D = $ShrinkTool
+@onready var score_label: Label = $UI/StarLabel/ScoreLabel
 
 
 func _ready():
@@ -33,6 +35,11 @@ func set_animal_to_start():
 
 func reset_clothing():
 	current_clothing.scale = Vector2(1, 1)
+
+
+func incr_score(points: int):
+	score += points
+	score_label.text = str(score)
 
 
 func move_animal_on_belt():
@@ -79,6 +86,7 @@ func grow_shrink_clothing():
 		grow_tool.rotation_degrees = 0
 		shrink_tool.rotation_degrees = 0
 		belt_state = BeltState.MOVE_ANIMAL_OUT
+		incr_score(1)
 
 
 func _process(_delta):
