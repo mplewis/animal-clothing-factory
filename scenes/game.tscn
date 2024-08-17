@@ -45,3 +45,9 @@ position = Vector2(908, 844)
 [node name="Alpaca" type="Sprite2D" parent="CurrentAnimal"]
 position = Vector2(27, -234)
 texture = ExtResource("2_ep84m")
+
+[node name="AlpacaShirt" type="Sprite2D" parent="CurrentAnimal/Alpaca"]
+visible = false
+position = Vector2(126, -107)
+scale = Vector2(0.388513, 0.234835)
+texture = ExtResource("4_ppr48")
