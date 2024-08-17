@@ -36,14 +36,20 @@ position = Vector2(960, -58)
 scale = Vector2(0.416667, 0.416667)
 texture = ExtResource("3_lljhi")
 
-[node name="GrowTool" type="Sprite2D" parent="."]
-position = Vector2(470, 204)
+[node name="GrowTool" type="Node2D" parent="."]
+position = Vector2(488, 158)
+
+[node name="GrowToolSprite" type="Sprite2D" parent="GrowTool"]
+position = Vector2(33, 54)
 rotation = 0.418879
-scale = Vector2(0.358403, 0.358403)
+scale = Vector2(0.278, 0.278)
 texture = ExtResource("5_nco2n")
 
-[node name="ShrinkTool" type="Sprite2D" parent="."]
-position = Vector2(1474, 224)
+[node name="ShrinkTool" type="Node2D" parent="."]
+position = Vector2(1429, 157)
+
+[node name="ShrinkToolSprite" type="Sprite2D" parent="ShrinkTool"]
+position = Vector2(-18.9999, 104)
 rotation = -0.418879
 scale = Vector2(0.374332, 0.374332)
 texture = ExtResource("6_bvl5c")
