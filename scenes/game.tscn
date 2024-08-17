@@ -44,60 +44,75 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Belt" type="Sprite2D" parent="."]
+[node name="FeedbackLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 1009.0
+offset_top = 360.0
+offset_right = 1209.0
+offset_bottom = 460.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Gameplay" type="Node2D" parent="."]
+
+[node name="Belt" type="Sprite2D" parent="Gameplay"]
 position = Vector2(424, 996)
 scale = Vector2(2, 2)
 texture = ExtResource("1_l8h0a")
 
-[node name="Belt2" type="Sprite2D" parent="."]
+[node name="Belt2" type="Sprite2D" parent="Gameplay"]
 position = Vector2(1456, 996)
 scale = Vector2(2, 2)
 texture = ExtResource("1_l8h0a")
 
-[node name="Grabber" type="Sprite2D" parent="."]
+[node name="Grabber" type="Sprite2D" parent="Gameplay"]
 position = Vector2(960, -58)
 scale = Vector2(0.416667, 0.416667)
 texture = ExtResource("3_lljhi")
 
-[node name="GrowTool" type="Node2D" parent="."]
+[node name="GrowTool" type="Node2D" parent="Gameplay"]
 position = Vector2(488, 158)
 
-[node name="GrowToolSprite" type="Sprite2D" parent="GrowTool"]
+[node name="GrowToolSprite" type="Sprite2D" parent="Gameplay/GrowTool"]
 position = Vector2(33, 54)
 rotation = 0.418879
 scale = Vector2(0.278, 0.278)
 texture = ExtResource("5_nco2n")
 
-[node name="ShrinkTool" type="Node2D" parent="."]
-position = Vector2(1429, 157)
+[node name="ShrinkTool" type="Node2D" parent="Gameplay"]
+position = Vector2(1478, 157)
 
-[node name="ShrinkToolSprite" type="Sprite2D" parent="ShrinkTool"]
+[node name="ShrinkToolSprite" type="Sprite2D" parent="Gameplay/ShrinkTool"]
 position = Vector2(-18.9999, 104)
 rotation = -0.418879
 scale = Vector2(0.374332, 0.374332)
 texture = ExtResource("6_bvl5c")
 
-[node name="NewClothingAnchor" type="Node2D" parent="."]
+[node name="NewClothingAnchor" type="Node2D" parent="Gameplay"]
 position = Vector2(960, 172)
 
-[node name="CurrentAnimal" type="Node2D" parent="."]
+[node name="CurrentAnimal" type="Node2D" parent="Gameplay"]
 position = Vector2(960, 852)
 
-[node name="Alpaca" type="Sprite2D" parent="CurrentAnimal"]
+[node name="Alpaca" type="Sprite2D" parent="Gameplay/CurrentAnimal"]
 position = Vector2(27, -234)
 texture = ExtResource("2_ep84m")
 
-[node name="ClothingAnchor" type="Node2D" parent="CurrentAnimal/Alpaca"]
+[node name="ClothingAnchor" type="Node2D" parent="Gameplay/CurrentAnimal/Alpaca"]
 position = Vector2(132, -155)
 
-[node name="BeltSound" type="AudioStreamPlayer2D" parent="CurrentAnimal"]
+[node name="BeltSound" type="AudioStreamPlayer2D" parent="Gameplay/CurrentAnimal"]
 unique_name_in_owner = true
+position = Vector2(-960, -852)
 stream = ExtResource("8_m6ttv")
 
-[node name="CurrentClothing" type="Node2D" parent="."]
+[node name="CurrentClothing" type="Node2D" parent="Gameplay"]
 position = Vector2(960, 172)
 
-[node name="Shirt" type="Sprite2D" parent="CurrentClothing"]
+[node name="Shirt" type="Sprite2D" parent="Gameplay/CurrentClothing"]
 position = Vector2(6.10352e-05, 89)
 scale = Vector2(0.509322, 0.509322)
 texture = ExtResource("4_ppr48")

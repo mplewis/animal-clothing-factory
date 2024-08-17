@@ -29,17 +29,17 @@ var resizing: bool = false
 var score: int = 0
 
 ## The current animal to dress
-@onready var current_animal: Node2D = $CurrentAnimal
+@onready var current_animal: Node2D = $Gameplay/CurrentAnimal
 ## Where the shirt sits on the alpaca
-@onready var alpaca_clothing_anchor: Node2D = $CurrentAnimal/Alpaca/ClothingAnchor
+@onready var alpaca_clothing_anchor: Node2D = $Gameplay/CurrentAnimal/Alpaca/ClothingAnchor
 ## Where clothing sits during sizing
-@onready var new_clothing_anchor: Node2D = $NewClothingAnchor
+@onready var new_clothing_anchor: Node2D = $Gameplay/NewClothingAnchor
 ## The current clothing to resize
-@onready var current_clothing: Node2D = $CurrentClothing
+@onready var current_clothing: Node2D = $Gameplay/CurrentClothing
 ## The tool used to grow clothing
-@onready var grow_tool: Node2D = $GrowTool
+@onready var grow_tool: Node2D = $Gameplay/GrowTool
 ## The tool used to shrink clothing
-@onready var shrink_tool: Node2D = $ShrinkTool
+@onready var shrink_tool: Node2D = $Gameplay/ShrinkTool
 ## The label showing the player's score
 @onready var score_label: Label = $UI/StarLabel/ScoreLabel
 
