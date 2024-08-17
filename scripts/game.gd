@@ -11,13 +11,15 @@ const BELT_SPEED = 20
 ## The X coord for the center of the screen. This is where the animal stops.
 const SCREEN_CENTER_X = SCREEN_WIDTH_PX * 1.0 / 2
 ## How fast to grow/shrink clothing when the player holds the button
-const GROW_SHRINK_RATE = 0.02
+const GROW_SHRINK_RATE = 0.01
 ## degrees in either direction to wiggle the tool during a grow/shrink operation
 const GROW_SHAKE_MAX_ROT = 10
 ## Max scale of clothing when growing
 const CLOTHING_MAX_SCALE = 2.0
 ## Min scale of clothing when shrinking
 const CLOTHING_MIN_SCALE = 0.5
+## The perfectly-sized clothing scale
+const CLOTHING_PERFECT_SCALE = 0.66
 
 ## The current state of the interactive player elements
 var play_state: PlayState = PlayState.MOVE_ANIMAL_IN
@@ -80,6 +82,24 @@ func move_animal_on_belt():
 				set_animal_to_start()
 
 
+func score_and_exit():
+	var piece_scale = current_clothing.scale.x
+	print(piece_scale)
+	# piece score = % away from perfect
+	var piece_score = abs(CLOTHING_PERFECT_SCALE - piece_scale) / CLOTHING_PERFECT_SCALE
+	# 5 stars for within 10%, 3 stars for within 20%, 1 star for within 30%
+	var stars = 0
+	if piece_score < 0.1:
+		stars = 5
+	elif piece_score < 0.2:
+		stars = 3
+	elif piece_score < 0.3:
+		stars = 1
+	print(piece_scale, piece_score, stars)
+	incr_score(stars)
+	play_state = PlayState.MOVE_ANIMAL_OUT
+
+
 func grow_shrink_clothing():
 	if play_state != PlayState.SIZING_CLOTHING:
 		return
@@ -108,7 +128,6 @@ func grow_shrink_clothing():
 		grow_tool.rotation_degrees = 0
 		shrink_tool.rotation_degrees = 0
 		play_state = PlayState.WEARING_CLOTHING
-		incr_score(1)
 
 
 func wear_clothing():
@@ -116,7 +135,7 @@ func wear_clothing():
 		var goal = alpaca_clothing_anchor.global_position
 		current_clothing.position = current_clothing.position.lerp(goal, 0.1)
 		if current_clothing.position.distance_to(goal) < 1:
-			play_state = PlayState.MOVE_ANIMAL_OUT
+			score_and_exit()
 
 	elif play_state == PlayState.MOVE_ANIMAL_OUT:
 		current_clothing.position = alpaca_clothing_anchor.global_position
