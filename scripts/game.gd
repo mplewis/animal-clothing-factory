@@ -27,13 +27,10 @@ var play_state: PlayState = PlayState.MOVE_ANIMAL_IN
 var resizing: bool = false
 ## The player's score
 var score: int = 0
-
 ## The current animal to dress
 @onready var current_animal: Node2D = $Gameplay/CurrentAnimal
 ## Where the shirt sits on the alpaca
 @onready var alpaca_clothing_anchor: Node2D = $Gameplay/CurrentAnimal/Alpaca/ClothingAnchor
-## Where clothing sits during sizing
-@onready var new_clothing_anchor: Node2D = $Gameplay/NewClothingAnchor
 ## The current clothing to resize
 @onready var current_clothing: Node2D = $Gameplay/CurrentClothing
 ## The tool used to grow clothing
@@ -42,29 +39,35 @@ var score: int = 0
 @onready var shrink_tool: Node2D = $Gameplay/ShrinkTool
 ## The label showing the player's score
 @onready var score_label: Label = $UI/StarLabel/ScoreLabel
+## The label giving the player scoring feedback (text)
+@onready var feedback_label: Label = $UI/FeedbackLabel
+## The label giving the player scoring feedback (stars)
+@onready var feedback_stars_label: Label = $UI/FeedbackLabel/StarsLabel
+## The position where new clothing should be placed
+@onready var new_clothing_position: Vector2 = current_clothing.position
 
 
-func _ready():
+func _ready() -> void:
 	set_animal_to_start()
 
 
-func set_animal_to_start():
+func set_animal_to_start() -> void:
 	current_animal.position.x = -OFF_SCREEN_DISTANCE_PX
 	play_state = PlayState.MOVE_ANIMAL_IN
 	reset_clothing()
 
 
-func reset_clothing():
+func reset_clothing() -> void:
 	current_clothing.scale = Vector2(1, 1)
-	current_clothing.position = new_clothing_anchor.position
+	current_clothing.position = new_clothing_position
 
 
-func incr_score(points: int):
+func incr_score(points: int) -> void:
 	score += points
 	score_label.text = str(score)
 
 
-func move_animal_on_belt():
+func move_animal_on_belt() -> void:
 	match play_state:
 		PlayState.MOVE_ANIMAL_IN:
 			if %BeltSound.playing == false:
@@ -82,7 +85,7 @@ func move_animal_on_belt():
 				set_animal_to_start()
 
 
-func score_and_exit():
+func score_and_exit() -> void:
 	var piece_scale = current_clothing.scale.x
 	print(piece_scale)
 	# piece score = % away from perfect
@@ -96,11 +99,29 @@ func score_and_exit():
 	elif piece_score < 0.3:
 		stars = 1
 	print(piece_scale, piece_score, stars)
+	show_feedback(stars)
 	incr_score(stars)
 	play_state = PlayState.MOVE_ANIMAL_OUT
 
 
-func grow_shrink_clothing():
+func show_feedback(stars):
+	var feedback = "Try again..."
+	match stars:
+		5:
+			feedback = "Perfect!!"
+		3:
+			feedback = "Great!"
+		1:
+			feedback = "OK"
+	feedback_label.text = feedback
+	var star_s = ""
+	for i in range(stars):
+		star_s += "⭐️"
+	feedback_stars_label.text = star_s
+	feedback_label.visible = true
+
+
+func grow_shrink_clothing() -> void:
 	if play_state != PlayState.SIZING_CLOTHING:
 		return
 
@@ -133,7 +154,7 @@ func grow_shrink_clothing():
 		play_state = PlayState.WEARING_CLOTHING
 
 
-func wear_clothing():
+func wear_clothing() -> void:
 	if play_state == PlayState.WEARING_CLOTHING:
 		var goal = alpaca_clothing_anchor.global_position
 		current_clothing.position = current_clothing.position.lerp(goal, 0.1)
@@ -144,7 +165,7 @@ func wear_clothing():
 		current_clothing.position = alpaca_clothing_anchor.global_position
 
 
-func _process(_delta):
+func _process(_delta) -> void:
 	move_animal_on_belt()
 	grow_shrink_clothing()
 	wear_clothing()

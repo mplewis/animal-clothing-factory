@@ -13,49 +13,9 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_dpgjl")
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Background" type="ColorRect" parent="UI"]
-layout_mode = 0
+[node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
-
-[node name="StarLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 1833.0
-offset_top = 19.0
-offset_right = 1933.0
-offset_bottom = 119.0
-theme_override_font_sizes/font_size = 64
-text = "⭐"
-
-[node name="ScoreLabel" type="Label" parent="UI/StarLabel"]
-layout_mode = 0
-offset_left = -212.0
-offset_top = -15.0
-offset_right = -12.0
-offset_bottom = 85.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="FeedbackLabel" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 1009.0
-offset_top = 360.0
-offset_right = 1209.0
-offset_bottom = 460.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Gameplay" type="Node2D" parent="."]
 
@@ -96,9 +56,6 @@ rotation = -0.418879
 scale = Vector2(0.374332, 0.374332)
 texture = ExtResource("6_bvl5c")
 
-[node name="NewClothingAnchor" type="Node2D" parent="Gameplay"]
-position = Vector2(960, 172)
-
 [node name="CurrentAnimal" type="Node2D" parent="Gameplay"]
 position = Vector2(960, 852)
 
@@ -121,3 +78,53 @@ position = Vector2(960, 172)
 position = Vector2(6.10352e-05, 89)
 scale = Vector2(0.509322, 0.509322)
 texture = ExtResource("4_ppr48")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StarLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 1833.0
+offset_top = 19.0
+offset_right = 1933.0
+offset_bottom = 119.0
+theme_override_font_sizes/font_size = 64
+text = "⭐"
+
+[node name="ScoreLabel" type="Label" parent="UI/StarLabel"]
+layout_mode = 0
+offset_left = -212.0
+offset_top = -15.0
+offset_right = -12.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 562.0
+offset_top = 427.0
+offset_right = 1362.0
+offset_bottom = 527.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Awesome!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarsLabel" type="Label" parent="UI/FeedbackLabel"]
+offset_top = -57.0
+offset_right = 800.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "⭐⭐⭐⭐⭐"
+horizontal_alignment = 1
+vertical_alignment = 1
