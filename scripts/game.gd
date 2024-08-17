@@ -20,6 +20,10 @@ const CLOTHING_MAX_SCALE = 2.0
 const CLOTHING_MIN_SCALE = 0.5
 ## The perfectly-sized clothing scale
 const CLOTHING_PERFECT_SCALE = 0.66
+## How fast the feedback label floats up
+const FEEDBACK_RISE_SPEED = 2
+## How fast the feedback label fades out
+const FEEDBACK_FADE_SPEED = 0.02
 
 ## The current state of the interactive player elements
 var play_state: PlayState = PlayState.MOVE_ANIMAL_IN
@@ -43,6 +47,8 @@ var score: int = 0
 @onready var feedback_label: Label = $UI/FeedbackLabel
 ## The label giving the player scoring feedback (stars)
 @onready var feedback_stars_label: Label = $UI/FeedbackLabel/StarsLabel
+## The initial position of the feedback label
+@onready var feedback_label_start_position: Vector2 = feedback_label.position
 ## The position where new clothing should be placed
 @onready var new_clothing_position: Vector2 = current_clothing.position
 
@@ -104,7 +110,7 @@ func score_and_exit() -> void:
 	play_state = PlayState.MOVE_ANIMAL_OUT
 
 
-func show_feedback(stars):
+func show_feedback(stars) -> void:
 	var feedback = "Try again..."
 	match stars:
 		5:
@@ -119,6 +125,19 @@ func show_feedback(stars):
 		star_s += "⭐️"
 	feedback_stars_label.text = star_s
 	feedback_label.visible = true
+
+
+func move_and_fade_feedback() -> void:
+	if !feedback_label.visible:
+		return
+
+	feedback_label.position.y -= FEEDBACK_RISE_SPEED
+	feedback_label.modulate.a -= FEEDBACK_FADE_SPEED
+
+	if feedback_label.modulate.a <= 0:
+		feedback_label.visible = false
+		feedback_label.position = feedback_label_start_position
+		feedback_label.modulate.a = 1.0
 
 
 func grow_shrink_clothing() -> void:
@@ -169,3 +188,4 @@ func _process(_delta) -> void:
 	move_animal_on_belt()
 	grow_shrink_clothing()
 	wear_clothing()
+	move_and_fade_feedback()
