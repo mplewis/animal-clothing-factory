@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=8 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
 [ext_resource type="Texture2D" uid="uid://b0jgptfehre83" path="res://assets/stock/alpaca.png" id="2_ep84m"]
 [ext_resource type="Texture2D" uid="uid://bec8fjwttray7" path="res://assets/stock/grabby.png" id="3_lljhi"]
 [ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="4_ppr48"]
+[ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
+[ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_dpgjl")
@@ -30,17 +32,29 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_l8h0a")
 
 [node name="Grabber" type="Sprite2D" parent="."]
-position = Vector2(905, -58)
+position = Vector2(960, -58)
 scale = Vector2(0.416667, 0.416667)
 texture = ExtResource("3_lljhi")
 
 [node name="Shirt" type="Sprite2D" parent="."]
-position = Vector2(906, 256)
+position = Vector2(960, 256)
 scale = Vector2(0.509322, 0.509322)
 texture = ExtResource("4_ppr48")
 
+[node name="GrowTool" type="Sprite2D" parent="."]
+position = Vector2(470, 204)
+rotation = 0.418879
+scale = Vector2(0.358403, 0.358403)
+texture = ExtResource("5_nco2n")
+
+[node name="ShrinkTool" type="Sprite2D" parent="."]
+position = Vector2(1474, 224)
+rotation = -0.418879
+scale = Vector2(0.374332, 0.374332)
+texture = ExtResource("6_bvl5c")
+
 [node name="CurrentAnimal" type="Node2D" parent="."]
-position = Vector2(908, 844)
+position = Vector2(960, 844)
 
 [node name="Alpaca" type="Sprite2D" parent="CurrentAnimal"]
 position = Vector2(27, -234)

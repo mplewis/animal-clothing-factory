@@ -5,7 +5,7 @@ enum BeltState { MOVE_ANIMAL_IN, WAITING, MOVE_ANIMAL_OUT }
 const SCREEN_WIDTH_PX = 1920
 const OFF_SCREEN_DISTANCE_PX = 300
 const BELT_SPEED = 20  # px/tick
-const SCREEN_CENTER_X = 908  # center of the screen
+const SCREEN_CENTER_X = SCREEN_WIDTH_PX * 1.0 / 2
 const CENTER_WAIT_SEC = 3.0  # seconds to wait in the middle
 
 var belt_state: BeltState = BeltState.MOVE_ANIMAL_IN
