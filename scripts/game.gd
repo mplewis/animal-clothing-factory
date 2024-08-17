@@ -3,7 +3,7 @@ extends Node2D
 const SCREEN_WIDTH_PX = 1920
 const OFF_SCREEN_DISTANCE_PX = 300
 const BELT_SPEED = 20  # px/tick
-const SCREEN_CENTER_X = SCREEN_WIDTH_PX / 2
+const SCREEN_CENTER_X = SCREEN_WIDTH_PX * 1.0 / 2
 
 @onready var current_animal: Node2D = $CurrentAnimal
 
