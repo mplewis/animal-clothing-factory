@@ -109,8 +109,11 @@ func grow_shrink_clothing():
 
 	if grow && !shrink:
 		resizing = true
+		if %GrowSound.playing == false:
+			%GrowSound.play()
 		if current_clothing.scale.x >= CLOTHING_MAX_SCALE:
 			grow = false  # stop at max
+			%GrowSound.stop()
 		else:
 			current_clothing.scale += Vector2(GROW_SHRINK_RATE, GROW_SHRINK_RATE)
 			grow_tool.rotation_degrees = randf_range(-GROW_SHAKE_MAX_ROT, GROW_SHAKE_MAX_ROT)

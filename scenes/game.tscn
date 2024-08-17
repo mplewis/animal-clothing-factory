@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=10 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
 [ext_resource type="Texture2D" uid="uid://b0jgptfehre83" path="res://assets/stock/alpaca.png" id="2_ep84m"]
 [ext_resource type="Texture2D" uid="uid://bec8fjwttray7" path="res://assets/stock/grabby.png" id="3_lljhi"]
 [ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="4_ppr48"]
+[ext_resource type="AudioStream" uid="uid://blymo1uwy7s17" path="res://assets/sfx/grow_ray.ogg" id="5_kb2au"]
 [ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
 [ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
@@ -81,6 +82,10 @@ position = Vector2(33, 54)
 rotation = 0.418879
 scale = Vector2(0.278, 0.278)
 texture = ExtResource("5_nco2n")
+
+[node name="GrowSound" type="AudioStreamPlayer2D" parent="Gameplay/GrowTool"]
+unique_name_in_owner = true
+stream = ExtResource("5_kb2au")
 
 [node name="ShrinkTool" type="Node2D" parent="Gameplay"]
 position = Vector2(1478, 157)
