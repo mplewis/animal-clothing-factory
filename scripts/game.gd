@@ -65,11 +65,16 @@ func incr_score(points: int):
 func move_animal_on_belt():
 	match play_state:
 		PlayState.MOVE_ANIMAL_IN:
+			if %BeltSound.playing == false:
+				%BeltSound.play()
 			current_animal.position.x += BELT_SPEED
 			if current_animal.position.x > SCREEN_CENTER_X:
+				%BeltSound.stop()
 				play_state = PlayState.SIZING_CLOTHING
 
 		PlayState.MOVE_ANIMAL_OUT:
+			if %BeltSound.playing == false:
+				%BeltSound.play()
 			current_animal.position.x += BELT_SPEED
 			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_DISTANCE_PX:
 				set_animal_to_start()
