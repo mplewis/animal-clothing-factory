@@ -13,7 +13,7 @@ const CLOTHING_MAX_SCALE = 2.0
 const CLOTHING_MIN_SCALE = 0.5
 
 var belt_state: BeltState = BeltState.MOVE_ANIMAL_IN
-var stop_waiting_at: float = 0
+var resizing: bool = false
 
 @onready var current_animal: Node2D = $CurrentAnimal
 @onready var current_clothing: Node2D = $CurrentClothing
@@ -28,6 +28,11 @@ func _ready():
 func set_animal_to_start():
 	current_animal.position.x = -OFF_SCREEN_DISTANCE_PX
 	belt_state = BeltState.MOVE_ANIMAL_IN
+	reset_clothing()
+
+
+func reset_clothing():
+	current_clothing.scale = Vector2(1, 1)
 
 
 func move_animal_on_belt():
@@ -36,11 +41,9 @@ func move_animal_on_belt():
 			current_animal.position.x += BELT_SPEED
 			if current_animal.position.x > SCREEN_CENTER_X:
 				belt_state = BeltState.WAITING
-				stop_waiting_at = Time.get_ticks_msec() + CENTER_WAIT_SEC * 1000
 
 		BeltState.WAITING:
-			if Time.get_ticks_msec() > stop_waiting_at:
-				belt_state = BeltState.MOVE_ANIMAL_OUT
+			pass
 
 		BeltState.MOVE_ANIMAL_OUT:
 			current_animal.position.x += BELT_SPEED
@@ -49,19 +52,33 @@ func move_animal_on_belt():
 
 
 func grow_shrink_clothing():
-	if Input.is_action_pressed("ui_grow"):
-		if current_clothing.scale.x < CLOTHING_MAX_SCALE:
+	if belt_state != BeltState.WAITING:
+		return
+
+	var grow = Input.is_action_pressed("ui_grow")
+	var shrink = Input.is_action_pressed("ui_shrink")
+
+	if grow && !shrink:
+		resizing = true
+		if current_clothing.scale.x >= CLOTHING_MAX_SCALE:
+			grow = false  # stop at max
+		else:
 			current_clothing.scale += Vector2(GROW_SHRINK_RATE, GROW_SHRINK_RATE)
 			grow_tool.rotation_degrees = randf_range(-GROW_SHAKE_MAX_ROT, GROW_SHAKE_MAX_ROT)
-	else:
-		grow_tool.rotation_degrees = 0
 
-	if Input.is_action_pressed("ui_shrink"):
-		if current_clothing.scale.x > CLOTHING_MIN_SCALE:
+	if shrink && !grow:
+		resizing = true
+		if current_clothing.scale.x <= CLOTHING_MIN_SCALE:
+			shrink = false  # stop at min
+		else:
 			current_clothing.scale -= Vector2(GROW_SHRINK_RATE, GROW_SHRINK_RATE)
 			shrink_tool.rotation_degrees = randf_range(-GROW_SHAKE_MAX_ROT, GROW_SHAKE_MAX_ROT)
-		else:
-			shrink_tool.rotation_degrees = 0
+
+	if resizing && !grow && !shrink:  # player released the key
+		resizing = false
+		grow_tool.rotation_degrees = 0
+		shrink_tool.rotation_degrees = 0
+		belt_state = BeltState.MOVE_ANIMAL_OUT
 
 
 func _process(_delta):
