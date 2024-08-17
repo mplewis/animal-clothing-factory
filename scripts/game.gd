@@ -187,6 +187,7 @@ func grow_shrink_clothing() -> void:
 			shrink_tool.rotation_degrees = randf_range(-GROW_SHAKE_MAX_ROT, GROW_SHAKE_MAX_ROT)
 
 	if resizing && !grow && !shrink:  # player released the key
+		%GrowSound.stop()
 		resizing = false
 		grow_tool.rotation_degrees = 0
 		shrink_tool.rotation_degrees = 0
