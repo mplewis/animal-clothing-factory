@@ -7,12 +7,16 @@ const OFF_SCREEN_DISTANCE_PX = 300
 const BELT_SPEED = 20  # px/tick
 const SCREEN_CENTER_X = SCREEN_WIDTH_PX * 1.0 / 2
 const CENTER_WAIT_SEC = 3.0  # seconds to wait in the middle
+const GROW_SHRINK_RATE = 0.02  # scale factor per tick
+const CLOTHING_MAX_SCALE = 2.0
+const CLOTHING_MIN_SCALE = 0.5
 
 var belt_state: BeltState = BeltState.MOVE_ANIMAL_IN
 var stop_waiting_at: float = 0
 
 @onready var current_animal: Node2D = $CurrentAnimal
-@onready var alpaca_shirt: Node2D = $AlpacaShirt
+@onready var current_clothing: Node2D = $CurrentClothing
+# @onready var alpaca_shirt: Node2D = $AlpacaShirt
 
 
 func _ready():
@@ -22,7 +26,6 @@ func _ready():
 func set_animal_to_start():
 	current_animal.position.x = -OFF_SCREEN_DISTANCE_PX
 	belt_state = BeltState.MOVE_ANIMAL_IN
-	print("-> in")
 
 
 func move_animal_on_belt():
@@ -30,13 +33,11 @@ func move_animal_on_belt():
 		BeltState.MOVE_ANIMAL_IN:
 			current_animal.position.x += BELT_SPEED
 			if current_animal.position.x > SCREEN_CENTER_X:
-				print("-> waiting")
 				belt_state = BeltState.WAITING
 				stop_waiting_at = Time.get_ticks_msec() + CENTER_WAIT_SEC * 1000
 
 		BeltState.WAITING:
 			if Time.get_ticks_msec() > stop_waiting_at:
-				print("-> out")
 				belt_state = BeltState.MOVE_ANIMAL_OUT
 
 		BeltState.MOVE_ANIMAL_OUT:
@@ -45,5 +46,15 @@ func move_animal_on_belt():
 				set_animal_to_start()
 
 
+func grow_shrink_clothing():
+	if Input.is_action_pressed("ui_grow"):
+		if current_clothing.scale.x < CLOTHING_MAX_SCALE:
+			current_clothing.scale += Vector2(GROW_SHRINK_RATE, GROW_SHRINK_RATE)
+	elif Input.is_action_pressed("ui_shrink"):
+		if current_clothing.scale.x > CLOTHING_MIN_SCALE:
+			current_clothing.scale -= Vector2(GROW_SHRINK_RATE, GROW_SHRINK_RATE)
+
+
 func _process(_delta):
 	move_animal_on_belt()
+	grow_shrink_clothing()

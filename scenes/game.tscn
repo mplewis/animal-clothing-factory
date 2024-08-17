@@ -36,11 +36,6 @@ position = Vector2(960, -58)
 scale = Vector2(0.416667, 0.416667)
 texture = ExtResource("3_lljhi")
 
-[node name="Shirt" type="Sprite2D" parent="."]
-position = Vector2(960, 256)
-scale = Vector2(0.509322, 0.509322)
-texture = ExtResource("4_ppr48")
-
 [node name="GrowTool" type="Sprite2D" parent="."]
 position = Vector2(470, 204)
 rotation = 0.418879
@@ -53,8 +48,16 @@ rotation = -0.418879
 scale = Vector2(0.374332, 0.374332)
 texture = ExtResource("6_bvl5c")
 
+[node name="CurrentClothing" type="Node2D" parent="."]
+position = Vector2(960, 171.83)
+
+[node name="Shirt" type="Sprite2D" parent="CurrentClothing"]
+position = Vector2(6.10352e-05, 89)
+scale = Vector2(0.509322, 0.509322)
+texture = ExtResource("4_ppr48")
+
 [node name="CurrentAnimal" type="Node2D" parent="."]
-position = Vector2(960, 844)
+position = Vector2(960, 852)
 
 [node name="Alpaca" type="Sprite2D" parent="CurrentAnimal"]
 position = Vector2(27, -234)
