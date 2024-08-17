@@ -75,13 +75,8 @@ rotation = -0.418879
 scale = Vector2(0.374332, 0.374332)
 texture = ExtResource("6_bvl5c")
 
-[node name="CurrentClothing" type="Node2D" parent="."]
-position = Vector2(960, 171.83)
-
-[node name="Shirt" type="Sprite2D" parent="CurrentClothing"]
-position = Vector2(6.10352e-05, 89)
-scale = Vector2(0.509322, 0.509322)
-texture = ExtResource("4_ppr48")
+[node name="NewClothingAnchor" type="Node2D" parent="."]
+position = Vector2(960, 172)
 
 [node name="CurrentAnimal" type="Node2D" parent="."]
 position = Vector2(960, 852)
@@ -90,8 +85,13 @@ position = Vector2(960, 852)
 position = Vector2(27, -234)
 texture = ExtResource("2_ep84m")
 
-[node name="AlpacaShirt" type="Sprite2D" parent="CurrentAnimal/Alpaca"]
-visible = false
-position = Vector2(126, -107)
-scale = Vector2(0.388513, 0.234835)
+[node name="ClothingAnchor" type="Node2D" parent="CurrentAnimal/Alpaca"]
+position = Vector2(132, -155)
+
+[node name="CurrentClothing" type="Node2D" parent="."]
+position = Vector2(960, 172)
+
+[node name="Shirt" type="Sprite2D" parent="CurrentClothing"]
+position = Vector2(6.10352e-05, 89)
+scale = Vector2(0.509322, 0.509322)
 texture = ExtResource("4_ppr48")
