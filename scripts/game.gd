@@ -24,7 +24,6 @@ var score: int = 0
 
 
 func _ready():
-	print(score_label)
 	set_animal_to_start()
 
 
