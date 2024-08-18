@@ -26,6 +26,7 @@ scale = Vector2(0.304212, 0.304212)
 texture = ExtResource("4_hjwkp")
 
 [node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
+visible = false
 position = Vector2(30, 169)
 rotation = 1.10819
 scale = Vector2(0.444491, 0.444491)
