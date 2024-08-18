@@ -37,10 +37,11 @@ stream_2/volume = 0.0
 stream_3/stream = ExtResource("10_mb3k5")
 stream_3/volume = 0.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator", "dressed_animal_parent")]
 script = ExtResource("1_dpgjl")
 new_clothing_anchor_node = NodePath("Gameplay/Shirt")
 object_creator = NodePath("ObjectCreator")
+dressed_animal_parent = NodePath("Gameplay/ClothedAnimalParent")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -141,6 +142,8 @@ texture = ExtResource("6_bvl5c")
 
 [node name="Shirt" parent="Gameplay" instance=ExtResource("13_fe3ex")]
 visible = false
+
+[node name="ClothedAnimalParent" type="Node2D" parent="Gameplay"]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

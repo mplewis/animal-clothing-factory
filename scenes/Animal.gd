@@ -8,7 +8,7 @@ class_name Animal
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#self.play_dance()
+	self.play_dance()
 	pass
 	#self.attach_clothing(testTie)
 	#self.attach_clothing(testShirt)
@@ -44,6 +44,8 @@ func get_target_scale_for_clothing(clothingName : String) -> float:
 	return anchorNode.scale.x
 	
 func play_dance() -> void:
+	var randSpeed = randf_range(.8, 1.2)
+	animation_player.set_speed_scale(randSpeed)
 	animation_player.play("animal_animations/animal_dance")
 	
 	
