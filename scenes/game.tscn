@@ -1,14 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=16 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
 [ext_resource type="Texture2D" uid="uid://b0jgptfehre83" path="res://assets/stock/alpaca.png" id="2_ep84m"]
 [ext_resource type="AudioStream" uid="uid://coyru3wdj4e6u" path="res://assets/bgm/lazy_factory.mp3" id="3_2kvdn"]
 [ext_resource type="Texture2D" uid="uid://bec8fjwttray7" path="res://assets/stock/grabby.png" id="3_lljhi"]
+[ext_resource type="AudioStream" uid="uid://beoa0wfnvg05m" path="res://assets/sfx/stock/bad.wav" id="4_6kc8c"]
 [ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="4_ppr48"]
+[ext_resource type="AudioStream" uid="uid://bu0fiagke7tlp" path="res://assets/sfx/stock/ok.wav" id="5_7lwqf"]
 [ext_resource type="AudioStream" uid="uid://blymo1uwy7s17" path="res://assets/sfx/grow_ray.ogg" id="5_kb2au"]
 [ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
 [ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
+[ext_resource type="AudioStream" uid="uid://51i25sf3r86y" path="res://assets/sfx/stock/good.wav" id="6_snj1n"]
+[ext_resource type="AudioStream" uid="uid://c1oj56208o8pf" path="res://assets/sfx/stock/great.wav" id="7_38264"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
 
@@ -24,15 +28,30 @@ autostart = true
 
 [node name="Audio" type="Node2D" parent="."]
 
-[node name="BeltSound" type="AudioStreamPlayer2D" parent="Audio"]
-unique_name_in_owner = true
+[node name="BeltMove" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(960, 852)
 stream = ExtResource("8_m6ttv")
+volume_db = -4.885
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(960, 852)
 stream = ExtResource("3_2kvdn")
 autoplay = true
+
+[node name="Score" type="Node2D" parent="Audio"]
+position = Vector2(960, 852)
+
+[node name="Bad" type="AudioStreamPlayer2D" parent="Audio/Score"]
+stream = ExtResource("4_6kc8c")
+
+[node name="OK" type="AudioStreamPlayer2D" parent="Audio/Score"]
+stream = ExtResource("5_7lwqf")
+
+[node name="Good" type="AudioStreamPlayer2D" parent="Audio/Score"]
+stream = ExtResource("6_snj1n")
+
+[node name="Great" type="AudioStreamPlayer2D" parent="Audio/Score"]
+stream = ExtResource("7_38264")
 
 [node name="Gameplay" type="Node2D" parent="."]
 

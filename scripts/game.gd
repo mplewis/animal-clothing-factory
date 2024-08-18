@@ -46,22 +46,37 @@ var resizing := false
 @onready var alpaca_clothing_anchor: Node2D = $Gameplay/CurrentAnimal/Alpaca/ClothingAnchor
 ## The current clothing to resize
 @onready var current_clothing: Node2D = $Gameplay/CurrentClothing
+
 ## The tool used to grow clothing
 @onready var grow_tool: Node2D = $Gameplay/GrowTool
 ## The tool used to shrink clothing
 @onready var shrink_tool: Node2D = $Gameplay/ShrinkTool
+
+## The label showing the time remaining in the game
+@onready var timer_label: Label = $UI/ClockLabel/TimerLabel
 ## The label showing the player's score
 @onready var score_label: Label = $UI/StarLabel/ScoreLabel
+
 ## The label giving the player scoring feedback (text)
 @onready var feedback_label: Label = $UI/FeedbackLabel
 ## The label giving the player scoring feedback (stars)
 @onready var feedback_stars_label: Label = $UI/FeedbackLabel/StarsLabel
-## The label showing the time remaining in the game
-@onready var timer_label: Label = $UI/ClockLabel/TimerLabel
+
 ## The label indicating the key for Grow
 @onready var grow_label: Label = $UI/HintGrow/KeyLabel
 ## The label indicating the key for Shrink
 @onready var shrink_label: Label = $UI/HintShrink/KeyLabel
+
+## The sound of the belt moving
+@onready var belt_move_sound: AudioStreamPlayer2D = $Audio/BeltMove
+## The sound of the score feedback SFX for Bad
+@onready var score_bad_sound: AudioStreamPlayer2D = $Audio/Score/Bad
+## The sound of the score feedback SFX for OK
+@onready var score_ok_sound: AudioStreamPlayer2D = $Audio/Score/OK
+## The sound of the score feedback SFX for Good
+@onready var score_good_sound: AudioStreamPlayer2D = $Audio/Score/Good
+## The sound of the score feedback SFX for Great
+@onready var score_great_sound: AudioStreamPlayer2D = $Audio/Score/Great
 
 ## The initial position of the feedback label
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
@@ -138,16 +153,16 @@ func incr_score(points: int) -> void:
 func move_animal_on_belt() -> void:
 	match play_state:
 		PlayState.MOVE_ANIMAL_IN:
-			if %BeltSound.playing == false:
-				%BeltSound.play()
+			if belt_move_sound.playing == false:
+				belt_move_sound.play()
 			current_animal.position.x += BELT_SPEED
 			if current_animal.position.x > SCREEN_CENTER_X:
-				%BeltSound.stop()
+				belt_move_sound.stop()
 				play_state = PlayState.SIZING_CLOTHING
 
 		PlayState.MOVE_ANIMAL_OUT:
-			if %BeltSound.playing == false:
-				%BeltSound.play()
+			if belt_move_sound.playing == false:
+				belt_move_sound.play()
 			current_animal.position.x += BELT_SPEED
 			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_DISTANCE_PX:
 				set_animal_to_start()
@@ -175,20 +190,25 @@ func score_and_exit() -> void:
 
 ## Indicate to the player how many stars they earned.
 func show_feedback(stars) -> void:
-	var feedback = "Try again..."
+	var feedback := "Try again..."
+	var sfx := score_bad_sound
 	match stars:
 		5:
 			feedback = "Perfect!!"
+			sfx = score_great_sound
 		3:
 			feedback = "Great!"
+			sfx = score_good_sound
 		1:
-			feedback = "OK"
+			feedback = "Just OK"
+			sfx = score_ok_sound
 	feedback_label.text = feedback
 	var star_s = ""
 	for i in range(stars):
 		star_s += "⭐️"
 	feedback_stars_label.text = star_s
 	feedback_label.visible = true
+	sfx.play()
 
 
 ## Move the feedback label up and fade it out, if it's currently visible.
