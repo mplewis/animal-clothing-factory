@@ -23,9 +23,12 @@ func attach_clothing(clothing_item : Node2D ) -> float:
 	var anchorNode = anchor_base.get_node(NodePath(clothing_item.name + "Anchor"))
 	if(anchorNode != null):
 		clothing_item.reparent(self)
-		var tween = clothing_item.create_tween()
-		tween.tween_property(clothing_item, "position", anchorNode.position, .2)
-		tween.tween_property(clothing_item, "rotation", anchorNode.rotation, .2)
+		#tweens go one after the other if you put them in one, so create 2 separate ones so that they happen together.
+		var locTween = clothing_item.create_tween()
+		locTween.tween_property(clothing_item, "position", anchorNode.position, .2)
+		var rotTween = clothing_item.create_tween() 
+		rotTween.tween_property(clothing_item, "rotation", anchorNode.rotation, .2)
+		
 
 		var desiredScale = anchorNode.scale.x
 		result = abs(desiredScale - clothing_item.scale.x)

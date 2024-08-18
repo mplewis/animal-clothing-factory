@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cklrc5ptq357w" path="res://assets/sfx/ambience/ambience_loop_4.ogg" id="10_mb3k5"]
 [ext_resource type="AudioStream" uid="uid://bugsri0fof7hw" path="res://assets/sfx/score_super.ogg" id="10_n8s8l"]
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
-[ext_resource type="PackedScene" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
+[ext_resource type="PackedScene" uid="uid://c8umq15pynaj4" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
 [ext_resource type="Script" path="res://scripts/ObjectCreator.gd" id="16_1fh1g"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
