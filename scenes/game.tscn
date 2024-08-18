@@ -102,6 +102,9 @@ texture = ExtResource("2_ep84m")
 [node name="ClothingAnchor" type="Node2D" parent="Gameplay/CurrentAnimal/Alpaca"]
 position = Vector2(132, -155)
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Gameplay/CurrentAnimal"]
+remote_path = NodePath("../../../Audio/BeltMove")
+
 [node name="CurrentClothing" type="Node2D" parent="Gameplay"]
 position = Vector2(960, 172)
 
