@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bt7dqqlwomcgr"]
 
 [ext_resource type="Texture2D" uid="uid://b0jgptfehre83" path="res://assets/stock/alpaca.png" id="1_oae5t"]
-[ext_resource type="Script" path="res://scenes/Animal.gd" id="2_ic6ix"]
+[ext_resource type="Script" path="res://scripts/animal.gd" id="2_ic6ix"]
 [ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="3_gquic"]
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_0nths"]
 [ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="5_rvlk2"]
