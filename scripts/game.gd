@@ -7,12 +7,12 @@ enum PlayState { MOVE_ANIMAL_IN, SIZING_CLOTHING, WEARING_CLOTHING, MOVE_ANIMAL_
 const SCREEN_WIDTH_PX := 1920
 ## How far off-screen to start/end the animal motion, in pixels
 const OFF_SCREEN_ANIMAL_DISTANCE_PX := 300
-## How far off-screen to start/end the grabber arm, in pixels
-const OFF_SCREEN_GRABBER_DISTANCE_PX := 200
+## How far off-screen to start/end the grabber arm, in pixels. Must be large enough to handle tall items of clothing.
+const OFF_SCREEN_GRABBER_DISTANCE_PX := 500
 ## Speed of belt that moves animals in/out, in px/tick
 const BELT_SPEED := 20
-## Speed of grabber arm moving up/down, in px/tick
-const GRABBER_SPEED := 5
+## Speed of grabber arm moving up/down, in px/tick. Must be fast enough to load the clothing before the belt stops.
+const GRABBER_SPEED := 20
 ## The X coord for the center of the screen. This is where the animal stops.
 const SCREEN_CENTER_X := SCREEN_WIDTH_PX * 1.0 / 2
 
