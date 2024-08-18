@@ -6,14 +6,14 @@
 [ext_resource type="AudioStream" uid="uid://coyru3wdj4e6u" path="res://assets/bgm/lazy_factory.mp3" id="3_2kvdn"]
 [ext_resource type="Script" path="res://scripts/shrink_sound.gd" id="3_7l8gu"]
 [ext_resource type="Texture2D" uid="uid://bec8fjwttray7" path="res://assets/stock/grabby.png" id="3_lljhi"]
-[ext_resource type="AudioStream" uid="uid://beoa0wfnvg05m" path="res://assets/sfx/stock/bad.wav" id="4_6kc8c"]
-[ext_resource type="AudioStream" uid="uid://bu0fiagke7tlp" path="res://assets/sfx/stock/ok.wav" id="5_7lwqf"]
 [ext_resource type="AudioStream" uid="uid://blymo1uwy7s17" path="res://assets/sfx/grow_ray.ogg" id="5_kb2au"]
 [ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
 [ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
-[ext_resource type="AudioStream" uid="uid://51i25sf3r86y" path="res://assets/sfx/stock/good.wav" id="6_snj1n"]
-[ext_resource type="AudioStream" uid="uid://c1oj56208o8pf" path="res://assets/sfx/stock/great.wav" id="7_38264"]
+[ext_resource type="AudioStream" uid="uid://bcfar0icogdoq" path="res://assets/sfx/score_bad.ogg" id="7_2d34m"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
+[ext_resource type="AudioStream" uid="uid://c3m3axowmgpar" path="res://assets/sfx/score_ok.ogg" id="8_nynau"]
+[ext_resource type="AudioStream" uid="uid://cflcrhkgxllkb" path="res://assets/sfx/score_good.ogg" id="9_00gyo"]
+[ext_resource type="AudioStream" uid="uid://bugsri0fof7hw" path="res://assets/sfx/score_super.ogg" id="10_n8s8l"]
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
 [ext_resource type="PackedScene" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
@@ -65,16 +65,16 @@ parameters/looping = true
 position = Vector2(960, 852)
 
 [node name="Bad" type="AudioStreamPlayer2D" parent="Audio/Score"]
-stream = ExtResource("4_6kc8c")
+stream = ExtResource("7_2d34m")
 
 [node name="OK" type="AudioStreamPlayer2D" parent="Audio/Score"]
-stream = ExtResource("5_7lwqf")
+stream = ExtResource("8_nynau")
 
 [node name="Good" type="AudioStreamPlayer2D" parent="Audio/Score"]
-stream = ExtResource("6_snj1n")
+stream = ExtResource("9_00gyo")
 
 [node name="Great" type="AudioStreamPlayer2D" parent="Audio/Score"]
-stream = ExtResource("7_38264")
+stream = ExtResource("10_n8s8l")
 
 [node name="Gameplay" type="Node2D" parent="."]
 
