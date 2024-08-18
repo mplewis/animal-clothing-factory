@@ -4,9 +4,11 @@ class_name Animal
 
 
 @export var anchor_base : Node2D
+@export var animation_player : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#self.play_dance()
 	pass
 	#self.attach_clothing(testTie)
 	#self.attach_clothing(testShirt)
@@ -40,4 +42,8 @@ func attach_clothing(clothing_item : Node2D ) -> float:
 func get_target_scale_for_clothing(clothingName : String) -> float:
 	var anchorNode = anchor_base.get_node(NodePath(clothingName + "Anchor"))
 	return anchorNode.scale.x
+	
+func play_dance() -> void:
+	animation_player.play("animal_animations/animal_dance")
+	
 	

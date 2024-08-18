@@ -1,17 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx8ndchxtc5t5"]
+[gd_scene load_steps=6 format=3 uid="uid://dx8ndchxtc5t5"]
 
 [ext_resource type="Texture2D" uid="uid://dkesnux5vjhau" path="res://assets/stock/cat.png" id="1_krr4y"]
 [ext_resource type="Script" path="res://scenes/Animal.gd" id="2_hi5f1"]
 [ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="3_kbum0"]
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_hjwkp"]
+[ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="5_laffy"]
 
 [node name="Cat" type="Node2D" node_paths=PackedStringArray("anchor_base")]
 position = Vector2(0, 617)
 script = ExtResource("2_hi5f1")
 anchor_base = NodePath("ClothingAnchors")
 
-[node name="AnimalSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -38)
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-54, -2.00001)
+rotation = -0.504138
+scale = Vector2(0.949275, 0.798318)
 texture = ExtResource("1_krr4y")
 
 [node name="ClothingAnchors" type="Node2D" parent="."]
@@ -30,3 +33,8 @@ rotation = 1.10819
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_kbum0")
 offset = Vector2(0, 89)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"animal_animations": ExtResource("5_laffy")
+}
