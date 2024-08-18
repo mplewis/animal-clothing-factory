@@ -6,9 +6,13 @@ enum PlayState { MOVE_ANIMAL_IN, SIZING_CLOTHING, WEARING_CLOTHING, MOVE_ANIMAL_
 ## Width of the game window, in pixels
 const SCREEN_WIDTH_PX := 1920
 ## How far off-screen to start/end the animal motion, in pixels
-const OFF_SCREEN_DISTANCE_PX := 300
+const OFF_SCREEN_ANIMAL_DISTANCE_PX := 300
+## How far off-screen to start/end the grabber arm, in pixels
+const OFF_SCREEN_GRABBER_DISTANCE_PX := 200
 ## Speed of belt that moves animals in/out, in px/tick
 const BELT_SPEED := 20
+## Speed of grabber arm moving up/down, in px/tick
+const GRABBER_SPEED := 5
 ## The X coord for the center of the screen. This is where the animal stops.
 const SCREEN_CENTER_X := SCREEN_WIDTH_PX * 1.0 / 2
 
@@ -59,6 +63,8 @@ var dressed_animals: Array[Animal] = []
 ## The current clothing to resize
 @onready var current_clothing: Node2D
 
+## The grabber arm that holds clothing
+@onready var grabber: Node2D = $Gameplay/Grabber
 ## The tool used to grow clothing
 @onready var grow_tool: Node2D = $Gameplay/GrowTool
 ## The tool used to shrink clothing
@@ -89,11 +95,15 @@ var dressed_animals: Array[Animal] = []
 @onready var score_good_sound: AudioStreamPlayer2D = $Audio/Score/Good
 ## The sound of the score feedback SFX for Great
 @onready var score_great_sound: AudioStreamPlayer2D = $Audio/Score/Great
-## the sound of the grow ray firing
+## The sound of the grow ray firing
 @onready var grow_sound: AudioStreamPlayer2D = $Audio/Grow
+
+# TODO: Add 2d spatial sound for belt, grow, shrink
 
 ## The initial position of the feedback label
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
+## The initial position of the grabber arm
+@onready var grabber_start_position: Vector2 = grabber.position
 ## The timer that ticks once a second
 @onready var timer: Timer = $SecTimer
 
@@ -107,6 +117,7 @@ func _ready() -> void:
 
 func _process(_delta) -> void:
 	move_animal_on_belt()
+	move_grabber_arm()
 	grow_shrink_clothing()
 	wear_clothing()
 	move_and_fade_feedback()
@@ -129,7 +140,8 @@ func end_game() -> void:
 ## Create a new animal and position them
 func set_animal_to_start() -> void:
 	current_animal = object_creator.create_random_animal()
-	current_animal.position.x = -OFF_SCREEN_DISTANCE_PX
+	current_animal.position.x = -OFF_SCREEN_ANIMAL_DISTANCE_PX
+	grabber.position.y = grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX
 	play_state = PlayState.MOVE_ANIMAL_IN
 	reset_clothing()
 
@@ -178,12 +190,24 @@ func move_animal_on_belt() -> void:
 			if belt_move_sound.playing == false:
 				belt_move_sound.play()
 			current_animal.position.x += BELT_SPEED
-			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_DISTANCE_PX:
+			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_ANIMAL_DISTANCE_PX:
 				#disable current animal for now
 				current_animal.hide()
 				dressed_animals.push_back(current_animal)
 				print(dressed_animals.size())
 				set_animal_to_start()
+
+
+## Move the grabber arm up or down if necessary.
+func move_grabber_arm() -> void:
+	match play_state:
+		PlayState.MOVE_ANIMAL_IN:
+			if grabber.position.y < grabber_start_position.y:
+				grabber.position.y += GRABBER_SPEED
+
+		PlayState.MOVE_ANIMAL_OUT:
+			if grabber.position.y > grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX:
+				grabber.position.y -= GRABBER_SPEED
 
 
 ## Score the player's clothing sizing and move the animal to the right.
