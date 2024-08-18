@@ -32,7 +32,9 @@ const FEEDBACK_RISE_SPEED := 2
 ## How fast the feedback label fades out
 const FEEDBACK_FADE_SPEED := 0.02
 
+## Emitted when the player starts using the shrink tool
 signal shrink_sound_start
+## Emitted when the player stops using the shrink tool
 signal shrink_sound_stop
 
 ## The position where new clothing should be placed
@@ -48,7 +50,7 @@ var play_state := PlayState.MOVE_ANIMAL_IN
 var resizing := false
 
 ## Stores all the animals that we've dressed so we can show them in the end screen
-var dressed_animals : Array[Animal] = []
+var dressed_animals: Array[Animal] = []
 
 ## The current animal to dress
 @onready var current_animal: Animal
@@ -90,13 +92,10 @@ var dressed_animals : Array[Animal] = []
 ## the sound of the grow ray firing
 @onready var grow_sound: AudioStreamPlayer2D = $Audio/Grow
 
-
 ## The initial position of the feedback label
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
 ## The timer that ticks once a second
 @onready var timer: Timer = $SecTimer
-
-
 
 
 func _ready() -> void:
@@ -188,7 +187,7 @@ func move_animal_on_belt() -> void:
 
 
 ## Score the player's clothing sizing and move the animal to the right.
-func score_and_exit(desiredScale:float) -> void:
+func score_and_exit(desiredScale: float) -> void:
 	var piece_scale = current_clothing.scale.x
 
 	# piece score = % away from perfect
@@ -325,11 +324,5 @@ func grow_shrink_clothing() -> void:
 ## Move the resized clothing onto the animal.
 func wear_clothing() -> void:
 	if play_state == PlayState.WEARING_CLOTHING:
-		var diff = self.current_animal.attach_clothing(self.current_clothing)
 		var desired = self.current_animal.get_target_scale_for_clothing(self.current_clothing.name)
-		#var goal = alpaca_clothing_anchor.global_position
-		#current_clothing.position = current_clothing.position.lerp(goal, 0.1)
 		score_and_exit(desired)
-
-	#elif play_state == PlayState.MOVE_ANIMAL_OUT:
-	#current_clothing.position = alpaca_clothing_anchor.global_position
