@@ -76,10 +76,12 @@ stream = ExtResource("8_m6ttv")
 volume_db = -4.885
 
 [node name="ClawDown" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(960, 150)
 stream = ExtResource("11_ip0fr")
 bus = &"sfx"
 
 [node name="ClawUp" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(960, 150)
 stream = ExtResource("12_qh8lc")
 bus = &"sfx"
 
