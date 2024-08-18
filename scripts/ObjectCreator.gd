@@ -30,5 +30,4 @@ func create_random_clothing() -> Node2D:
 	var clothingScene = PossibleClothing.pick_random()
 	var instantiatedClothing = clothingScene.instantiate()
 	add_child(instantiatedClothing)
-	print(instantiatedClothing)
 	return instantiatedClothing
