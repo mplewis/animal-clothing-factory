@@ -42,6 +42,9 @@ var play_state := PlayState.MOVE_ANIMAL_IN
 ## If true, the player is currently holding down a "resize" key
 var resizing := false
 
+## Stores all the animals that we've dressed so we can show them in the end screen
+var dressed_animals : Array[Animal] = []
+
 ## The current animal to dress
 @onready var current_animal: Animal
 ## Where the shirt sits on the alpaca
@@ -92,6 +95,8 @@ var resizing := false
 @onready var timer: Timer = $SecTimer
 
 @export var object_creator: ObjectCreator
+
+
 
 
 func _ready() -> void:
@@ -177,6 +182,8 @@ func move_animal_on_belt() -> void:
 			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_DISTANCE_PX:
 				#disable current animal for now
 				current_animal.hide()
+				dressed_animals.push_back(current_animal)
+				print(dressed_animals.size())
 				set_animal_to_start()
 
 
