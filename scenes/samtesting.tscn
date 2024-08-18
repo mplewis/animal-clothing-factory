@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://d4k2ox1m7go40"]
 
-[ext_resource type="Script" path="res://scripts/ObjectCreator.gd" id="1_dakf6"]
+[ext_resource type="Script" path="res://scripts/object_creator.gd" id="1_dakf6"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="2_x2i7g"]
 [ext_resource type="PackedScene" uid="uid://dx8ndchxtc5t5" path="res://scenes/animals/cat.tscn" id="3_3dqco"]
 

@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
 [ext_resource type="PackedScene" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
-[ext_resource type="Script" path="res://scripts/ObjectCreator.gd" id="16_1fh1g"]
+[ext_resource type="Script" path="res://scripts/object_creator.gd" id="16_1fh1g"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
 [ext_resource type="PackedScene" uid="uid://y2c0un4ly452" path="res://scenes/clothing/tie.tscn" id="18_n6kxj"]
 [ext_resource type="PackedScene" uid="uid://dx8ndchxtc5t5" path="res://scenes/animals/cat.tscn" id="18_y3c8k"]
