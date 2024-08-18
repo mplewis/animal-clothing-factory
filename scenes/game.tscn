@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
 [ext_resource type="AudioStream" uid="uid://b7jpcgihvydy4" path="res://assets/sfx/claw_down.ogg" id="11_ip0fr"]
 [ext_resource type="AudioStream" uid="uid://efcgv30lfqbu" path="res://assets/sfx/claw_up.ogg" id="12_qh8lc"]
-[ext_resource type="PackedScene" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
+[ext_resource type="PackedScene" uid="uid://c8umq15pynaj4" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
 [ext_resource type="Script" path="res://scripts/object_creator.gd" id="16_1fh1g"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
@@ -39,10 +39,12 @@ stream_2/volume = 0.0
 stream_3/stream = ExtResource("10_mb3k5")
 stream_3/volume = 0.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator", "dressed_animal_anchor")]
 script = ExtResource("1_dpgjl")
 new_clothing_anchor_node = NodePath("Gameplay/Grabber/NewClothingAnchor")
 object_creator = NodePath("ObjectCreator")
+dressed_animal_anchor = NodePath("DressedAnimalAnchor")
+GAME_DURATION_SECS = 5.0
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -275,6 +277,8 @@ theme_override_font_sizes/font_size = 64
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DressedAnimalAnchor" type="Node2D" parent="."]
 
 [connection signal="shrink_sound_start" from="." to="Audio/Shrink" method="_on_game_shrink_sound_start"]
 [connection signal="shrink_sound_stop" from="." to="Audio/Shrink" method="_on_game_shrink_sound_stop"]

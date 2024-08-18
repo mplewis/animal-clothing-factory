@@ -18,8 +18,7 @@ const GETTING_DRESSED_DELAY_SEC := 0.4
 ## The X coord for the center of the screen. This is where the animal stops.
 const SCREEN_CENTER_X := SCREEN_WIDTH_PX * 1.0 / 2
 
-## How long the game lasts, in seconds
-const GAME_DURATION_SECS = 45
+
 
 ## How fast to grow/shrink clothing when the player holds the button
 const GROW_SHRINK_RATE := 0.01
@@ -46,8 +45,13 @@ signal shrink_sound_stop
 ## The object creator that makes new animals and clothing
 @export var object_creator: ObjectCreator
 
+@export var dressed_animal_anchor : Node2D
+
+## How long the game lasts, in seconds
+@export var GAME_DURATION_SECS : float = 45
+
 ## The time remaining in the game
-var time_remaining_secs := GAME_DURATION_SECS
+@onready var time_remaining_secs := GAME_DURATION_SECS
 ## The current state of the interactive player elements
 var play_state := PlayState.MOVE_ANIMAL_IN
 ## If true, the player is currently holding down a "resize" key
@@ -137,6 +141,10 @@ func _on_sec_tick() -> void:
 
 ## Game over - load the Game Over scene
 func end_game() -> void:
+	var persistNode = get_node("/root/DontDestroyOnLoad")
+	#self.dressed_animal_anchor.reparent(persistNode)
+	DontDestroyOnLoad.layout_animals(self.dressed_animal_anchor)
+	
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 
@@ -196,6 +204,7 @@ func move_animal_on_belt() -> void:
 			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_ANIMAL_DISTANCE_PX:
 				#disable current animal for now
 				current_animal.hide()
+				current_animal.reparent(self.dressed_animal_anchor)
 				dressed_animals.push_back(current_animal)
 				print(dressed_animals.size())
 				set_animal_to_start()
