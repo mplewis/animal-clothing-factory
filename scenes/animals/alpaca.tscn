@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_0nths"]
 
 [node name="Alpaca" type="Node2D" node_paths=PackedStringArray("anchor_base")]
+position = Vector2(0, 617)
 script = ExtResource("2_ic6ix")
 anchor_base = NodePath("ClothingAnchors")
 
@@ -22,7 +23,8 @@ texture = ExtResource("4_0nths")
 
 [node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(87, -11)
+position = Vector2(91, -42)
 rotation = 0.265127
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_gquic")
+offset = Vector2(0, 89)

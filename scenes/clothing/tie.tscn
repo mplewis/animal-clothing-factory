@@ -6,4 +6,5 @@
 position = Vector2(108, 330)
 
 [node name="TieSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_5uic2")

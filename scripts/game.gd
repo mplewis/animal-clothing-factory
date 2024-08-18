@@ -42,11 +42,11 @@ var play_state := PlayState.MOVE_ANIMAL_IN
 var resizing := false
 
 ## The current animal to dress
-@onready var current_animal: Node2D = $Gameplay/CurrentAnimal
+@onready var current_animal: Animal
 ## Where the shirt sits on the alpaca
 @onready var alpaca_clothing_anchor: Node2D = $Gameplay/CurrentAnimal/Alpaca/ClothingAnchor
 ## The current clothing to resize
-@onready var current_clothing: Node2D = $Gameplay/CurrentClothing
+@onready var current_clothing: Node2D
 
 ## The tool used to grow clothing
 @onready var grow_tool: Node2D = $Gameplay/GrowTool
@@ -82,10 +82,12 @@ var resizing := false
 ## The initial position of the feedback label
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
 ## The position where new clothing should be placed
-@onready var new_clothing_position: Vector2 = current_clothing.position
+#@onready var new_clothing_position: Vector2 = current_clothing.position
+@export var new_clothing_anchor_node : Node2D
 ## The timer that ticks once a second
 @onready var timer: Timer = $SecTimer
 
+@export var object_creator : ObjectCreator
 
 func _ready() -> void:
 	set_animal_to_start()
@@ -115,8 +117,9 @@ func end_game() -> void:
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 
-## Move the animal off-screen to the left to get them ready to get dressed.
+## Create a new animal and position them
 func set_animal_to_start() -> void:
+	current_animal = object_creator.create_random_animal()
 	current_animal.position.x = -OFF_SCREEN_DISTANCE_PX
 	play_state = PlayState.MOVE_ANIMAL_IN
 	reset_clothing()
@@ -140,8 +143,9 @@ func set_hints() -> void:
 
 ## Reset the current piece of clothing to sit in the grabber arm.
 func reset_clothing() -> void:
+	current_clothing = object_creator.create_random_clothing()
 	current_clothing.scale = Vector2(1, 1)
-	current_clothing.position = new_clothing_position
+	current_clothing.global_position = new_clothing_anchor_node.global_position
 
 
 ## Increment the player's score by the given number of points.
@@ -166,6 +170,8 @@ func move_animal_on_belt() -> void:
 				belt_move_sound.play()
 			current_animal.position.x += BELT_SPEED
 			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_DISTANCE_PX:
+				#disable current animal for now
+				current_animal.hide()
 				set_animal_to_start()
 
 
@@ -263,10 +269,10 @@ func grow_shrink_clothing() -> void:
 ## Move the resized clothing onto the animal.
 func wear_clothing() -> void:
 	if play_state == PlayState.WEARING_CLOTHING:
-		var goal = alpaca_clothing_anchor.global_position
-		current_clothing.position = current_clothing.position.lerp(goal, 0.1)
-		if current_clothing.position.distance_to(goal) < 1:
-			score_and_exit()
+		self.current_animal.attach_clothing(self.current_clothing)
+		#var goal = alpaca_clothing_anchor.global_position
+		#current_clothing.position = current_clothing.position.lerp(goal, 0.1)
+		score_and_exit()
 
-	elif play_state == PlayState.MOVE_ANIMAL_OUT:
-		current_clothing.position = alpaca_clothing_anchor.global_position
+	#elif play_state == PlayState.MOVE_ANIMAL_OUT:
+		#current_clothing.position = alpaca_clothing_anchor.global_position

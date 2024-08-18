@@ -1,12 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=19 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
-[ext_resource type="Texture2D" uid="uid://b0jgptfehre83" path="res://assets/stock/alpaca.png" id="2_ep84m"]
 [ext_resource type="AudioStream" uid="uid://coyru3wdj4e6u" path="res://assets/bgm/lazy_factory.mp3" id="3_2kvdn"]
 [ext_resource type="Texture2D" uid="uid://bec8fjwttray7" path="res://assets/stock/grabby.png" id="3_lljhi"]
 [ext_resource type="AudioStream" uid="uid://beoa0wfnvg05m" path="res://assets/sfx/stock/bad.wav" id="4_6kc8c"]
-[ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="4_ppr48"]
 [ext_resource type="AudioStream" uid="uid://bu0fiagke7tlp" path="res://assets/sfx/stock/ok.wav" id="5_7lwqf"]
 [ext_resource type="AudioStream" uid="uid://blymo1uwy7s17" path="res://assets/sfx/grow_ray.ogg" id="5_kb2au"]
 [ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
@@ -15,9 +13,16 @@
 [ext_resource type="AudioStream" uid="uid://c1oj56208o8pf" path="res://assets/sfx/stock/great.wav" id="7_38264"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
+[ext_resource type="PackedScene" uid="uid://c8umq15pynaj4" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
+[ext_resource type="Script" path="res://scripts/ObjectCreator.gd" id="16_1fh1g"]
+[ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
+[ext_resource type="PackedScene" uid="uid://y2c0un4ly452" path="res://scenes/clothing/tie.tscn" id="18_n6kxj"]
+[ext_resource type="PackedScene" uid="uid://dx8ndchxtc5t5" path="res://scenes/animals/cat.tscn" id="18_y3c8k"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator")]
 script = ExtResource("1_dpgjl")
+new_clothing_anchor_node = NodePath("Gameplay/Shirt")
+object_creator = NodePath("ObjectCreator")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -29,7 +34,7 @@ autostart = true
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="BeltMove" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(960, 852)
+position = Vector2(963, 849)
 stream = ExtResource("8_m6ttv")
 volume_db = -4.885
 
@@ -95,26 +100,8 @@ rotation = -0.418879
 scale = Vector2(0.374332, 0.374332)
 texture = ExtResource("6_bvl5c")
 
-[node name="CurrentAnimal" type="Node2D" parent="Gameplay"]
-position = Vector2(960, 852)
-
-[node name="Alpaca" type="Sprite2D" parent="Gameplay/CurrentAnimal"]
-position = Vector2(27, -234)
-texture = ExtResource("2_ep84m")
-
-[node name="ClothingAnchor" type="Node2D" parent="Gameplay/CurrentAnimal/Alpaca"]
-position = Vector2(132, -155)
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Gameplay/CurrentAnimal"]
-remote_path = NodePath("../../../Audio/BeltMove")
-
-[node name="CurrentClothing" type="Node2D" parent="Gameplay"]
-position = Vector2(960, 172)
-
-[node name="Shirt" type="Sprite2D" parent="Gameplay/CurrentClothing"]
-position = Vector2(6.10352e-05, 89)
-scale = Vector2(0.509322, 0.509322)
-texture = ExtResource("4_ppr48")
+[node name="Shirt" parent="Gameplay" instance=ExtResource("13_fe3ex")]
+visible = false
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -233,3 +220,8 @@ theme_override_font_sizes/font_size = 64
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ObjectCreator" type="Node" parent="."]
+script = ExtResource("16_1fh1g")
+PossibleAnimals = Array[PackedScene]([ExtResource("17_gal1w"), ExtResource("18_y3c8k")])
+PossibleClothing = Array[PackedScene]([ExtResource("18_n6kxj"), ExtResource("13_fe3ex")])

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8umq15pynaj4"]
+
+[ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="1_ckfnd"]
+
+[node name="Shirt" type="Node2D"]
+position = Vector2(960, 172)
+
+[node name="ShirtSprite" type="Sprite2D" parent="."]
+position = Vector2(6.10352e-05, 89)
+scale = Vector2(0.509322, 0.509322)
+texture = ExtResource("1_ckfnd")

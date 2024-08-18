@@ -19,12 +19,13 @@ func _process(delta: float) -> void:
 #returns the difference in scale from the desired scale
 func attach_clothing(clothing_item : Node2D ) -> float:
 	var result = 0.0
+	print("trying to get " + clothing_item.name + "Anchor")
 	var anchorNode = anchor_base.get_node(NodePath(clothing_item.name + "Anchor"))
 	if(anchorNode != null):
 		clothing_item.reparent(self)
 		var tween = clothing_item.create_tween()
-		tween.tween_property(clothing_item, "position", anchorNode.position, .4)
-		tween.tween_property(clothing_item, "rotation", anchorNode.rotation, .4)
+		tween.tween_property(clothing_item, "position", anchorNode.position, .2)
+		tween.tween_property(clothing_item, "rotation", anchorNode.rotation, .2)
 
 		var desiredScale = anchorNode.scale.x
 		result = abs(desiredScale - clothing_item.scale.x)
