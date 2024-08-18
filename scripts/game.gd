@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name Game
+extends Node2D
 
 enum PlayState { MOVE_ANIMAL_IN, SIZING_CLOTHING, WEARING_CLOTHING, MOVE_ANIMAL_OUT }
 

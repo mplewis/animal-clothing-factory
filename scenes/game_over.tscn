@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b27n86g67e8ak"]
+[gd_scene load_steps=3 format=3 uid="uid://b27n86g67e8ak"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_waqm5"]
+[ext_resource type="AudioStream" uid="uid://c7v4yegs2aej0" path="res://assets/bgm/simple_beat.mp3" id="2_58ljt"]
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_waqm5")
@@ -20,3 +21,10 @@ Score: TODO
 Press SPACE to continue"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_58ljt")
+volume_db = 10.0
+autoplay = true
+panning_strength = 0.0
+parameters/looping = true
