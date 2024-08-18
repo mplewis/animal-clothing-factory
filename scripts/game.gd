@@ -34,6 +34,8 @@ var play_state := PlayState.MOVE_ANIMAL_IN
 var resizing := false
 ## The player's score
 var score := 0
+## The time remaining in the game
+var time_remaining_secs := 45
 
 ## The current animal to dress
 @onready var current_animal: Node2D = $Gameplay/CurrentAnimal
@@ -51,15 +53,21 @@ var score := 0
 @onready var feedback_label: Label = $UI/FeedbackLabel
 ## The label giving the player scoring feedback (stars)
 @onready var feedback_stars_label: Label = $UI/FeedbackLabel/StarsLabel
+## The label showing the time remaining in the game
+@onready var timer_label: Label = $UI/ClockLabel/TimerLabel
 
 ## The initial position of the feedback label
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
 ## The position where new clothing should be placed
 @onready var new_clothing_position: Vector2 = current_clothing.position
+## The timer that ticks once a second
+@onready var timer: Timer = $SecTimer
 
 
 func _ready() -> void:
 	set_animal_to_start()
+	timer_label.text = str(time_remaining_secs)
+	timer.timeout.connect(_on_sec_tick)
 
 
 func _process(_delta) -> void:
@@ -67,6 +75,20 @@ func _process(_delta) -> void:
 	grow_shrink_clothing()
 	wear_clothing()
 	move_and_fade_feedback()
+
+
+## Tick the timer down every second
+func _on_sec_tick() -> void:
+	time_remaining_secs -= 1
+	timer_label.text = str(time_remaining_secs)
+	if time_remaining_secs <= 0:
+		timer.stop()
+		end_game()
+
+
+## Game over - load the Game Over scene
+func end_game() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 
 ## Move the animal off-screen to the left to get them ready to get dressed.
