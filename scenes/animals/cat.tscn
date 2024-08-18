@@ -7,27 +7,26 @@
 [ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="5_laffy"]
 
 [node name="Cat" type="Node2D" node_paths=PackedStringArray("anchor_base", "animation_player")]
-position = Vector2(0, 617)
 script = ExtResource("2_hi5f1")
 anchor_base = NodePath("ClothingAnchors")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -306)
 texture = ExtResource("1_krr4y")
 
 [node name="ClothingAnchors" type="Node2D" parent="."]
-position = Vector2(0, -38)
 
 [node name="TieAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(115, 88)
-rotation = -0.314159
-scale = Vector2(0.290702, 0.290702)
+position = Vector2(155, -160.598)
+rotation = -0.0523599
+scale = Vector2(0.304212, 0.304212)
 texture = ExtResource("4_hjwkp")
 
 [node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(48.1726, 119.41)
+position = Vector2(30, -168.598)
 rotation = 1.10819
 scale = Vector2(0.444491, 0.444491)
 texture = ExtResource("3_kbum0")

@@ -9,19 +9,19 @@
 [ext_resource type="AudioStream" uid="uid://blymo1uwy7s17" path="res://assets/sfx/grow_ray.ogg" id="5_kb2au"]
 [ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
 [ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
-[ext_resource type="AudioStream" uid="uid://bcfar0icogdoq" path="res://assets/sfx/score_bad.ogg" id="7_2d34m"]
+[ext_resource type="AudioStream" uid="uid://bo25gto4pxs2v" path="res://assets/sfx/score_bad.ogg" id="7_2d34m"]
 [ext_resource type="AudioStream" uid="uid://h0eovlvokwdy" path="res://assets/sfx/ambience/ambience_loop_1.ogg" id="7_hi6i3"]
 [ext_resource type="AudioStream" uid="uid://rf57x1vb0aps" path="res://assets/sfx/ambience/ambience_loop_2.ogg" id="8_ebu58"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
-[ext_resource type="AudioStream" uid="uid://c3m3axowmgpar" path="res://assets/sfx/score_ok.ogg" id="8_nynau"]
-[ext_resource type="AudioStream" uid="uid://cflcrhkgxllkb" path="res://assets/sfx/score_good.ogg" id="9_00gyo"]
+[ext_resource type="AudioStream" uid="uid://clteqqmqct2mx" path="res://assets/sfx/score_ok.ogg" id="8_nynau"]
+[ext_resource type="AudioStream" uid="uid://caa83ibl40ftj" path="res://assets/sfx/score_good.ogg" id="9_00gyo"]
 [ext_resource type="AudioStream" uid="uid://bg8s2drtmtjo0" path="res://assets/sfx/ambience/ambience_loop_3.ogg" id="9_58dmd"]
 [ext_resource type="AudioStream" uid="uid://cklrc5ptq357w" path="res://assets/sfx/ambience/ambience_loop_4.ogg" id="10_mb3k5"]
-[ext_resource type="AudioStream" uid="uid://bugsri0fof7hw" path="res://assets/sfx/score_super.ogg" id="10_n8s8l"]
+[ext_resource type="AudioStream" uid="uid://dkuctgiwhd0m" path="res://assets/sfx/score_super.ogg" id="10_n8s8l"]
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
-[ext_resource type="AudioStream" uid="uid://b7jpcgihvydy4" path="res://assets/sfx/claw_down.ogg" id="11_ip0fr"]
-[ext_resource type="AudioStream" uid="uid://efcgv30lfqbu" path="res://assets/sfx/claw_up.ogg" id="12_qh8lc"]
-[ext_resource type="PackedScene" uid="uid://c8umq15pynaj4" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
+[ext_resource type="AudioStream" uid="uid://b5afojinxghjf" path="res://assets/sfx/claw_down.ogg" id="11_ip0fr"]
+[ext_resource type="AudioStream" uid="uid://bm50u28ianyj8" path="res://assets/sfx/claw_up.ogg" id="12_qh8lc"]
+[ext_resource type="PackedScene" uid="uid://fe8if6tijgtj" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
 [ext_resource type="Script" path="res://scripts/object_creator.gd" id="16_1fh1g"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
@@ -39,12 +39,11 @@ stream_2/volume = 0.0
 stream_3/stream = ExtResource("10_mb3k5")
 stream_3/volume = 0.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator", "dressed_animal_anchor")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator", "belt_height")]
 script = ExtResource("1_dpgjl")
 new_clothing_anchor_node = NodePath("Gameplay/Grabber/NewClothingAnchor")
 object_creator = NodePath("ObjectCreator")
-dressed_animal_anchor = NodePath("DressedAnimalAnchor")
-GAME_DURATION_SECS = 5.0
+belt_height = NodePath("Gameplay/Belt/BeltHeight")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -59,13 +58,14 @@ PossibleAnimals = Array[PackedScene]([ExtResource("17_gal1w"), ExtResource("18_y
 PossibleClothing = Array[PackedScene]([ExtResource("18_n6kxj"), ExtResource("13_fe3ex")])
 
 [node name="Audio" type="Node2D" parent="."]
+position = Vector2(964, 0)
 
 [node name="Grow" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(488, 158)
+position = Vector2(-477, 156)
 stream = ExtResource("5_kb2au")
 
 [node name="Shrink" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(1472, 168)
+position = Vector2(516, 165)
 stream = ExtResource("3_1yd45")
 volume_db = -80.0
 pitch_scale = 0.01
@@ -73,22 +73,18 @@ autoplay = true
 script = ExtResource("3_7l8gu")
 
 [node name="BeltMove" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(963, 849)
 stream = ExtResource("8_m6ttv")
 volume_db = -4.885
 
 [node name="ClawDown" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(960, 150)
 stream = ExtResource("11_ip0fr")
 bus = &"sfx"
 
 [node name="ClawUp" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(960, 150)
 stream = ExtResource("12_qh8lc")
 bus = &"sfx"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(960, 852)
 stream = ExtResource("3_2kvdn")
 volume_db = 10.0
 autoplay = true
@@ -100,7 +96,6 @@ stream = SubResource("AudioStreamSynchronized_junc2")
 autoplay = true
 
 [node name="Score" type="Node2D" parent="Audio"]
-position = Vector2(960, 852)
 
 [node name="Bad" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("7_2d34m")
@@ -121,10 +116,13 @@ position = Vector2(424, 996)
 scale = Vector2(2, 2)
 texture = ExtResource("1_l8h0a")
 
-[node name="Belt2" type="Sprite2D" parent="Gameplay"]
-position = Vector2(1456, 996)
-scale = Vector2(2, 2)
+[node name="Belt2" type="Sprite2D" parent="Gameplay/Belt"]
+position = Vector2(516, -0.5)
 texture = ExtResource("1_l8h0a")
+
+[node name="BeltHeight" type="Node2D" parent="Gameplay/Belt"]
+position = Vector2(264, -76)
+scale = Vector2(0.5, 0.5)
 
 [node name="Grabber" type="Sprite2D" parent="Gameplay"]
 position = Vector2(960, -58)
@@ -277,8 +275,6 @@ theme_override_font_sizes/font_size = 64
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="DressedAnimalAnchor" type="Node2D" parent="."]
 
 [connection signal="shrink_sound_start" from="." to="Audio/Shrink" method="_on_game_shrink_sound_start"]
 [connection signal="shrink_sound_stop" from="." to="Audio/Shrink" method="_on_game_shrink_sound_stop"]

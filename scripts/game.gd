@@ -44,6 +44,8 @@ signal shrink_sound_stop
 @export var new_clothing_anchor_node: Node2D
 ## The object creator that makes new animals and clothing
 @export var object_creator: ObjectCreator
+## The Y level of the belt surface, where animals stand
+@export var belt_height: Node2D
 
 @export var dressed_animal_anchor : Node2D
 
@@ -65,7 +67,7 @@ var dressed_animals: Array[Animal] = []
 ## The current animal to dress
 @onready var current_animal: Animal
 ## The current clothing to resize
-@onready var current_clothing: Node2D
+@onready var current_clothing: Clothing
 
 ## The grabber arm that holds clothing
 @onready var grabber: Node2D = $Gameplay/Grabber
@@ -152,6 +154,7 @@ func end_game() -> void:
 func set_animal_to_start() -> void:
 	current_animal = object_creator.create_random_animal()
 	current_animal.position.x = -OFF_SCREEN_ANIMAL_DISTANCE_PX
+	current_animal.global_position.y = belt_height.global_position.y
 	grabber.position.y = grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX
 	play_state = PlayState.MOVE_ANIMAL_IN
 	reset_clothing()
@@ -206,7 +209,6 @@ func move_animal_on_belt() -> void:
 				current_animal.hide()
 				current_animal.reparent(self.dressed_animal_anchor)
 				dressed_animals.push_back(current_animal)
-				print(dressed_animals.size())
 				set_animal_to_start()
 
 
@@ -228,13 +230,12 @@ func move_grabber_arm() -> void:
 
 
 ## Score the player's clothing sizing and move the animal to the right.
-func score_fitting(expected_scale: float) -> void:
-	var actual_scale = current_clothing.scale.x
-
-	print("Expected scale: %s, Actual scale: %s" % [expected_scale, actual_scale])
+func score_fitting(sizing: SizeResult) -> void:
+	var expected := sizing.expected_size
+	var actual := sizing.actual_size
 
 	# score = % away from perfect
-	var score = abs(expected_scale - actual_scale) / expected_scale
+	var score: float = abs(expected - actual) * 1.0 / expected
 
 	var stars = 0
 	if score < 0.05:
@@ -244,16 +245,16 @@ func score_fitting(expected_scale: float) -> void:
 	elif score < 0.2:
 		stars = 1
 
-	show_feedback(stars, expected_scale, actual_scale)
+	show_feedback(stars, expected, actual)
 	incr_score(stars)
 
 
 ## Indicate to the player how many stars they earned.
-func show_feedback(stars: int, expected_scale: float, actual_scale: float) -> void:
+func show_feedback(stars: int, expected: int, actual: int) -> void:
 	var too_big_sm := ""
-	if expected_scale < actual_scale:
+	if expected < actual:
 		too_big_sm = " (too big)"
-	elif expected_scale > actual_scale:
+	elif expected > actual:
 		too_big_sm = " (too small)"
 
 	var feedback := one_of(
@@ -361,12 +362,10 @@ func grow_shrink_clothing() -> void:
 		grow_tool.rotation_degrees = 0
 		shrink_tool.rotation_degrees = 0
 
-		play_state = PlayState.GETTING_DRESSED
-		self.current_animal.attach_clothing(self.current_clothing)
 		move_animal_at = Time.get_ticks_msec() + int(GETTING_DRESSED_DELAY_SEC * 1000)
-
-		var desired = self.current_animal.get_target_scale_for_clothing(self.current_clothing.name)
-		score_fitting(desired)
+		play_state = PlayState.GETTING_DRESSED
+		var sizing = self.current_animal.attach_clothing(self.current_clothing)
+		score_fitting(sizing)
 
 
 ## Wait for the animal to wear the clothing before moving them along.

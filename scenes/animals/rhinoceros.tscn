@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://e7gcghoukl5u"]
+
+[ext_resource type="Shader" path="res://assets/colorizer.gdshader" id="1_6vxqe"]
+[ext_resource type="Script" path="res://scripts/animal.gd" id="2_cayjv"]
+[ext_resource type="Texture2D" uid="uid://bscpv3p7l4eng" path="res://assets/animals_atlas.png" id="3_o2tot"]
+[ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_31q6b"]
+[ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="5_8d2lp"]
+[ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="6_l3i0h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xx8tt"]
+shader = ExtResource("1_6vxqe")
+shader_parameter/light_color = Color(0.90625, 0.90625, 0.90625, 1)
+shader_parameter/dark_color = Color(0.464844, 0.464844, 0.464844, 1)
+
+[node name="Rhino" type="Node2D" node_paths=PackedStringArray("anchor_base", "animation_player")]
+material = SubResource("ShaderMaterial_xx8tt")
+position = Vector2(0, 617)
+script = ExtResource("2_cayjv")
+anchor_base = NodePath("ClothingAnchors")
+animation_player = NodePath("AnimationPlayer")
+possible_colors = Array[Color]([Color(0.769034, 0.742347, 0.820312, 1), Color(0.453125, 0.453125, 0.453125, 1), Color(0.335938, 0.301417, 0.306449, 1)])
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+use_parent_material = true
+position = Vector2(-2, 0)
+scale = Vector2(0.678434, 0.678434)
+offset = Vector2(-829.167, -1422.52)
+texture = ExtResource("3_o2tot")
+polygon = PackedVector2Array(831.147, 1945.62, 1115.67, 1998.39, 1163.85, 1957.09, 1386.42, 1330.69, 1781.08, 1330.69, 1877.45, 1142.54, 1726.01, 823.6, 1260.22, 807.539, 1296.93, 993.395, 1051.42, 1096.65, 147.38, 1195.31, -72.8937, 1713.87, 195.565, 1975.45, 727.893, 1963.98)
+uv = PackedVector2Array(831.147, 1945.62, 1115.67, 1998.39, 1163.85, 1957.09, 1386.42, 1330.69, 1781.08, 1330.69, 1877.45, 1142.54, 1726.01, 823.6, 1260.22, 807.539, 1296.93, 993.395, 1051.42, 1096.65, 147.38, 1195.31, -72.8937, 1713.87, 195.565, 1975.45, 727.893, 1963.98)
+
+[node name="ClothingAnchors" type="Node2D" parent="."]
+
+[node name="TieAnchor" type="Sprite2D" parent="ClothingAnchors"]
+visible = false
+position = Vector2(346, -29)
+rotation = 0.155206
+scale = Vector2(0.913973, 0.913973)
+texture = ExtResource("4_31q6b")
+
+[node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
+visible = false
+position = Vector2(260, -118)
+rotation = 0.408792
+scale = Vector2(0.720631, 0.720631)
+texture = ExtResource("5_8d2lp")
+offset = Vector2(0, 89)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"animal_animations": ExtResource("6_l3i0h")
+}
