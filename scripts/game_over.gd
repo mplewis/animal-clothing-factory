@@ -1,12 +1,15 @@
 class_name GameOver
-extends Node2D
+extends Node
 
 ## The label showing the full game over message
 @onready var label: Label = $Label
 
+@export var animal_container : HBoxContainer
+
 
 func _ready() -> void:
 	label.text = message(Global.score)
+	DontDestroyOnLoad.layout_animals(animal_container)
 
 
 func _process(_delta) -> void:

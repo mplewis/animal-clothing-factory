@@ -144,8 +144,11 @@ func _on_sec_tick() -> void:
 ## Game over - load the Game Over scene
 func end_game() -> void:
 	var persistNode = get_node("/root/DontDestroyOnLoad")
-	#self.dressed_animal_anchor.reparent(persistNode)
-	DontDestroyOnLoad.layout_animals(self.dressed_animal_anchor)
+	self.dressed_animal_anchor.reparent(persistNode)
+	DontDestroyOnLoad.last_game_animals = self.dressed_animal_anchor
+	remove_child(self.dressed_animal_anchor)
+
+	#DontDestroyOnLoad.layout_animals(self.dressed_animal_anchor)
 	
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 

@@ -11,7 +11,6 @@ script = ExtResource("1_dakf6")
 PossibleAnimals = Array[PackedScene]([ExtResource("2_x2i7g"), ExtResource("3_3dqco")])
 
 [node name="Alpaca" parent="." instance=ExtResource("2_x2i7g")]
-position = Vector2(454, 633)
 
 [node name="Cat" parent="." instance=ExtResource("3_3dqco")]
 position = Vector2(1308, 582)

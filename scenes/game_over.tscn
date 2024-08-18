@@ -5,8 +5,9 @@
 [ext_resource type="AudioStream" uid="uid://c7v4yegs2aej0" path="res://assets/bgm/simple_beat.mp3" id="2_58ljt"]
 [ext_resource type="AudioStream" uid="uid://d05lnep7sr5ci" path="res://assets/sfx/finish_bell.ogg" id="4_ho4s5"]
 
-[node name="GameOver" type="Node2D"]
+[node name="GameOver" type="Node" node_paths=PackedStringArray("animal_container")]
 script = ExtResource("1_waqm5")
+animal_container = NodePath("AnimalContainer")
 
 [node name="Background" type="ColorRect" parent="."]
 visible = false
@@ -15,8 +16,9 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="Label" type="Label" parent="."]
+offset_top = 89.0
 offset_right = 1920.0
-offset_bottom = 1080.0
+offset_bottom = 1169.0
 theme = ExtResource("2_3rkn7")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Game over
@@ -24,7 +26,6 @@ Score: 42
 
 Press SPACE to continue"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_58ljt")
@@ -38,3 +39,15 @@ parameters/looping = true
 stream = ExtResource("4_ho4s5")
 autoplay = true
 bus = &"ambience"
+
+[node name="AnimalContainer" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -400.0
+offset_right = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
