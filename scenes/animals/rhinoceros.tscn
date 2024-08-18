@@ -22,7 +22,7 @@ possible_colors = Array[Color]([Color(0.769034, 0.742347, 0.820312, 1), Color(0.
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 use_parent_material = true
-position = Vector2(-2, 0)
+position = Vector2(36, -359)
 scale = Vector2(0.678434, 0.678434)
 offset = Vector2(-829.167, -1422.52)
 texture = ExtResource("3_o2tot")
