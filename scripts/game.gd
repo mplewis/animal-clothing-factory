@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name Game
+extends Node2D
 
 enum PlayState { MOVE_ANIMAL_IN, SIZING_CLOTHING, WEARING_CLOTHING, MOVE_ANIMAL_OUT }
 
@@ -33,8 +32,6 @@ const FEEDBACK_RISE_SPEED := 2
 ## How fast the feedback label fades out
 const FEEDBACK_FADE_SPEED := 0.02
 
-## The player's score
-var score := 0
 ## The time remaining in the game
 var time_remaining_secs := GAME_DURATION_SECS
 ## The current state of the interactive player elements
@@ -152,8 +149,8 @@ func reset_clothing() -> void:
 
 ## Increment the player's score by the given number of points.
 func incr_score(points: int) -> void:
-	score += points
-	score_label.text = str(score)
+	Global.score += points
+	score_label.text = str(Global.score)
 
 
 ## Move the animal along the belt if necessary.
