@@ -44,6 +44,7 @@ stream = ExtResource("5_kb2au")
 position = Vector2(1472, 168)
 stream = ExtResource("3_1yd45")
 volume_db = -80.0
+pitch_scale = 0.01
 autoplay = true
 script = ExtResource("3_7l8gu")
 
