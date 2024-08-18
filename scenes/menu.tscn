@@ -4,8 +4,11 @@
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="2_56t87"]
 [ext_resource type="AudioStream" uid="uid://bxpde5irijknb" path="res://assets/bgm/lazy_groove.mp3" id="2_b6a2n"]
 
-[node name="Menu" type="Node2D"]
+[node name="Menu" type="Node2D" node_paths=PackedStringArray("volume_sound_slider", "volume_music_slider", "volume_ambience_slider")]
 script = ExtResource("1_6j6hk")
+volume_sound_slider = NodePath("VBoxContainer/HBoxContainer/GridContainer/SoundSlider")
+volume_music_slider = NodePath("VBoxContainer/HBoxContainer/GridContainer/MusicSlider")
+volume_ambience_slider = NodePath("VBoxContainer/HBoxContainer/GridContainer/AmbienceSlider")
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_b6a2n")
@@ -53,14 +56,14 @@ text = "Sound Volume"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/GridContainer"]
+[node name="SoundSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("2_56t87")
-max_value = 10.0
-value = 10.0
+min_value = -20.0
+max_value = 0.0
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
@@ -71,14 +74,32 @@ text = "Music Volume"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HSlider2" type="HSlider" parent="VBoxContainer/HBoxContainer/GridContainer"]
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("2_56t87")
-max_value = 10.0
-value = 10.0
+min_value = -20.0
+max_value = 0.0
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_56t87")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "Ambience Volume"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AmbienceSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_56t87")
+min_value = -20.0
+max_value = 0.0
 
 [node name="Title" type="Label" parent="."]
 offset_top = 61.0
