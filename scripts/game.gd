@@ -97,7 +97,10 @@ var dressed_animals: Array[Animal] = []
 @onready var score_great_sound: AudioStreamPlayer2D = $Audio/Score/Great
 ## The sound of the grow ray firing
 @onready var grow_sound: AudioStreamPlayer2D = $Audio/Grow
-
+## the sound of the claw going down
+@onready var claw_down_sound: AudioStreamPlayer2D = $Audio/ClawDown
+## the sound of the claw going up
+@onready var claw_up_sound: AudioStreamPlayer2D = $Audio/ClawUp
 # TODO: Add 2d spatial sound for belt, grow, shrink
 
 ## The initial position of the feedback label
@@ -203,11 +206,15 @@ func move_grabber_arm() -> void:
 	match play_state:
 		PlayState.MOVE_ANIMAL_IN:
 			if grabber.position.y < grabber_start_position.y:
+				if claw_down_sound.playing == false:
+					claw_down_sound.play()
 				grabber.position.y += GRABBER_SPEED
 				current_clothing.global_position = new_clothing_anchor_node.global_position
 
 		PlayState.MOVE_ANIMAL_OUT:
 			if grabber.position.y > grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX:
+				if claw_up_sound.playing == false:
+					claw_up_sound.play()
 				grabber.position.y -= GRABBER_SPEED
 
 
