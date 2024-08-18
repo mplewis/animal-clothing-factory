@@ -57,13 +57,14 @@ PossibleAnimals = Array[PackedScene]([ExtResource("17_gal1w"), ExtResource("18_y
 PossibleClothing = Array[PackedScene]([ExtResource("18_n6kxj"), ExtResource("13_fe3ex")])
 
 [node name="Audio" type="Node2D" parent="."]
+position = Vector2(964, 0)
 
 [node name="Grow" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(488, 158)
+position = Vector2(-477, 156)
 stream = ExtResource("5_kb2au")
 
 [node name="Shrink" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(1472, 168)
+position = Vector2(516, 165)
 stream = ExtResource("3_1yd45")
 volume_db = -80.0
 pitch_scale = 0.01
@@ -71,22 +72,18 @@ autoplay = true
 script = ExtResource("3_7l8gu")
 
 [node name="BeltMove" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(963, 849)
 stream = ExtResource("8_m6ttv")
 volume_db = -4.885
 
 [node name="ClawDown" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(960, 150)
 stream = ExtResource("11_ip0fr")
 bus = &"sfx"
 
 [node name="ClawUp" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(960, 150)
 stream = ExtResource("12_qh8lc")
 bus = &"sfx"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Audio"]
-position = Vector2(960, 852)
 stream = ExtResource("3_2kvdn")
 volume_db = 10.0
 autoplay = true
@@ -98,7 +95,6 @@ stream = SubResource("AudioStreamSynchronized_junc2")
 autoplay = true
 
 [node name="Score" type="Node2D" parent="Audio"]
-position = Vector2(960, 852)
 
 [node name="Bad" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("7_2d34m")
@@ -120,7 +116,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_l8h0a")
 
 [node name="Belt2" type="Sprite2D" parent="Gameplay"]
-position = Vector2(1456, 996)
+position = Vector2(1456, 995)
 scale = Vector2(2, 2)
 texture = ExtResource("1_l8h0a")
 
