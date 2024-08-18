@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=27 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
@@ -10,9 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
 [ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
 [ext_resource type="AudioStream" uid="uid://bcfar0icogdoq" path="res://assets/sfx/score_bad.ogg" id="7_2d34m"]
+[ext_resource type="AudioStream" uid="uid://h0eovlvokwdy" path="res://assets/sfx/ambience/ambience_loop_1.ogg" id="7_hi6i3"]
+[ext_resource type="AudioStream" uid="uid://rf57x1vb0aps" path="res://assets/sfx/ambience/ambience_loop_2.ogg" id="8_ebu58"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
 [ext_resource type="AudioStream" uid="uid://c3m3axowmgpar" path="res://assets/sfx/score_ok.ogg" id="8_nynau"]
 [ext_resource type="AudioStream" uid="uid://cflcrhkgxllkb" path="res://assets/sfx/score_good.ogg" id="9_00gyo"]
+[ext_resource type="AudioStream" uid="uid://bg8s2drtmtjo0" path="res://assets/sfx/ambience/ambience_loop_3.ogg" id="9_58dmd"]
+[ext_resource type="AudioStream" uid="uid://cklrc5ptq357w" path="res://assets/sfx/ambience/ambience_loop_4.ogg" id="10_mb3k5"]
 [ext_resource type="AudioStream" uid="uid://bugsri0fof7hw" path="res://assets/sfx/score_super.ogg" id="10_n8s8l"]
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
 [ext_resource type="PackedScene" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
@@ -21,6 +25,17 @@
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
 [ext_resource type="PackedScene" uid="uid://y2c0un4ly452" path="res://scenes/clothing/tie.tscn" id="18_n6kxj"]
 [ext_resource type="PackedScene" uid="uid://dx8ndchxtc5t5" path="res://scenes/animals/cat.tscn" id="18_y3c8k"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_junc2"]
+stream_count = 4
+stream_0/stream = ExtResource("7_hi6i3")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("8_ebu58")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("9_58dmd")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("10_mb3k5")
+stream_3/volume = 0.0
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator")]
 script = ExtResource("1_dpgjl")
@@ -60,6 +75,10 @@ volume_db = 10.0
 autoplay = true
 panning_strength = 0.0
 parameters/looping = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="Audio"]
+stream = SubResource("AudioStreamSynchronized_junc2")
+autoplay = true
 
 [node name="Score" type="Node2D" parent="Audio"]
 position = Vector2(960, 852)
