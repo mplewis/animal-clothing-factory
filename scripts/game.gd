@@ -35,6 +35,11 @@ const FEEDBACK_FADE_SPEED := 0.02
 signal shrink_sound_start
 signal shrink_sound_stop
 
+## The position where new clothing should be placed
+@export var new_clothing_anchor_node: Node2D
+## The object creator that makes new animals and clothing
+@export var object_creator: ObjectCreator
+
 ## The time remaining in the game
 var time_remaining_secs := GAME_DURATION_SECS
 ## The current state of the interactive player elements
@@ -88,13 +93,8 @@ var dressed_animals : Array[Animal] = []
 
 ## The initial position of the feedback label
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
-## The position where new clothing should be placed
-#@onready var new_clothing_position: Vector2 = current_clothing.position
-@export var new_clothing_anchor_node: Node2D
 ## The timer that ticks once a second
 @onready var timer: Timer = $SecTimer
-
-@export var object_creator: ObjectCreator
 
 
 
