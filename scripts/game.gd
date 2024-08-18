@@ -58,6 +58,10 @@ var resizing := false
 @onready var feedback_stars_label: Label = $UI/FeedbackLabel/StarsLabel
 ## The label showing the time remaining in the game
 @onready var timer_label: Label = $UI/ClockLabel/TimerLabel
+## The label indicating the key for Grow
+@onready var grow_label: Label = $UI/HintGrow/KeyLabel
+## The label indicating the key for Shrink
+@onready var shrink_label: Label = $UI/HintShrink/KeyLabel
 
 ## The initial position of the feedback label
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
@@ -69,6 +73,7 @@ var resizing := false
 
 func _ready() -> void:
 	set_animal_to_start()
+	set_hints()
 	timer_label.text = str(time_remaining_secs)
 	timer.timeout.connect(_on_sec_tick)
 
@@ -99,6 +104,22 @@ func set_animal_to_start() -> void:
 	current_animal.position.x = -OFF_SCREEN_DISTANCE_PX
 	play_state = PlayState.MOVE_ANIMAL_IN
 	reset_clothing()
+
+
+## Get the human-readable key label for the given action
+func label_for_action(action: String) -> String:
+	var event := InputMap.action_get_events(action)[0]
+	var label := DisplayServer.keyboard_get_label_from_physical(event.physical_keycode)
+	var kc_str := OS.get_keycode_string(label)
+	if kc_str == "Slash":
+		return "/"
+	return kc_str
+
+
+## Set the hint labels to show the correct keys for the grow and shrink tools
+func set_hints() -> void:
+	grow_label.text = label_for_action("ui_grow")
+	shrink_label.text = label_for_action("ui_shrink")
 
 
 ## Reset the current piece of clothing to sit in the grabber arm.

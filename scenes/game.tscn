@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=12 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
 [ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
+[ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_dpgjl")
@@ -156,5 +157,51 @@ offset_bottom = 43.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "⭐⭐⭐⭐⭐"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintShrink" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1609.0
+offset_top = 175.0
+offset_right = 1701.0
+offset_bottom = 267.0
+
+[node name="Keycap" type="Sprite2D" parent="UI/HintShrink"]
+position = Vector2(46.0001, 54)
+scale = Vector2(0.434332, 0.434332)
+texture = ExtResource("11_gu13l")
+
+[node name="KeyLabel" type="Label" parent="UI/HintShrink"]
+layout_mode = 0
+offset_right = 92.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintGrow" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 267.0
+offset_top = 114.0
+offset_right = 359.0
+offset_bottom = 206.0
+
+[node name="Keycap" type="Sprite2D" parent="UI/HintGrow"]
+position = Vector2(46.0001, 54)
+scale = Vector2(0.434332, 0.434332)
+texture = ExtResource("11_gu13l")
+
+[node name="KeyLabel" type="Label" parent="UI/HintGrow"]
+layout_mode = 0
+offset_right = 92.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
