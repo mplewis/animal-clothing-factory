@@ -175,11 +175,11 @@ func score_and_exit() -> void:
 	var piece_score = abs(CLOTHING_PERFECT_SCALE - piece_scale) / CLOTHING_PERFECT_SCALE
 
 	var stars = 0
-	if piece_score < 0.1:
+	if piece_score < 0.05:
 		stars = 5
-	elif piece_score < 0.2:
+	elif piece_score < 0.1:
 		stars = 3
-	elif piece_score < 0.3:
+	elif piece_score < 0.2:
 		stars = 1
 
 	show_feedback(stars)
@@ -189,22 +189,32 @@ func score_and_exit() -> void:
 
 ## Indicate to the player how many stars they earned.
 func show_feedback(stars) -> void:
+	var too_big_sm := ""
+	if current_clothing.scale.x > CLOTHING_PERFECT_SCALE:
+		too_big_sm = " (too big)"
+	elif current_clothing.scale.x < CLOTHING_PERFECT_SCALE:
+		too_big_sm = " (too small)"
+
 	var feedback := "Try again..."
 	var sfx := score_bad_sound
 	match stars:
 		5:
 			feedback = "Perfect!!"
+			too_big_sm = ""
 			sfx = score_great_sound
 		3:
 			feedback = "Great!"
+			too_big_sm = too_big_sm.replace("too", "a bit")
 			sfx = score_good_sound
 		1:
 			feedback = "Just OK"
 			sfx = score_ok_sound
-	feedback_label.text = feedback
+
 	var star_s = ""
 	for i in range(stars):
 		star_s += "⭐️"
+
+	feedback_label.text = feedback + too_big_sm
 	feedback_stars_label.text = star_s
 	feedback_label.visible = true
 	sfx.play()
