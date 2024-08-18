@@ -118,6 +118,7 @@ var dressed_animals: Array[Animal] = []
 
 
 func _ready() -> void:
+	Global.score = 0
 	set_animal_to_start()
 	set_hints()
 	timer_label.text = str(time_remaining_secs)
@@ -146,7 +147,7 @@ func end_game() -> void:
 	var persistNode = get_node("/root/DontDestroyOnLoad")
 	#self.dressed_animal_anchor.reparent(persistNode)
 	DontDestroyOnLoad.layout_animals(self.dressed_animal_anchor)
-	
+
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 
