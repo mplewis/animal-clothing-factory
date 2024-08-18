@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
 [ext_resource type="AudioStream" uid="uid://b5afojinxghjf" path="res://assets/sfx/claw_down.ogg" id="11_ip0fr"]
 [ext_resource type="AudioStream" uid="uid://bm50u28ianyj8" path="res://assets/sfx/claw_up.ogg" id="12_qh8lc"]
-[ext_resource type="PackedScene" uid="uid://fe8if6tijgtj" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
+[ext_resource type="PackedScene" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
 [ext_resource type="Script" path="res://scripts/object_creator.gd" id="16_1fh1g"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
@@ -63,6 +63,7 @@ position = Vector2(964, 0)
 [node name="Grow" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(-477, 156)
 stream = ExtResource("5_kb2au")
+bus = &"sfx"
 
 [node name="Shrink" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(516, 165)
@@ -70,11 +71,13 @@ stream = ExtResource("3_1yd45")
 volume_db = -80.0
 pitch_scale = 0.01
 autoplay = true
+bus = &"sfx"
 script = ExtResource("3_7l8gu")
 
 [node name="BeltMove" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("8_m6ttv")
 volume_db = -4.885
+bus = &"sfx"
 
 [node name="ClawDown" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("11_ip0fr")
@@ -89,25 +92,31 @@ stream = ExtResource("3_2kvdn")
 volume_db = 10.0
 autoplay = true
 panning_strength = 0.0
+bus = &"music"
 parameters/looping = true
 
 [node name="Ambience" type="AudioStreamPlayer" parent="Audio"]
 stream = SubResource("AudioStreamSynchronized_junc2")
 autoplay = true
+bus = &"ambience"
 
 [node name="Score" type="Node2D" parent="Audio"]
 
 [node name="Bad" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("7_2d34m")
+bus = &"sfx"
 
 [node name="OK" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("8_nynau")
+bus = &"sfx"
 
 [node name="Good" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("9_00gyo")
+bus = &"sfx"
 
 [node name="Great" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("10_n8s8l")
+bus = &"sfx"
 
 [node name="Gameplay" type="Node2D" parent="."]
 
