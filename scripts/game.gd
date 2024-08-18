@@ -11,6 +11,9 @@ const BELT_SPEED := 20
 ## The X coord for the center of the screen. This is where the animal stops.
 const SCREEN_CENTER_X := SCREEN_WIDTH_PX * 1.0 / 2
 
+## How long the game lasts, in seconds
+const GAME_DURATION_SECS = 45
+
 ## How fast to grow/shrink clothing when the player holds the button
 const GROW_SHRINK_RATE := 0.01
 ## degrees in either direction to wiggle the tool during a grow/shrink operation
@@ -28,14 +31,14 @@ const FEEDBACK_RISE_SPEED := 2
 ## How fast the feedback label fades out
 const FEEDBACK_FADE_SPEED := 0.02
 
+## The player's score
+var score := 0
+## The time remaining in the game
+var time_remaining_secs := GAME_DURATION_SECS
 ## The current state of the interactive player elements
 var play_state := PlayState.MOVE_ANIMAL_IN
 ## If true, the player is currently holding down a "resize" key
 var resizing := false
-## The player's score
-var score := 0
-## The time remaining in the game
-var time_remaining_secs := 45
 
 ## The current animal to dress
 @onready var current_animal: Node2D = $Gameplay/CurrentAnimal
