@@ -1,19 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt7dqqlwomcgr"]
+[gd_scene load_steps=8 format=3 uid="uid://bt7dqqlwomcgr"]
 
-[ext_resource type="Texture2D" uid="uid://b0jgptfehre83" path="res://assets/stock/alpaca.png" id="1_oae5t"]
+[ext_resource type="Shader" path="res://assets/colorizer.gdshader" id="2_bw5p0"]
 [ext_resource type="Script" path="res://scripts/animal.gd" id="2_ic6ix"]
+[ext_resource type="Texture2D" uid="uid://bscpv3p7l4eng" path="res://assets/animals_atlas.png" id="2_rfeeu"]
 [ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="3_gquic"]
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_0nths"]
 [ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="5_rvlk2"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xx8tt"]
+shader = ExtResource("2_bw5p0")
+shader_parameter/light_color = Color(0.90625, 0.90625, 0.90625, 1)
+shader_parameter/dark_color = Color(0.464844, 0.464844, 0.464844, 1)
+
 [node name="Alpaca" type="Node2D" node_paths=PackedStringArray("anchor_base", "animation_player")]
+material = SubResource("ShaderMaterial_xx8tt")
 position = Vector2(0, 617)
 script = ExtResource("2_ic6ix")
 anchor_base = NodePath("ClothingAnchors")
 animation_player = NodePath("AnimationPlayer")
+possible_colors = Array[Color]([Color(0.769034, 0.742347, 0.820312, 1), Color(0.757812, 0.54718, 0.220228, 1), Color(0.441406, 0.257812, 0.208002, 1), Color(0.871094, 0.791212, 0.643646, 1), Color(0.453125, 0.453125, 0.453125, 1), Color(0.234375, 0.196996, 0.182812, 1)])
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_oae5t")
+[node name="Polygon2D" type="Polygon2D" parent="."]
+use_parent_material = true
+position = Vector2(47, -25)
+scale = Vector2(0.678434, 0.678434)
+offset = Vector2(-527, -404)
+texture = ExtResource("2_rfeeu")
+polygon = PackedVector2Array(97.1612, 728.149, 140.45, 751.13, 181.066, 748.458, 193.892, 728.149, 214.2, 744.716, 275.659, 744.716, 412.472, 775.713, 509.738, 781.057, 522.564, 760.749, 531.115, 537.894, 650.827, 493.003, 725.112, 378.635, 738.473, 241.288, 762.522, 208.688, 822.378, 227.393, 881.164, 153.108, 748.627, 8.27876, 686.634, 6.14106, 582.955, 220.446, 586.696, 289.921, 404.457, 256.252, 168.242, 264.268, 52.2719, 408.563, 49.0653, 467.884)
+uv = PackedVector2Array(97.1612, 728.149, 140.45, 751.13, 181.066, 748.458, 193.892, 728.149, 214.2, 744.716, 275.659, 744.716, 412.472, 775.713, 509.738, 781.057, 522.564, 760.749, 531.115, 537.894, 650.827, 493.003, 725.112, 378.635, 738.473, 241.288, 762.522, 208.688, 822.378, 227.393, 881.164, 153.108, 748.627, 8.27876, 686.634, 6.14106, 582.955, 220.446, 586.696, 289.921, 404.457, 256.252, 168.242, 264.268, 52.2719, 408.563, 49.0653, 467.884)
 
 [node name="ClothingAnchors" type="Node2D" parent="."]
 

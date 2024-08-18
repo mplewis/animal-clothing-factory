@@ -3,6 +3,7 @@ extends Node2D
 
 @export var anchor_base: Node2D
 @export var animation_player: AnimationPlayer
+@export var possible_colors : Array[Color] = []
 
 const TWEEN_DURATION_SEC = 0.3
 
@@ -13,6 +14,11 @@ func _ready() -> void:
 	pass
 	#self.attach_clothing(testTie)
 	#self.attach_clothing(testShirt)
+	if material is ShaderMaterial and possible_colors.size() > 0:
+		var inner_color : Color = possible_colors.pick_random()
+		var lineart_color := inner_color.darkened(0.5)
+		(material as ShaderMaterial).set_shader_parameter("light_color",inner_color)
+		(material as ShaderMaterial).set_shader_parameter("dark_color",lineart_color)
 
 
 func _to_string():
