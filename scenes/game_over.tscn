@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b27n86g67e8ak"]
+[gd_scene load_steps=5 format=3 uid="uid://b27n86g67e8ak"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_waqm5"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="2_3rkn7"]
 [ext_resource type="AudioStream" uid="uid://c7v4yegs2aej0" path="res://assets/bgm/simple_beat.mp3" id="2_58ljt"]
+[ext_resource type="AudioStream" uid="uid://d05lnep7sr5ci" path="res://assets/sfx/finish_bell.ogg" id="4_ho4s5"]
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_waqm5")
@@ -29,3 +30,7 @@ volume_db = 10.0
 autoplay = true
 panning_strength = 0.0
 parameters/looping = true
+
+[node name="FinishSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ho4s5")
+autoplay = true
