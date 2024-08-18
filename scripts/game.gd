@@ -324,5 +324,6 @@ func grow_shrink_clothing() -> void:
 ## Move the resized clothing onto the animal.
 func wear_clothing() -> void:
 	if play_state == PlayState.WEARING_CLOTHING:
+		self.current_animal.attach_clothing(self.current_clothing)
 		var desired = self.current_animal.get_target_scale_for_clothing(self.current_clothing.name)
 		score_and_exit(desired)

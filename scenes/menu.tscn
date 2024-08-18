@@ -27,5 +27,4 @@ stream = ExtResource("2_b6a2n")
 volume_db = 15.0
 autoplay = true
 panning_strength = 0.0
-bus = &"music"
 parameters/looping = true
