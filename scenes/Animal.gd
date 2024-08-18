@@ -5,19 +5,16 @@ class_name Animal
 
 @export var anchor_base : Node2D
 
-@export var testTie: Node2D
-@export var testShirt: Node2D
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.attach_clothing(testTie)
-	self.attach_clothing(testShirt)
+	pass
+	#self.attach_clothing(testTie)
+	#self.attach_clothing(testShirt)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(Input.is_key_pressed(KEY_T)):
-		pass
+	pass
 
 #returns the difference in scale from the desired scale
 func attach_clothing(clothing_item : Node2D ) -> float:
