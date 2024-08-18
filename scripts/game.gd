@@ -32,6 +32,9 @@ const FEEDBACK_RISE_SPEED := 2
 ## How fast the feedback label fades out
 const FEEDBACK_FADE_SPEED := 0.02
 
+signal shrink_sound_start
+signal shrink_sound_stop
+
 ## The time remaining in the game
 var time_remaining_secs := GAME_DURATION_SECS
 ## The current state of the interactive player elements
@@ -293,15 +296,19 @@ func grow_shrink_clothing() -> void:
 			grow_tool.rotation_degrees = randf_range(-GROW_SHAKE_MAX_ROT, GROW_SHAKE_MAX_ROT)
 
 	if shrink && !grow:
+		if not resizing:
+			shrink_sound_start.emit()
 		resizing = true
 		if current_clothing.scale.x <= CLOTHING_MIN_SCALE:
 			shrink = false  # stop at min
+			shrink_sound_stop.emit()
 		else:
 			current_clothing.scale -= Vector2(GROW_SHRINK_RATE, GROW_SHRINK_RATE)
 			shrink_tool.rotation_degrees = randf_range(-GROW_SHAKE_MAX_ROT, GROW_SHAKE_MAX_ROT)
 
 	if resizing && !grow && !shrink:  # player released the key
 		grow_sound.stop()
+		shrink_sound_stop.emit()
 		resizing = false
 		grow_tool.rotation_degrees = 0
 		shrink_tool.rotation_degrees = 0
