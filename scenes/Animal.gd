@@ -2,9 +2,9 @@ extends Node2D
 
 class_name Animal
 
+@export var anchor_base: Node2D
+@export var animation_player: AnimationPlayer
 
-@export var anchor_base : Node2D
-@export var animation_player : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,23 +14,21 @@ func _ready() -> void:
 	#self.attach_clothing(testShirt)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
+
 #returns the difference in scale from the desired scale
-func attach_clothing(clothing_item : Node2D ) -> float:
+func attach_clothing(clothing_item: Node2D) -> float:
 	var result = 0.0
-	print("trying to get " + clothing_item.name + "Anchor")
 	var anchorNode = anchor_base.get_node(NodePath(clothing_item.name + "Anchor"))
-	if(anchorNode != null):
+	if anchorNode != null:
 		clothing_item.reparent(self)
-		#tweens go one after the other if you put them in one, so create 2 separate ones so that they happen together.
+		# tweens go one after the other if you put them in one, so create 2 separate ones so that they happen together.
 		var locTween = clothing_item.create_tween()
 		locTween.tween_property(clothing_item, "position", anchorNode.position, .2)
-		var rotTween = clothing_item.create_tween() 
+		var rotTween = clothing_item.create_tween()
 		rotTween.tween_property(clothing_item, "rotation", anchorNode.rotation, .2)
-		
 
 		var desiredScale = anchorNode.scale.x
 		result = abs(desiredScale - clothing_item.scale.x)
@@ -39,13 +37,16 @@ func attach_clothing(clothing_item : Node2D ) -> float:
 
 	return result
 
-func get_target_scale_for_clothing(clothingName : String) -> float:
-	var anchorNode = anchor_base.get_node(NodePath(clothingName + "Anchor"))
-	return anchorNode.scale.x
-	
+
+func get_target_scale_for_clothing(clothing_name: String) -> float:
+	var node_path = clothing_name + "Anchor"
+	var node = anchor_base.get_node(NodePath(node_path))
+	var node_scale = node.scale.x
+	print("Scale for %s is %s" % [clothing_name, node_scale])
+	return node_scale
+
+
 func play_dance() -> void:
 	var randSpeed = randf_range(.8, 1.2)
 	animation_player.set_speed_scale(randSpeed)
 	animation_player.play("animal_animations/animal_dance")
-	
-	

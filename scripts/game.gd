@@ -1,14 +1,20 @@
 class_name Game
 extends Node2D
 
-enum PlayState { MOVE_ANIMAL_IN, SIZING_CLOTHING, WEARING_CLOTHING, MOVE_ANIMAL_OUT }
+enum PlayState { MOVE_ANIMAL_IN, SIZING_CLOTHING, GETTING_DRESSED, MOVE_ANIMAL_OUT }
 
 ## Width of the game window, in pixels
 const SCREEN_WIDTH_PX := 1920
 ## How far off-screen to start/end the animal motion, in pixels
-const OFF_SCREEN_DISTANCE_PX := 300
+const OFF_SCREEN_ANIMAL_DISTANCE_PX := 300
+## How far off-screen to start/end the grabber arm, in pixels. Must be large enough to handle tall items of clothing.
+const OFF_SCREEN_GRABBER_DISTANCE_PX := 500
 ## Speed of belt that moves animals in/out, in px/tick
 const BELT_SPEED := 20
+## Speed of grabber arm moving up/down, in px/tick. Must be fast enough to load the clothing before the belt stops.
+const GRABBER_SPEED := 20
+## How long to wait for the animal to wear the clothing before moving them along
+const GETTING_DRESSED_DELAY_SEC := 0.4
 ## The X coord for the center of the screen. This is where the animal stops.
 const SCREEN_CENTER_X := SCREEN_WIDTH_PX * 1.0 / 2
 
@@ -21,19 +27,24 @@ const GROW_SHRINK_RATE := 0.01
 const GROW_SHAKE_MAX_ROT := 10
 
 ## Max scale of clothing when growing
-const CLOTHING_MAX_SCALE := 2.0
+const CLOTHING_MAX_SCALE := 2.5
 ## Min scale of clothing when shrinking
-const CLOTHING_MIN_SCALE := 0.5
-## The perfectly-sized clothing scale
-const CLOTHING_PERFECT_SCALE := 0.66
+const CLOTHING_MIN_SCALE := 0.2
 
 ## How fast the feedback label floats up
 const FEEDBACK_RISE_SPEED := 2
 ## How fast the feedback label fades out
 const FEEDBACK_FADE_SPEED := 0.02
 
+## Emitted when the player starts using the shrink tool
 signal shrink_sound_start
+## Emitted when the player stops using the shrink tool
 signal shrink_sound_stop
+
+## The position where new clothing should be placed
+@export var new_clothing_anchor_node: Node2D
+## The object creator that makes new animals and clothing
+@export var object_creator: ObjectCreator
 
 ## The time remaining in the game
 var time_remaining_secs := GAME_DURATION_SECS
@@ -41,17 +52,19 @@ var time_remaining_secs := GAME_DURATION_SECS
 var play_state := PlayState.MOVE_ANIMAL_IN
 ## If true, the player is currently holding down a "resize" key
 var resizing := false
+## When to allow the animal to move after dressing them
+var move_animal_at := 0
 
 ## Stores all the animals that we've dressed so we can show them in the end screen
-var dressed_animals : Array[Animal] = []
+var dressed_animals: Array[Animal] = []
 
 ## The current animal to dress
 @onready var current_animal: Animal
-## Where the shirt sits on the alpaca
-@onready var alpaca_clothing_anchor: Node2D = $Gameplay/CurrentAnimal/Alpaca/ClothingAnchor
 ## The current clothing to resize
 @onready var current_clothing: Node2D
 
+## The grabber arm that holds clothing
+@onready var grabber: Node2D = $Gameplay/Grabber
 ## The tool used to grow clothing
 @onready var grow_tool: Node2D = $Gameplay/GrowTool
 ## The tool used to shrink clothing
@@ -82,21 +95,17 @@ var dressed_animals : Array[Animal] = []
 @onready var score_good_sound: AudioStreamPlayer2D = $Audio/Score/Good
 ## The sound of the score feedback SFX for Great
 @onready var score_great_sound: AudioStreamPlayer2D = $Audio/Score/Great
-## the sound of the grow ray firing
+## The sound of the grow ray firing
 @onready var grow_sound: AudioStreamPlayer2D = $Audio/Grow
 
+# TODO: Add 2d spatial sound for belt, grow, shrink
 
 ## The initial position of the feedback label
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
-## The position where new clothing should be placed
-#@onready var new_clothing_position: Vector2 = current_clothing.position
-@export var new_clothing_anchor_node: Node2D
+## The initial position of the grabber arm
+@onready var grabber_start_position: Vector2 = grabber.position
 ## The timer that ticks once a second
 @onready var timer: Timer = $SecTimer
-
-@export var object_creator: ObjectCreator
-
-
 
 
 func _ready() -> void:
@@ -108,8 +117,9 @@ func _ready() -> void:
 
 func _process(_delta) -> void:
 	move_animal_on_belt()
+	move_grabber_arm()
 	grow_shrink_clothing()
-	wear_clothing()
+	wait_to_wear_clothing()
 	move_and_fade_feedback()
 
 
@@ -130,7 +140,8 @@ func end_game() -> void:
 ## Create a new animal and position them
 func set_animal_to_start() -> void:
 	current_animal = object_creator.create_random_animal()
-	current_animal.position.x = -OFF_SCREEN_DISTANCE_PX
+	current_animal.position.x = -OFF_SCREEN_ANIMAL_DISTANCE_PX
+	grabber.position.y = grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX
 	play_state = PlayState.MOVE_ANIMAL_IN
 	reset_clothing()
 
@@ -179,7 +190,7 @@ func move_animal_on_belt() -> void:
 			if belt_move_sound.playing == false:
 				belt_move_sound.play()
 			current_animal.position.x += BELT_SPEED
-			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_DISTANCE_PX:
+			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_ANIMAL_DISTANCE_PX:
 				#disable current animal for now
 				current_animal.hide()
 				dressed_animals.push_back(current_animal)
@@ -187,32 +198,46 @@ func move_animal_on_belt() -> void:
 				set_animal_to_start()
 
 
-## Score the player's clothing sizing and move the animal to the right.
-func score_and_exit(desiredScale:float) -> void:
-	var piece_scale = current_clothing.scale.x
+## Move the grabber arm up or down if necessary.
+func move_grabber_arm() -> void:
+	match play_state:
+		PlayState.MOVE_ANIMAL_IN:
+			if grabber.position.y < grabber_start_position.y:
+				grabber.position.y += GRABBER_SPEED
+				current_clothing.global_position = new_clothing_anchor_node.global_position
 
-	# piece score = % away from perfect
-	var piece_score = abs(desiredScale - piece_scale) / desiredScale
+		PlayState.MOVE_ANIMAL_OUT:
+			if grabber.position.y > grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX:
+				grabber.position.y -= GRABBER_SPEED
+
+
+## Score the player's clothing sizing and move the animal to the right.
+func score_fitting(expected_scale: float) -> void:
+	var actual_scale = current_clothing.scale.x
+
+	print("Expected scale: %s, Actual scale: %s" % [expected_scale, actual_scale])
+
+	# score = % away from perfect
+	var score = abs(expected_scale - actual_scale) / expected_scale
 
 	var stars = 0
-	if piece_score < 0.05:
+	if score < 0.05:
 		stars = 5
-	elif piece_score < 0.1:
+	elif score < 0.1:
 		stars = 3
-	elif piece_score < 0.2:
+	elif score < 0.2:
 		stars = 1
 
-	show_feedback(stars)
+	show_feedback(stars, expected_scale, actual_scale)
 	incr_score(stars)
-	play_state = PlayState.MOVE_ANIMAL_OUT
 
 
 ## Indicate to the player how many stars they earned.
-func show_feedback(stars) -> void:
+func show_feedback(stars: int, expected_scale: float, actual_scale: float) -> void:
 	var too_big_sm := ""
-	if current_clothing.scale.x > CLOTHING_PERFECT_SCALE:
+	if expected_scale < actual_scale:
 		too_big_sm = " (too big)"
-	elif current_clothing.scale.x < CLOTHING_PERFECT_SCALE:
+	elif expected_scale > actual_scale:
 		too_big_sm = " (too small)"
 
 	var feedback := one_of(
@@ -319,17 +344,19 @@ func grow_shrink_clothing() -> void:
 		resizing = false
 		grow_tool.rotation_degrees = 0
 		shrink_tool.rotation_degrees = 0
-		play_state = PlayState.WEARING_CLOTHING
 
+		play_state = PlayState.GETTING_DRESSED
+		self.current_animal.attach_clothing(self.current_clothing)
+		move_animal_at = Time.get_ticks_msec() + int(GETTING_DRESSED_DELAY_SEC * 1000)
 
-## Move the resized clothing onto the animal.
-func wear_clothing() -> void:
-	if play_state == PlayState.WEARING_CLOTHING:
-		var diff = self.current_animal.attach_clothing(self.current_clothing)
 		var desired = self.current_animal.get_target_scale_for_clothing(self.current_clothing.name)
-		#var goal = alpaca_clothing_anchor.global_position
-		#current_clothing.position = current_clothing.position.lerp(goal, 0.1)
-		score_and_exit(desired)
+		score_fitting(desired)
 
-	#elif play_state == PlayState.MOVE_ANIMAL_OUT:
-	#current_clothing.position = alpaca_clothing_anchor.global_position
+
+## Wait for the animal to wear the clothing before moving them along.
+func wait_to_wear_clothing() -> void:
+	if play_state != PlayState.GETTING_DRESSED:
+		return
+
+	if Time.get_ticks_msec() > move_animal_at:
+		play_state = PlayState.MOVE_ANIMAL_OUT

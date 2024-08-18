@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cklrc5ptq357w" path="res://assets/sfx/ambience/ambience_loop_4.ogg" id="10_mb3k5"]
 [ext_resource type="AudioStream" uid="uid://bugsri0fof7hw" path="res://assets/sfx/score_super.ogg" id="10_n8s8l"]
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
-[ext_resource type="PackedScene" uid="uid://c8umq15pynaj4" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
+[ext_resource type="PackedScene" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
 [ext_resource type="Script" path="res://scripts/ObjectCreator.gd" id="16_1fh1g"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
@@ -37,11 +37,10 @@ stream_2/volume = 0.0
 stream_3/stream = ExtResource("10_mb3k5")
 stream_3/volume = 0.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator", "dressed_animal_parent")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator")]
 script = ExtResource("1_dpgjl")
-new_clothing_anchor_node = NodePath("Gameplay/Shirt")
+new_clothing_anchor_node = NodePath("Gameplay/Grabber/NewClothingAnchor")
 object_creator = NodePath("ObjectCreator")
-dressed_animal_parent = NodePath("Gameplay/ClothedAnimalParent")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -50,12 +49,16 @@ offset_bottom = 1080.0
 [node name="SecTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="ObjectCreator" type="Node" parent="."]
+script = ExtResource("16_1fh1g")
+PossibleAnimals = Array[PackedScene]([ExtResource("17_gal1w"), ExtResource("18_y3c8k")])
+PossibleClothing = Array[PackedScene]([ExtResource("18_n6kxj"), ExtResource("13_fe3ex")])
+
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="Grow" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(488, 158)
 stream = ExtResource("5_kb2au")
-bus = &"sfx"
 
 [node name="Shrink" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(1472, 168)
@@ -63,14 +66,12 @@ stream = ExtResource("3_1yd45")
 volume_db = -80.0
 pitch_scale = 0.01
 autoplay = true
-bus = &"sfx"
 script = ExtResource("3_7l8gu")
 
 [node name="BeltMove" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(963, 849)
 stream = ExtResource("8_m6ttv")
 volume_db = -4.885
-bus = &"sfx"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(960, 852)
@@ -78,32 +79,26 @@ stream = ExtResource("3_2kvdn")
 volume_db = 10.0
 autoplay = true
 panning_strength = 0.0
-bus = &"music"
 parameters/looping = true
 
 [node name="Ambience" type="AudioStreamPlayer" parent="Audio"]
 stream = SubResource("AudioStreamSynchronized_junc2")
 autoplay = true
-bus = &"ambience"
 
 [node name="Score" type="Node2D" parent="Audio"]
 position = Vector2(960, 852)
 
 [node name="Bad" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("7_2d34m")
-bus = &"sfx"
 
 [node name="OK" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("8_nynau")
-bus = &"sfx"
 
 [node name="Good" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("9_00gyo")
-bus = &"sfx"
 
 [node name="Great" type="AudioStreamPlayer2D" parent="Audio/Score"]
 stream = ExtResource("10_n8s8l")
-bus = &"sfx"
 
 [node name="Gameplay" type="Node2D" parent="."]
 
@@ -122,6 +117,9 @@ position = Vector2(960, -58)
 scale = Vector2(0.416667, 0.416667)
 texture = ExtResource("3_lljhi")
 
+[node name="NewClothingAnchor" type="Node2D" parent="Gameplay/Grabber"]
+position = Vector2(0, 513.6)
+
 [node name="GrowTool" type="Node2D" parent="Gameplay"]
 position = Vector2(488, 158)
 
@@ -139,11 +137,6 @@ position = Vector2(-18.9999, 104)
 rotation = -0.418879
 scale = Vector2(0.374332, 0.374332)
 texture = ExtResource("6_bvl5c")
-
-[node name="Shirt" parent="Gameplay" instance=ExtResource("13_fe3ex")]
-visible = false
-
-[node name="ClothedAnimalParent" type="Node2D" parent="Gameplay"]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -270,11 +263,6 @@ theme_override_font_sizes/font_size = 64
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ObjectCreator" type="Node" parent="."]
-script = ExtResource("16_1fh1g")
-PossibleAnimals = Array[PackedScene]([ExtResource("17_gal1w"), ExtResource("18_y3c8k")])
-PossibleClothing = Array[PackedScene]([ExtResource("18_n6kxj"), ExtResource("13_fe3ex")])
 
 [connection signal="shrink_sound_start" from="." to="Audio/Shrink" method="_on_game_shrink_sound_start"]
 [connection signal="shrink_sound_stop" from="." to="Audio/Shrink" method="_on_game_shrink_sound_stop"]
