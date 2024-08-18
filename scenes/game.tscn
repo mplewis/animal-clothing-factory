@@ -34,6 +34,10 @@ autostart = true
 
 [node name="Audio" type="Node2D" parent="."]
 
+[node name="Grow" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(488, 158)
+stream = ExtResource("5_kb2au")
+
 [node name="BeltMove" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(963, 849)
 stream = ExtResource("8_m6ttv")
@@ -87,10 +91,6 @@ position = Vector2(33, 54)
 rotation = 0.418879
 scale = Vector2(0.278, 0.278)
 texture = ExtResource("5_nco2n")
-
-[node name="GrowSound" type="AudioStreamPlayer2D" parent="Gameplay/GrowTool"]
-unique_name_in_owner = true
-stream = ExtResource("5_kb2au")
 
 [node name="ShrinkTool" type="Node2D" parent="Gameplay"]
 position = Vector2(1478, 157)
