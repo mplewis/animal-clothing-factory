@@ -15,6 +15,7 @@ func _ready() -> void:
 	#self.attach_clothing(testTie)
 	#self.attach_clothing(testShirt)
 	if material is ShaderMaterial and possible_colors.size() > 0:
+		material = material.duplicate()
 		var inner_color : Color = possible_colors.pick_random()
 		var lineart_color := inner_color.darkened(0.5)
 		(material as ShaderMaterial).set_shader_parameter("light_color",inner_color)
