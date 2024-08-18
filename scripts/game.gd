@@ -45,6 +45,8 @@ signal shrink_sound_stop
 @export var new_clothing_anchor_node: Node2D
 ## The object creator that makes new animals and clothing
 @export var object_creator: ObjectCreator
+## The Y level of the belt surface, where animals stand
+@export var belt_height: Node2D
 
 ## The time remaining in the game
 var time_remaining_secs := GAME_DURATION_SECS
@@ -144,6 +146,7 @@ func end_game() -> void:
 func set_animal_to_start() -> void:
 	current_animal = object_creator.create_random_animal()
 	current_animal.position.x = -OFF_SCREEN_ANIMAL_DISTANCE_PX
+	current_animal.global_position.y = belt_height.global_position.y
 	grabber.position.y = grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX
 	play_state = PlayState.MOVE_ANIMAL_IN
 	reset_clothing()
