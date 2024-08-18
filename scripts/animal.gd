@@ -50,14 +50,19 @@ func get_clothing_anchor(clothing_name: String) -> Sprite2D:
 
 ## Returns this animal's desired width (px) for a given piece of clothing
 func expected_clothing_width_px(clothing_name: String) -> int:
-	var anchor_node = get_clothing_anchor(clothing_name)
-	print(
-		(
-			"width: %d, base_scale: %f, self_scale: %f"
-			% [anchor_node.texture.get_width(), anchor_base.scale.x, self.scale.x]
-		)
+	var anchor_node := get_clothing_anchor(clothing_name)
+	Global.print_many(
+		"Animal.expected_clothing_width_px",
+		{
+			"width": anchor_node.texture.get_width(),
+			"node_scale": anchor_node.scale.x,
+			"base_scale": anchor_base.scale.x,
+			"self_scale": self.scale.x
+		}
 	)
-	return anchor_node.texture.get_width() * anchor_base.scale.x * self.scale.x
+	return int(
+		anchor_node.texture.get_width() * anchor_node.scale.x * anchor_base.scale.x * self.scale.x
+	)
 
 
 func play_dance() -> void:

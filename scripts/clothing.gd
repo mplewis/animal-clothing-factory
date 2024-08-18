@@ -10,5 +10,12 @@ func _to_string():
 
 ## The width of this item of clothing, in pixels, as displayed onscreen
 func width_px() -> int:
-	print("width: %d, scale: %f" % [sprite.texture.get_width(), self.scale.x])
+	Global.print_many(
+		"Clothing.width_px",
+		{
+			"width": sprite.texture.get_width(),
+			"node_scale": sprite.scale.x,
+			"self_scale": self.scale.x
+		}
+	)
 	return int(sprite.texture.get_width() * self.scale.x)
