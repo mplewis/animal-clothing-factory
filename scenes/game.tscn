@@ -39,7 +39,7 @@ stream_3/volume = 0.0
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator")]
 script = ExtResource("1_dpgjl")
-new_clothing_anchor_node = NodePath("Gameplay/Shirt")
+new_clothing_anchor_node = NodePath("Gameplay/Grabber/NewClothingAnchor")
 object_creator = NodePath("ObjectCreator")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -112,6 +112,9 @@ position = Vector2(960, -58)
 scale = Vector2(0.416667, 0.416667)
 texture = ExtResource("3_lljhi")
 
+[node name="NewClothingAnchor" type="Node2D" parent="Gameplay/Grabber"]
+position = Vector2(0, 513.6)
+
 [node name="GrowTool" type="Node2D" parent="Gameplay"]
 position = Vector2(488, 158)
 
@@ -129,9 +132,6 @@ position = Vector2(-18.9999, 104)
 rotation = -0.418879
 scale = Vector2(0.374332, 0.374332)
 texture = ExtResource("6_bvl5c")
-
-[node name="Shirt" parent="Gameplay" instance=ExtResource("13_fe3ex")]
-visible = false
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

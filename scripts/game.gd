@@ -25,11 +25,9 @@ const GROW_SHRINK_RATE := 0.01
 const GROW_SHAKE_MAX_ROT := 10
 
 ## Max scale of clothing when growing
-const CLOTHING_MAX_SCALE := 2.0
+const CLOTHING_MAX_SCALE := 2.5
 ## Min scale of clothing when shrinking
-const CLOTHING_MIN_SCALE := 0.5
-## The perfectly-sized clothing scale
-const CLOTHING_PERFECT_SCALE := 0.66
+const CLOTHING_MIN_SCALE := 0.2
 
 ## How fast the feedback label floats up
 const FEEDBACK_RISE_SPEED := 2
@@ -204,6 +202,7 @@ func move_grabber_arm() -> void:
 		PlayState.MOVE_ANIMAL_IN:
 			if grabber.position.y < grabber_start_position.y:
 				grabber.position.y += GRABBER_SPEED
+				current_clothing.global_position = new_clothing_anchor_node.global_position
 
 		PlayState.MOVE_ANIMAL_OUT:
 			if grabber.position.y > grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX:
@@ -211,31 +210,31 @@ func move_grabber_arm() -> void:
 
 
 ## Score the player's clothing sizing and move the animal to the right.
-func score_and_exit(desiredScale: float) -> void:
-	var piece_scale = current_clothing.scale.x
+func score_and_exit(expected_scale: float) -> void:
+	var actual_scale = current_clothing.scale.x
 
-	# piece score = % away from perfect
-	var piece_score = abs(desiredScale - piece_scale) / desiredScale
+	# score = % away from perfect
+	var score = abs(expected_scale - actual_scale) / expected_scale
 
 	var stars = 0
-	if piece_score < 0.05:
+	if score < 0.05:
 		stars = 5
-	elif piece_score < 0.1:
+	elif score < 0.1:
 		stars = 3
-	elif piece_score < 0.2:
+	elif score < 0.2:
 		stars = 1
 
-	show_feedback(stars)
+	show_feedback(stars, expected_scale, actual_scale)
 	incr_score(stars)
 	play_state = PlayState.MOVE_ANIMAL_OUT
 
 
 ## Indicate to the player how many stars they earned.
-func show_feedback(stars) -> void:
+func show_feedback(stars: int, expected_scale: float, actual_scale: float) -> void:
 	var too_big_sm := ""
-	if current_clothing.scale.x > CLOTHING_PERFECT_SCALE:
+	if expected_scale < actual_scale:
 		too_big_sm = " (too big)"
-	elif current_clothing.scale.x < CLOTHING_PERFECT_SCALE:
+	elif expected_scale > actual_scale:
 		too_big_sm = " (too small)"
 
 	var feedback := one_of(
