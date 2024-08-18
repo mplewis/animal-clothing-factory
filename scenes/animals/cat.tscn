@@ -7,7 +7,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="5_laffy"]
 
 [node name="Cat" type="Node2D" node_paths=PackedStringArray("anchor_base", "animation_player")]
-position = Vector2(0, 617)
+position = Vector2(0, 553)
 script = ExtResource("2_hi5f1")
 anchor_base = NodePath("ClothingAnchors")
 animation_player = NodePath("AnimationPlayer")

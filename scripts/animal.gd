@@ -15,8 +15,8 @@ func _ready() -> void:
 	#self.attach_clothing(testShirt)
 
 
-func _process(_delta: float) -> void:
-	pass
+func _to_string():
+	return "<Animal %s>" % self.name
 
 
 ## Attach a piece of clothing to an animal. Returns the difference in scale from the desired scale.
@@ -53,7 +53,7 @@ func expected_clothing_width_px(clothing_name: String) -> int:
 	var anchor_node = get_clothing_anchor(clothing_name)
 	print(
 		(
-			"width: %d, base_scale: %d, self_scale: %d"
+			"width: %d, base_scale: %f, self_scale: %f"
 			% [anchor_node.texture.get_width(), anchor_base.scale.x, self.scale.x]
 		)
 	)

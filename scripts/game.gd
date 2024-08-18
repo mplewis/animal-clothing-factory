@@ -197,7 +197,6 @@ func move_animal_on_belt() -> void:
 				#disable current animal for now
 				current_animal.hide()
 				dressed_animals.push_back(current_animal)
-				print(dressed_animals.size())
 				set_animal_to_start()
 
 
@@ -220,12 +219,11 @@ func move_grabber_arm() -> void:
 
 ## Score the player's clothing sizing and move the animal to the right.
 func score_fitting(sizing: SizeResult) -> void:
-	var expected = sizing.expected_size
-	var actual = sizing.actual_size
-	print("Expected size: %s px, Actual size: %s px" % [expected, actual])
+	var expected := sizing.expected_size
+	var actual := sizing.actual_size
 
 	# score = % away from perfect
-	var score = abs(expected - actual) / expected
+	var score: float = abs(expected - actual) * 1.0 / expected
 
 	var stars = 0
 	if score < 0.05:
@@ -354,8 +352,6 @@ func grow_shrink_clothing() -> void:
 
 		move_animal_at = Time.get_ticks_msec() + int(GETTING_DRESSED_DELAY_SEC * 1000)
 		play_state = PlayState.GETTING_DRESSED
-		print(self.current_animal)
-		print(self.current_clothing)
 		var sizing = self.current_animal.attach_clothing(self.current_clothing)
 		score_fitting(sizing)
 

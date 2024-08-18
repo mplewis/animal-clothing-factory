@@ -4,7 +4,11 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite
 
 
+func _to_string():
+	return "<Clothing %s>" % self.name
+
+
 ## The width of this item of clothing, in pixels, as displayed onscreen
 func width_px() -> int:
-	print("width: %d, scale: %d" % [sprite.texture.get_width(), self.scale.x])
+	print("width: %d, scale: %f" % [sprite.texture.get_width(), self.scale.x])
 	return int(sprite.texture.get_width() * self.scale.x)
