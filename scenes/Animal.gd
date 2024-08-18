@@ -38,6 +38,6 @@ func attach_clothing(clothing_item : Node2D ) -> float:
 	return result
 
 func get_target_scale_for_clothing(clothingName : String) -> float:
-	var anchorNode = get_node(NodePath(clothingName))
+	var anchorNode = anchor_base.get_node(NodePath(clothingName + "Anchor"))
 	return anchorNode.scale.x
 	

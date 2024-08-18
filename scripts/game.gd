@@ -181,11 +181,11 @@ func move_animal_on_belt() -> void:
 
 
 ## Score the player's clothing sizing and move the animal to the right.
-func score_and_exit() -> void:
+func score_and_exit(desiredScale:float) -> void:
 	var piece_scale = current_clothing.scale.x
 
 	# piece score = % away from perfect
-	var piece_score = abs(CLOTHING_PERFECT_SCALE - piece_scale) / CLOTHING_PERFECT_SCALE
+	var piece_score = abs(desiredScale - piece_scale) / desiredScale
 
 	var stars = 0
 	if piece_score < 0.05:
@@ -318,10 +318,11 @@ func grow_shrink_clothing() -> void:
 ## Move the resized clothing onto the animal.
 func wear_clothing() -> void:
 	if play_state == PlayState.WEARING_CLOTHING:
-		self.current_animal.attach_clothing(self.current_clothing)
+		var diff = self.current_animal.attach_clothing(self.current_clothing)
+		var desired = self.current_animal.get_target_scale_for_clothing(self.current_clothing.name)
 		#var goal = alpaca_clothing_anchor.global_position
 		#current_clothing.position = current_clothing.position.lerp(goal, 0.1)
-		score_and_exit()
+		score_and_exit(desired)
 
 	#elif play_state == PlayState.MOVE_ANIMAL_OUT:
 	#current_clothing.position = alpaca_clothing_anchor.global_position
