@@ -3,37 +3,37 @@ extends Node2D
 enum PlayState { MOVE_ANIMAL_IN, SIZING_CLOTHING, WEARING_CLOTHING, MOVE_ANIMAL_OUT }
 
 ## Width of the game window, in pixels
-const SCREEN_WIDTH_PX = 1920
+const SCREEN_WIDTH_PX := 1920
 ## How far off-screen to start/end the animal motion, in pixels
-const OFF_SCREEN_DISTANCE_PX = 300
+const OFF_SCREEN_DISTANCE_PX := 300
 ## Speed of belt that moves animals in/out, in px/tick
-const BELT_SPEED = 20
+const BELT_SPEED := 20
 ## The X coord for the center of the screen. This is where the animal stops.
-const SCREEN_CENTER_X = SCREEN_WIDTH_PX * 1.0 / 2
+const SCREEN_CENTER_X := SCREEN_WIDTH_PX * 1.0 / 2
 
 ## How fast to grow/shrink clothing when the player holds the button
-const GROW_SHRINK_RATE = 0.01
+const GROW_SHRINK_RATE := 0.01
 ## degrees in either direction to wiggle the tool during a grow/shrink operation
-const GROW_SHAKE_MAX_ROT = 10
+const GROW_SHAKE_MAX_ROT := 10
 
 ## Max scale of clothing when growing
-const CLOTHING_MAX_SCALE = 2.0
+const CLOTHING_MAX_SCALE := 2.0
 ## Min scale of clothing when shrinking
-const CLOTHING_MIN_SCALE = 0.5
+const CLOTHING_MIN_SCALE := 0.5
 ## The perfectly-sized clothing scale
-const CLOTHING_PERFECT_SCALE = 0.66
+const CLOTHING_PERFECT_SCALE := 0.66
 
 ## How fast the feedback label floats up
-const FEEDBACK_RISE_SPEED = 2
+const FEEDBACK_RISE_SPEED := 2
 ## How fast the feedback label fades out
-const FEEDBACK_FADE_SPEED = 0.02
+const FEEDBACK_FADE_SPEED := 0.02
 
 ## The current state of the interactive player elements
-var play_state: PlayState = PlayState.MOVE_ANIMAL_IN
+var play_state := PlayState.MOVE_ANIMAL_IN
 ## If true, the player is currently holding down a "resize" key
-var resizing: bool = false
+var resizing := false
 ## The player's score
-var score: int = 0
+var score := 0
 
 ## The current animal to dress
 @onready var current_animal: Node2D = $Gameplay/CurrentAnimal
