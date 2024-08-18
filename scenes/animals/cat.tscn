@@ -20,14 +20,13 @@ position = Vector2(0, -38)
 
 [node name="TieAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(146, 148)
-rotation = -0.314159
-scale = Vector2(0.290702, 0.290702)
+position = Vector2(151.107, 176.602)
+rotation = -0.0523599
+scale = Vector2(0.304212, 0.304212)
 texture = ExtResource("4_hjwkp")
 
 [node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
-visible = false
-position = Vector2(40, 173)
+position = Vector2(30, 169)
 rotation = 1.10819
 scale = Vector2(0.444491, 0.444491)
 texture = ExtResource("3_kbum0")

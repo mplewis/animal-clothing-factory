@@ -33,7 +33,8 @@ uv = PackedVector2Array(97.1612, 728.149, 140.45, 751.13, 181.066, 748.458, 193.
 
 [node name="TieAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(129, -48)
+position = Vector2(153, -36)
+rotation = -0.139626
 scale = Vector2(0.49, 0.49)
 texture = ExtResource("4_0nths")
 
