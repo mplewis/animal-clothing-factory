@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=20 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
@@ -13,7 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://c1oj56208o8pf" path="res://assets/sfx/stock/great.wav" id="7_38264"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
-[ext_resource type="PackedScene" uid="uid://c8umq15pynaj4" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
+[ext_resource type="PackedScene" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
+[ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
 [ext_resource type="Script" path="res://scripts/ObjectCreator.gd" id="16_1fh1g"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
 [ext_resource type="PackedScene" uid="uid://y2c0un4ly452" path="res://scenes/clothing/tie.tscn" id="18_n6kxj"]
@@ -115,6 +116,7 @@ offset_left = 1824.0
 offset_top = 19.0
 offset_right = 1924.0
 offset_bottom = 119.0
+theme = ExtResource("15_pex5s")
 theme_override_font_sizes/font_size = 64
 text = "⭐"
 
@@ -124,6 +126,7 @@ offset_left = -212.0
 offset_top = -15.0
 offset_right = -12.0
 offset_bottom = 85.0
+theme = ExtResource("15_pex5s")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "0"
@@ -136,6 +139,7 @@ offset_left = -11.0
 offset_top = 20.0
 offset_right = 89.0
 offset_bottom = 120.0
+theme = ExtResource("15_pex5s")
 theme_override_font_sizes/font_size = 64
 text = "⏳"
 horizontal_alignment = 2
@@ -146,6 +150,7 @@ offset_left = 103.0
 offset_top = -15.0
 offset_right = 303.0
 offset_bottom = 85.0
+theme = ExtResource("15_pex5s")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "0"
@@ -158,6 +163,7 @@ offset_left = 562.0
 offset_top = 427.0
 offset_right = 1362.0
 offset_bottom = 527.0
+theme = ExtResource("15_pex5s")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Awesome!!"
@@ -169,32 +175,10 @@ layout_mode = 0
 offset_top = -57.0
 offset_right = 800.0
 offset_bottom = 43.0
+theme = ExtResource("15_pex5s")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "⭐⭐⭐⭐⭐"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HintShrink" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1609.0
-offset_top = 175.0
-offset_right = 1701.0
-offset_bottom = 267.0
-
-[node name="Keycap" type="Sprite2D" parent="UI/HintShrink"]
-position = Vector2(46.0001, 54)
-scale = Vector2(0.434332, 0.434332)
-texture = ExtResource("11_gu13l")
-
-[node name="KeyLabel" type="Label" parent="UI/HintShrink"]
-layout_mode = 0
-offset_right = 92.0
-offset_bottom = 92.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -215,6 +199,31 @@ texture = ExtResource("11_gu13l")
 layout_mode = 0
 offset_right = 92.0
 offset_bottom = 92.0
+theme = ExtResource("15_pex5s")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintShrink" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1609.0
+offset_top = 175.0
+offset_right = 1701.0
+offset_bottom = 267.0
+
+[node name="Keycap" type="Sprite2D" parent="UI/HintShrink"]
+position = Vector2(46.0001, 54)
+scale = Vector2(0.434332, 0.434332)
+texture = ExtResource("11_gu13l")
+
+[node name="KeyLabel" type="Label" parent="UI/HintShrink"]
+layout_mode = 0
+offset_right = 92.0
+offset_bottom = 92.0
+theme = ExtResource("15_pex5s")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "A"

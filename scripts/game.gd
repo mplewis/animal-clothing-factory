@@ -81,11 +81,12 @@ var resizing := false
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
 ## The position where new clothing should be placed
 #@onready var new_clothing_position: Vector2 = current_clothing.position
-@export var new_clothing_anchor_node : Node2D
+@export var new_clothing_anchor_node: Node2D
 ## The timer that ticks once a second
 @onready var timer: Timer = $SecTimer
 
-@export var object_creator : ObjectCreator
+@export var object_creator: ObjectCreator
+
 
 func _ready() -> void:
 	set_animal_to_start()
@@ -201,29 +202,59 @@ func show_feedback(stars) -> void:
 	elif current_clothing.scale.x < CLOTHING_PERFECT_SCALE:
 		too_big_sm = " (too small)"
 
-	var feedback := "Try again..."
+	var feedback := one_of(
+		["Aw, man...", "No good.", "This doesn't fit.", "Not quite right.", "Can you fix it?"]
+	)
 	var sfx := score_bad_sound
 	match stars:
 		5:
-			feedback = "Perfect!!"
+			feedback = one_of(
+				[
+					"So comfy!",
+					"Amazing!",
+					"Wow!",
+					"I love it!",
+					"So cute!",
+					"Perfect fit!",
+					"My new fave!"
+				]
+			)
 			too_big_sm = ""
 			sfx = score_great_sound
 		3:
-			feedback = "Great!"
+			feedback = one_of(
+				["I like it.", "Nice!", "Thank you!", "Fits OK.", "Not bad.", "Looks good."]
+			)
 			too_big_sm = too_big_sm.replace("too", "a bit")
 			sfx = score_good_sound
 		1:
-			feedback = "Just OK"
+			feedback = one_of(
+				[
+					"Hmm...",
+					"Not quite...",
+					"Almost...",
+					"It's OK, but...",
+					"Well...",
+					"Not my favorite.",
+				]
+			)
 			sfx = score_ok_sound
 
-	var star_s = ""
-	for i in range(stars):
-		star_s += "⭐️"
+	var star_s = one_of(["💔", "😭", "😖", "☹️", "😡", "🥴", "🤨"])
+	if stars > 0:
+		star_s = ""
+		for i in range(stars):
+			star_s += "⭐️"
 
-	feedback_label.text = feedback + too_big_sm
+	feedback_label.text = '"%s"%s' % [feedback, too_big_sm]
 	feedback_stars_label.text = star_s
 	feedback_label.visible = true
 	sfx.play()
+
+
+## Return a random string from the given options.
+func one_of(array: Array[String]) -> String:
+	return array[randi() % array.size()]
 
 
 ## Move the feedback label up and fade it out, if it's currently visible.
@@ -283,4 +314,4 @@ func wear_clothing() -> void:
 		score_and_exit()
 
 	#elif play_state == PlayState.MOVE_ANIMAL_OUT:
-		#current_clothing.position = alpaca_clothing_anchor.global_position
+	#current_clothing.position = alpaca_clothing_anchor.global_position

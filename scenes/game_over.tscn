@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b27n86g67e8ak"]
+[gd_scene load_steps=4 format=3 uid="uid://b27n86g67e8ak"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_waqm5"]
+[ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="2_3rkn7"]
 [ext_resource type="AudioStream" uid="uid://c7v4yegs2aej0" path="res://assets/bgm/simple_beat.mp3" id="2_58ljt"]
 
 [node name="GameOver" type="Node2D"]
@@ -13,8 +14,8 @@ offset_bottom = 1080.0
 [node name="Label" type="Label" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
+theme = ExtResource("2_3rkn7")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 108
 text = "Game over
 Score: 42
 
