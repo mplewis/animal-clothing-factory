@@ -61,7 +61,7 @@ var dressed_animals: Array[Animal] = []
 ## The current animal to dress
 @onready var current_animal: Animal
 ## The current clothing to resize
-@onready var current_clothing: Node2D
+@onready var current_clothing: Clothing
 
 ## The grabber arm that holds clothing
 @onready var grabber: Node2D = $Gameplay/Grabber
@@ -219,13 +219,13 @@ func move_grabber_arm() -> void:
 
 
 ## Score the player's clothing sizing and move the animal to the right.
-func score_fitting(expected_scale: float) -> void:
-	var actual_scale = current_clothing.scale.x
-
-	print("Expected scale: %s, Actual scale: %s" % [expected_scale, actual_scale])
+func score_fitting(sizing: SizeResult) -> void:
+	var expected = sizing.expected_size
+	var actual = sizing.actual_size
+	print("Expected size: %s px, Actual size: %s px" % [expected, actual])
 
 	# score = % away from perfect
-	var score = abs(expected_scale - actual_scale) / expected_scale
+	var score = abs(expected - actual) / expected
 
 	var stars = 0
 	if score < 0.05:
@@ -235,16 +235,16 @@ func score_fitting(expected_scale: float) -> void:
 	elif score < 0.2:
 		stars = 1
 
-	show_feedback(stars, expected_scale, actual_scale)
+	show_feedback(stars, expected, actual)
 	incr_score(stars)
 
 
 ## Indicate to the player how many stars they earned.
-func show_feedback(stars: int, expected_scale: float, actual_scale: float) -> void:
+func show_feedback(stars: int, expected: int, actual: int) -> void:
 	var too_big_sm := ""
-	if expected_scale < actual_scale:
+	if expected < actual:
 		too_big_sm = " (too big)"
-	elif expected_scale > actual_scale:
+	elif expected > actual:
 		too_big_sm = " (too small)"
 
 	var feedback := one_of(
@@ -352,12 +352,12 @@ func grow_shrink_clothing() -> void:
 		grow_tool.rotation_degrees = 0
 		shrink_tool.rotation_degrees = 0
 
-		play_state = PlayState.GETTING_DRESSED
-		self.current_animal.attach_clothing(self.current_clothing)
 		move_animal_at = Time.get_ticks_msec() + int(GETTING_DRESSED_DELAY_SEC * 1000)
-
-		var desired = self.current_animal.get_target_scale_for_clothing(self.current_clothing.name)
-		score_fitting(desired)
+		play_state = PlayState.GETTING_DRESSED
+		print(self.current_animal)
+		print(self.current_clothing)
+		var sizing = self.current_animal.attach_clothing(self.current_clothing)
+		score_fitting(sizing)
 
 
 ## Wait for the animal to wear the clothing before moving them along.

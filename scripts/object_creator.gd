@@ -20,14 +20,14 @@ func _process(_delta: float) -> void:
 
 
 func create_random_animal() -> Animal:
-	var animalScene = PossibleAnimals.pick_random()
-	var instantiatedAnimal = animalScene.instantiate()
-	add_child(instantiatedAnimal)
-	return instantiatedAnimal
+	var animal_scene = PossibleAnimals.pick_random()
+	var animal = animal_scene.instantiate()
+	add_child(animal)
+	return animal
 
 
-func create_random_clothing() -> Node2D:
-	var clothingScene = PossibleClothing.pick_random()
-	var instantiatedClothing = clothingScene.instantiate()
-	add_child(instantiatedClothing)
-	return instantiatedClothing
+func create_random_clothing() -> Clothing:
+	var clothing_scene = PossibleClothing.pick_random()
+	var clothing = clothing_scene.instantiate()
+	add_child(clothing)
+	return clothing
