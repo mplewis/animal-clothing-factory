@@ -18,6 +18,7 @@ rotation = -0.0872665
 script = ExtResource("2_ic6ix")
 anchor_base = NodePath("ClothingAnchors")
 animation_player = NodePath("AnimationPlayer")
+possible_colors = Array[Color]([Color(0.769034, 0.742347, 0.820312, 1), Color(0.757812, 0.54718, 0.220228, 1), Color(0.441406, 0.257812, 0.208002, 1), Color(0.871094, 0.791212, 0.643646, 1), Color(0.453125, 0.453125, 0.453125, 1), Color(0.234375, 0.196996, 0.182812, 1)])
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 use_parent_material = true
