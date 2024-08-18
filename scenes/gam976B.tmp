@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
 [ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
-[ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="10_8wo4o"]
+[ext_resource type="PackedScene" uid="uid://ceqypaxxt8rtc" path="res://scenes/animals/alpaca.tscn" id="10_8wo4o"]
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="11_1hqqj"]
 
 [node name="Game" type="Node2D"]
@@ -80,16 +80,16 @@ position = Vector2(-3, 80)
 scale = Vector2(0.509322, 0.509322)
 texture = ExtResource("4_ppr48")
 
+[node name="Alpaca" parent="Gameplay" node_paths=PackedStringArray("testTie", "testShirt") instance=ExtResource("10_8wo4o")]
+position = Vector2(472, 531)
+testTie = NodePath("../Tie")
+testShirt = NodePath("../CurrentClothing/Shirt")
+
 [node name="Tie" type="Node2D" parent="Gameplay"]
 position = Vector2(108, 330)
 
 [node name="TieSprite" type="Sprite2D" parent="Gameplay/Tie"]
 texture = ExtResource("11_1hqqj")
-
-[node name="Alpaca" parent="Gameplay" node_paths=PackedStringArray("testTie", "testShirt") instance=ExtResource("10_8wo4o")]
-position = Vector2(521, 644)
-testTie = NodePath("../Tie")
-testShirt = NodePath("../CurrentClothing/Shirt")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

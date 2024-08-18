@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://y2c0un4ly452"]
+
+[ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="1_5uic2"]
+
+[node name="Tie" type="Node2D"]
+position = Vector2(108, 330)
+
+[node name="TieSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_5uic2")

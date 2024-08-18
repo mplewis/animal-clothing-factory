@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Game
+
 enum PlayState { MOVE_ANIMAL_IN, SIZING_CLOTHING, WEARING_CLOTHING, MOVE_ANIMAL_OUT }
 
 ## Width of the game window, in pixels
