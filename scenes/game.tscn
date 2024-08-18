@@ -45,7 +45,6 @@ new_clothing_anchor_node = NodePath("Gameplay/Grabber/NewClothingAnchor")
 object_creator = NodePath("ObjectCreator")
 belt_height = NodePath("Gameplay/Belt/BeltHeight")
 dressed_animal_anchor = NodePath("DressedAnimal")
-GAME_DURATION_SECS = 5.0
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -61,6 +60,19 @@ PossibleClothing = Array[PackedScene]([ExtResource("18_n6kxj"), ExtResource("13_
 
 [node name="Audio" type="Node2D" parent="."]
 position = Vector2(964, 0)
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("3_2kvdn")
+volume_db = 10.0
+autoplay = true
+panning_strength = 0.0
+bus = &"music"
+parameters/looping = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="Audio"]
+stream = SubResource("AudioStreamSynchronized_junc2")
+autoplay = true
+bus = &"ambience"
 
 [node name="Grow" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(-477, 156)
@@ -88,19 +100,6 @@ bus = &"sfx"
 [node name="ClawUp" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("12_qh8lc")
 bus = &"sfx"
-
-[node name="BGM" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("3_2kvdn")
-volume_db = 10.0
-autoplay = true
-panning_strength = 0.0
-bus = &"music"
-parameters/looping = true
-
-[node name="Ambience" type="AudioStreamPlayer" parent="Audio"]
-stream = SubResource("AudioStreamSynchronized_junc2")
-autoplay = true
-bus = &"ambience"
 
 [node name="Score" type="Node2D" parent="Audio"]
 
