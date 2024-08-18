@@ -79,6 +79,11 @@ var resizing := false
 @onready var score_good_sound: AudioStreamPlayer2D = $Audio/Score/Good
 ## The sound of the score feedback SFX for Great
 @onready var score_great_sound: AudioStreamPlayer2D = $Audio/Score/Great
+## the sound of the grow ray firing
+@onready var grow_sound: AudioStreamPlayer2D = $Audio/Grow
+## the sound of the hair dryer(or other shirinking device) firing
+@onready var shrink_sound: AudioStreamPlayer2D = $Audio/Shrink
+
 
 ## The initial position of the feedback label
 @onready var feedback_label_start_position: Vector2 = feedback_label.position
@@ -237,8 +242,8 @@ func grow_shrink_clothing() -> void:
 
 	if grow && !shrink:
 		resizing = true
-		if %GrowSound.playing == false:
-			%GrowSound.play()
+		if grow_sound.playing == false:
+			grow_sound.play()
 		if current_clothing.scale.x >= CLOTHING_MAX_SCALE:
 			grow = false  # stop at max
 		else:
@@ -254,7 +259,7 @@ func grow_shrink_clothing() -> void:
 			shrink_tool.rotation_degrees = randf_range(-GROW_SHAKE_MAX_ROT, GROW_SHAKE_MAX_ROT)
 
 	if resizing && !grow && !shrink:  # player released the key
-		%GrowSound.stop()
+		grow_sound.stop()
 		resizing = false
 		grow_tool.rotation_degrees = 0
 		shrink_tool.rotation_degrees = 0
