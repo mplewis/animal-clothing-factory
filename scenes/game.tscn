@@ -45,6 +45,7 @@ new_clothing_anchor_node = NodePath("Gameplay/Grabber/NewClothingAnchor")
 object_creator = NodePath("ObjectCreator")
 belt_height = NodePath("Gameplay/Belt/BeltHeight")
 dressed_animal_anchor = NodePath("DressedAnimal")
+GAME_DURATION_SECS = null
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -218,9 +219,9 @@ vertical_alignment = 1
 visible = false
 layout_mode = 0
 offset_left = 562.0
-offset_top = 427.0
+offset_top = 391.0
 offset_right = 1362.0
-offset_bottom = 527.0
+offset_bottom = 491.0
 theme = ExtResource("15_pex5s")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64

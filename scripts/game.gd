@@ -24,14 +24,14 @@ const GROW_SHRINK_RATE := 0.01
 const GROW_SHAKE_MAX_ROT := 10
 
 ## Max scale of clothing when growing
-const CLOTHING_MAX_SCALE := 2.5
+const CLOTHING_MAX_SCALE := 2.0
 ## Min scale of clothing when shrinking
 const CLOTHING_MIN_SCALE := 0.2
 
 ## How fast the feedback label floats up
 const FEEDBACK_RISE_SPEED := 2
 ## How fast the feedback label fades out
-const FEEDBACK_FADE_SPEED := 0.02
+const FEEDBACK_FADE_SPEED := 0.01
 
 ## Emitted when the player starts using the shrink tool
 signal shrink_sound_start
@@ -180,8 +180,13 @@ func set_hints() -> void:
 ## Reset the current piece of clothing to sit in the grabber arm.
 func reset_clothing() -> void:
 	current_clothing = object_creator.create_random_clothing()
-	current_clothing.scale = Vector2(1, 1)
 	current_clothing.global_position = new_clothing_anchor_node.global_position
+
+	var pct_change := randf_range(1.25, 1.75)
+	if randf() > 0.5:
+		current_clothing.scale = Vector2(pct_change, pct_change)  # larger
+	else:
+		current_clothing.scale = Vector2(1.0 / pct_change, 1.0 / pct_change)  # smaller
 
 
 ## Increment the player's score by the given number of points.
@@ -240,11 +245,11 @@ func score_fitting(sizing: SizeResult) -> void:
 	var score: float = abs(expected - actual) * 1.0 / expected
 
 	var stars = 0
-	if score < 0.05:
+	if score < 0.075:
 		stars = 5
-	elif score < 0.1:
+	elif score < 0.15:
 		stars = 3
-	elif score < 0.2:
+	elif score < 0.25:
 		stars = 1
 
 	show_feedback(stars, expected, actual)
