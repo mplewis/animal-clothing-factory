@@ -125,6 +125,7 @@ func _ready() -> void:
 
 
 func _process(_delta) -> void:
+	check_exit()
 	move_animal_on_belt()
 	move_grabber_arm()
 	grow_shrink_clothing()
@@ -141,13 +142,18 @@ func _on_sec_tick() -> void:
 		end_game()
 
 
+## Check if the player wants to exit the game
+func check_exit() -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+
 ## Game over - load the Game Over scene
 func end_game() -> void:
 	# TODO: Implement game over screen in this screen
 	# var persistNode = get_node("/root/DontDestroyOnLoad")
 	# self.dressed_animal_anchor.reparent(persistNode)
 	# DontDestroyOnLoad.layout_animals(self.dressed_animal_anchor)
-
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 
