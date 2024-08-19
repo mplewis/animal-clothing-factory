@@ -10,15 +10,13 @@ script = ExtResource("1_waqm5")
 animal_container = NodePath("AnimalContainer")
 
 [node name="Background" type="ColorRect" parent="."]
-visible = false
 z_index = -1
 offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="Label" type="Label" parent="."]
-offset_top = 89.0
 offset_right = 1920.0
-offset_bottom = 1169.0
+offset_bottom = 1080.0
 theme = ExtResource("2_3rkn7")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Game over
@@ -26,6 +24,7 @@ Score: 42
 
 Press SPACE to continue"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_58ljt")
@@ -41,7 +40,7 @@ autoplay = true
 bus = &"ambience"
 
 [node name="AnimalContainer" type="HBoxContainer" parent="."]
-anchors_preset = -1
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

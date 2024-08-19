@@ -45,6 +45,7 @@ signal shrink_sound_stop
 ## The Y level of the belt surface, where animals stand
 @export var belt_height: Node2D
 
+# TODO: Implement game over screen in this screen
 @export var dressed_animal_anchor: Node2D
 
 ## How long the game lasts, in seconds
@@ -142,9 +143,10 @@ func _on_sec_tick() -> void:
 
 ## Game over - load the Game Over scene
 func end_game() -> void:
-	var persistNode = get_node("/root/DontDestroyOnLoad")
-	#self.dressed_animal_anchor.reparent(persistNode)
-	DontDestroyOnLoad.layout_animals(self.dressed_animal_anchor)
+	# TODO: Implement game over screen in this screen
+	# var persistNode = get_node("/root/DontDestroyOnLoad")
+	# self.dressed_animal_anchor.reparent(persistNode)
+	# DontDestroyOnLoad.layout_animals(self.dressed_animal_anchor)
 
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
@@ -206,7 +208,8 @@ func move_animal_on_belt() -> void:
 			if current_animal.position.x > SCREEN_WIDTH_PX + OFF_SCREEN_ANIMAL_DISTANCE_PX:
 				#disable current animal for now
 				current_animal.hide()
-				current_animal.reparent(self.dressed_animal_anchor)
+				# TODO: Implement game over screen
+				# current_animal.reparent(self.dressed_animal_anchor)
 				dressed_animals.push_back(current_animal)
 				set_animal_to_start()
 
