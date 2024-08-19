@@ -154,6 +154,8 @@ func end_game() -> void:
 ## Create a new animal and position them
 func set_animal_to_start() -> void:
 	current_animal = object_creator.create_random_animal()
+	var new_scale = randf_range(0.8, 1.2)
+	current_animal.scale = Vector2(new_scale, new_scale)
 	current_animal.position.x = -OFF_SCREEN_ANIMAL_DISTANCE_PX
 	current_animal.global_position.y = belt_height.global_position.y
 	grabber.position.y = grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX
