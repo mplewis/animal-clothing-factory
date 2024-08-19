@@ -1,9 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=33 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
 [ext_resource type="AudioStream" uid="uid://caaj16u4gml3v" path="res://assets/sfx/hair_dryer_loop.ogg" id="3_1yd45"]
-[ext_resource type="AudioStream" uid="uid://coyru3wdj4e6u" path="res://assets/bgm/lazy_factory.mp3" id="3_2kvdn"]
 [ext_resource type="Script" path="res://scripts/shrink_sound.gd" id="3_7l8gu"]
 [ext_resource type="Texture2D" uid="uid://bec8fjwttray7" path="res://assets/stock/grabby.png" id="3_lljhi"]
 [ext_resource type="AudioStream" uid="uid://blymo1uwy7s17" path="res://assets/sfx/grow_ray.ogg" id="5_kb2au"]
@@ -11,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
 [ext_resource type="AudioStream" uid="uid://bo25gto4pxs2v" path="res://assets/sfx/score_bad.ogg" id="7_2d34m"]
 [ext_resource type="AudioStream" uid="uid://h0eovlvokwdy" path="res://assets/sfx/ambience/ambience_loop_1.ogg" id="7_hi6i3"]
+[ext_resource type="AudioStream" uid="uid://dqpl5xo3yhgbi" path="res://assets/bgm/gameplay_music_intro.ogg" id="7_l8cit"]
+[ext_resource type="AudioStream" uid="uid://cbqcjgwk5nrfc" path="res://assets/bgm/gameplay_music_loop.ogg" id="8_55luv"]
 [ext_resource type="AudioStream" uid="uid://rf57x1vb0aps" path="res://assets/sfx/ambience/ambience_loop_2.ogg" id="8_ebu58"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
 [ext_resource type="AudioStream" uid="uid://clteqqmqct2mx" path="res://assets/sfx/score_ok.ogg" id="8_nynau"]
@@ -20,20 +21,23 @@
 [ext_resource type="AudioStream" uid="uid://dkuctgiwhd0m" path="res://assets/sfx/score_super.ogg" id="10_n8s8l"]
 [ext_resource type="Texture2D" uid="uid://belqxyau5pd2c" path="res://assets/stock/keycap.png" id="11_gu13l"]
 [ext_resource type="AudioStream" uid="uid://b5afojinxghjf" path="res://assets/sfx/claw_down.ogg" id="11_ip0fr"]
-[ext_resource type="AudioStream" uid="uid://bnvhou83fcr37" path="res://assets/sfx/clothing/clothing_foley_01.ogg" id="12_7rket"]
 [ext_resource type="AudioStream" uid="uid://bm50u28ianyj8" path="res://assets/sfx/claw_up.ogg" id="12_qh8lc"]
-[ext_resource type="AudioStream" uid="uid://bq245ymky1jdb" path="res://assets/sfx/clothing/clothing_foley_02.ogg" id="13_865k5"]
 [ext_resource type="PackedScene" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
-[ext_resource type="AudioStream" uid="uid://mdcyp7btjvlq" path="res://assets/sfx/clothing/clothing_foley_03.ogg" id="14_i50ub"]
-[ext_resource type="AudioStream" uid="uid://dv8metix63rfx" path="res://assets/sfx/clothing/clothing_foley_04.ogg" id="15_owcif"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
 [ext_resource type="Script" path="res://scripts/object_creator.gd" id="16_1fh1g"]
-[ext_resource type="AudioStream" uid="uid://dxp86cdbi544t" path="res://assets/sfx/clothing/clothing_foley_05.ogg" id="16_xulj0"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
-[ext_resource type="AudioStream" uid="uid://dqxt7d5j8oc5j" path="res://assets/sfx/clothing/clothing_foley_06.ogg" id="17_vtosw"]
 [ext_resource type="PackedScene" uid="uid://y2c0un4ly452" path="res://scenes/clothing/tie.tscn" id="18_n6kxj"]
-[ext_resource type="AudioStream" uid="uid://pj3krkcpsaqg" path="res://assets/sfx/clothing/clothing_foley_07.ogg" id="18_u5iks"]
 [ext_resource type="PackedScene" uid="uid://dx8ndchxtc5t5" path="res://scenes/animals/cat.tscn" id="18_y3c8k"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5op4m"]
+loop = false
+fade_time = 0.0
+stream_count = 5
+stream_0 = ExtResource("7_l8cit")
+stream_1 = ExtResource("8_55luv")
+stream_2 = ExtResource("8_55luv")
+stream_3 = ExtResource("8_55luv")
+stream_4 = ExtResource("8_55luv")
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_junc2"]
 stream_count = 4
@@ -46,17 +50,11 @@ stream_2/volume = 0.0
 stream_3/stream = ExtResource("10_mb3k5")
 stream_3/volume = 0.0
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4qoi8"]
-random_pitch = 1.1
-random_volume_offset_db = 2.0
-streams_count = 7
-stream_0/stream = ExtResource("12_7rket")
-stream_1/stream = ExtResource("13_865k5")
-stream_2/stream = ExtResource("14_i50ub")
-stream_3/stream = ExtResource("15_owcif")
-stream_4/stream = ExtResource("16_xulj0")
-stream_5/stream = ExtResource("17_vtosw")
-stream_6/stream = ExtResource("18_u5iks")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_imbht"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_34k24"]
+stream_count = 1
+stream_0 = SubResource("AudioStreamRandomizer_imbht")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator", "belt_height", "dressed_animal_anchor")]
 script = ExtResource("1_dpgjl")
@@ -83,12 +81,11 @@ PossibleClothing = Array[PackedScene]([ExtResource("18_n6kxj"), ExtResource("13_
 position = Vector2(964, 0)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("3_2kvdn")
+stream = SubResource("AudioStreamPlaylist_5op4m")
 volume_db = 10.0
 autoplay = true
 panning_strength = 0.0
 bus = &"music"
-parameters/looping = true
 
 [node name="Ambience" type="AudioStreamPlayer" parent="Audio"]
 stream = SubResource("AudioStreamSynchronized_junc2")
@@ -96,7 +93,7 @@ autoplay = true
 bus = &"ambience"
 
 [node name="Clothing" type="AudioStreamPlayer" parent="Audio"]
-stream = SubResource("AudioStreamRandomizer_4qoi8")
+stream = SubResource("AudioStreamPlaylist_34k24")
 volume_db = -6.0
 
 [node name="Grow" type="AudioStreamPlayer2D" parent="Audio"]
