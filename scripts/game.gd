@@ -18,8 +18,6 @@ const GETTING_DRESSED_DELAY_SEC := 0.4
 ## The X coord for the center of the screen. This is where the animal stops.
 const SCREEN_CENTER_X := SCREEN_WIDTH_PX * 1.0 / 2
 
-
-
 ## How fast to grow/shrink clothing when the player holds the button
 const GROW_SHRINK_RATE := 0.01
 ## degrees in either direction to wiggle the tool during a grow/shrink operation
@@ -47,10 +45,10 @@ signal shrink_sound_stop
 ## The Y level of the belt surface, where animals stand
 @export var belt_height: Node2D
 
-@export var dressed_animal_anchor : Node2D
+@export var dressed_animal_anchor: Node2D
 
 ## How long the game lasts, in seconds
-@export var GAME_DURATION_SECS : float = 45
+@export var GAME_DURATION_SECS: float = 45
 
 ## The time remaining in the game
 @onready var time_remaining_secs := GAME_DURATION_SECS
