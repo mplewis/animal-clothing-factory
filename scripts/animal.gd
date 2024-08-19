@@ -3,7 +3,7 @@ extends Node2D
 
 @export var anchor_base: Node2D
 @export var animation_player: AnimationPlayer
-@export var possible_colors : Array[Color] = []
+@export var possible_colors: Array[Color] = []
 
 const TWEEN_DURATION_SEC = 0.3
 
@@ -16,10 +16,10 @@ func _ready() -> void:
 	#self.attach_clothing(testShirt)
 	if material is ShaderMaterial and possible_colors.size() > 0:
 		material = material.duplicate()
-		var inner_color : Color = possible_colors.pick_random()
+		var inner_color: Color = possible_colors.pick_random()
 		var lineart_color := inner_color.darkened(0.5)
-		(material as ShaderMaterial).set_shader_parameter("light_color",inner_color)
-		(material as ShaderMaterial).set_shader_parameter("dark_color",lineart_color)
+		(material as ShaderMaterial).set_shader_parameter("light_color", inner_color)
+		(material as ShaderMaterial).set_shader_parameter("dark_color", lineart_color)
 
 
 func _to_string():
@@ -36,7 +36,6 @@ func attach_clothing(clothing_item: Clothing) -> SizeResult:
 	var result = SizeResult.new()
 	result.expected_size = expected_clothing_width_px(clothing_item.name)
 	result.actual_size = clothing_item.width_px()
-	print(result)
 
 	clothing_item.reparent(self)
 
@@ -58,18 +57,6 @@ func get_clothing_anchor(clothing_name: String) -> Sprite2D:
 ## Returns this animal's desired width (px) for a given piece of clothing
 func expected_clothing_width_px(clothing_name: String) -> int:
 	var anchor_node := get_clothing_anchor(clothing_name)
-	(
-		Global
-		. print_many(
-			"Animal.expected_clothing_width_px",
-			{
-				"texture_width": anchor_node.texture.get_width(),
-				"self.scale": self.scale.x,
-				"anchor_node.scale": anchor_node.scale.x,
-				"anchor_base.scale": anchor_base.scale.x,
-			}
-		)
-	)
 	return int(
 		anchor_node.texture.get_width() * anchor_node.scale.x * anchor_base.scale.x * self.scale.x
 	)
