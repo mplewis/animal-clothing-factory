@@ -1,0 +1,167 @@
+[gd_scene load_steps=3 format=3 uid="uid://beneujeoqq21o"]
+
+[ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="1_4t0sn"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_b1fe0"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b1fe0")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Label" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 108
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer"]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Background/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_constants/h_separation = 160
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 64
+text = "Art Design"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 40
+text = "Poopsy
+Moopsy
+Blinky
+Clyde"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 64
+text = "Game Design"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 40
+text = "Poopsy
+Moopsy
+Blinky
+Clyde"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 64
+text = "Music Design"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 40
+text = "Poopsy
+Moopsy
+Blinky
+Clyde"
+horizontal_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 64
+text = "Programming"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 40
+text = "Poopsy
+Moopsy
+Blinky
+Clyde"
+horizontal_alignment = 1
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 64
+text = "Sound Design"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 40
+text = "Poopsy
+Moopsy
+Blinky
+Clyde"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_font_sizes/font_size = 64
+text = "Thank you for playing!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Background/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CreditsLink" type="LinkButton" parent="Background/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_colors/font_color = Color(0, 0.427967, 0.754499, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.353201, 0.628598, 1)
+theme_override_colors/font_hover_color = Color(5.10186e-05, 0.54291, 0.946286, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+action_mode = 0
+text = "🠘 Go Back"
+underline = 2
