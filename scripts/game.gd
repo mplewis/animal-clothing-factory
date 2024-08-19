@@ -106,6 +106,9 @@ var dressed_animals: Array[Animal] = []
 @onready var claw_down_sound: AudioStreamPlayer2D = $Audio/ClawDown
 ## the sound of the claw going up
 @onready var claw_up_sound: AudioStreamPlayer2D = $Audio/ClawUp
+## clothing foley sound
+@onready var clothing_sound: AudioStreamPlayer = $Audio/Clothing
+
 # TODO: Add 2d spatial sound for belt, grow, shrink
 
 ## The initial position of the feedback label
@@ -373,6 +376,8 @@ func grow_shrink_clothing() -> void:
 	if resizing && !grow && !shrink:  # player released the key
 		grow_sound.stop()
 		shrink_sound_stop.emit()
+		if not clothing_sound.playing:
+			clothing_sound.play()
 		resizing = false
 		grow_tool.rotation_degrees = 0
 		shrink_tool.rotation_degrees = 0
