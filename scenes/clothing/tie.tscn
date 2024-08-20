@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://y2c0un4ly452"]
+[gd_scene load_steps=3 format=3 uid="uid://kiwdxcasatym"]
 
-[ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="1_5uic2"]
-[ext_resource type="Script" path="res://scripts/clothing.gd" id="1_sdeju"]
+[ext_resource type="Script" path="res://scripts/clothing.gd" id="1_2vj85"]
+[ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="2_rqerw"]
 
 [node name="Tie" type="Node2D"]
 position = Vector2(108, 330)
-script = ExtResource("1_sdeju")
+script = ExtResource("1_2vj85")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_5uic2")
+texture = ExtResource("2_rqerw")
