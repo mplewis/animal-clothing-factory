@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://7rtl461n60ou"]
+[gd_scene load_steps=5 format=3 uid="uid://dchapqbvkingb"]
 
 [ext_resource type="Shader" path="res://assets/colorizer.gdshader" id="1_adynw"]
 [ext_resource type="Script" path="res://scripts/clothing.gd" id="1_mhf0i"]

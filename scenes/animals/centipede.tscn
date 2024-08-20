@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://assets/colorizer.gdshader" id="1_jqg7v"]
 [ext_resource type="Script" path="res://scripts/animal.gd" id="2_xygwt"]
 [ext_resource type="Texture2D" uid="uid://bscpv3p7l4eng" path="res://assets/images/animals_atlas.png" id="3_6s72d"]
-[ext_resource type="PackedScene" uid="uid://fe8if6tijgtj" path="res://scenes/clothing/shirt.tscn" id="3_rupu5"]
+[ext_resource type="PackedScene" path="res://scenes/clothing/centi_shirt.tscn" id="3_vxp8q"]
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_xjvcc"]
 [ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="5_us3sm"]
 [ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="6_4vm6w"]
@@ -16,7 +16,7 @@ shader_parameter/dark_color = Color(0.464844, 0.464844, 0.464844, 1)
 [node name="Centipede" type="Node2D" node_paths=PackedStringArray("anchor_base", "animation_player")]
 material = SubResource("ShaderMaterial_xx8tt")
 script = ExtResource("2_xygwt")
-PossibleClothing = Array[PackedScene]([ExtResource("3_rupu5")])
+PossibleClothing = Array[PackedScene]([ExtResource("3_vxp8q")])
 anchor_base = NodePath("ClothingAnchors")
 animation_player = NodePath("AnimationPlayer")
 possible_colors = Array[Color]([Color(0.728917, 0.820312, 0.476804, 1), Color(0.757812, 0.30863, 0.257652, 1), Color(0.441406, 0.355781, 0.258636, 1), Color(0.871094, 0.791212, 0.643646, 1), Color(0.453125, 0.453125, 0.453125, 1), Color(0.644531, 0.513376, 0.174321, 1)])
