@@ -13,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_b1fe0")
 
 [node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
@@ -38,109 +39,64 @@ alignment = 1
 [node name="GridContainer" type="GridContainer" parent="Background/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_4t0sn")
-theme_override_constants/h_separation = 160
+theme_override_constants/h_separation = 80
 theme_override_constants/v_separation = 40
-columns = 3
+columns = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="Name" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Matt Lewis"
+horizontal_alignment = 2
 
-[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer"]
+[node name="Work" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 64
-text = "Art Design"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+text = "Game Design, Programming"
 
-[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer"]
+[node name="Name2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 40
-text = "Poopsy
-Moopsy
-Blinky
-Clyde"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+text = "ominocutherium"
+horizontal_alignment = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="Work2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Art Design, Shader Programming"
 
-[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer2"]
+[node name="Name3" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 64
-text = "Game Design"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+text = "Joey Kloepfer"
+horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer2"]
+[node name="Work3" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 40
-text = "Poopsy
-Moopsy
-Blinky
-Clyde"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+text = "Sound Design, Audio Implementation"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="Name4" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Sam Tregillus"
+horizontal_alignment = 2
 
-[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer3"]
+[node name="Work4" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 64
-text = "Music Design"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+text = "Game Design, Programming"
 
-[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer3"]
+[node name="Name5" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 40
-text = "Poopsy
-Moopsy
-Blinky
-Clyde"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+text = "Jason"
+horizontal_alignment = 2
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="Work5" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer4"]
-layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 64
-text = "Programming"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer4"]
-layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 40
-text = "Poopsy
-Moopsy
-Blinky
-Clyde"
-horizontal_alignment = 1
-
-[node name="VBoxContainer5" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer5"]
-layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 64
-text = "Sound Design"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer/VBoxContainer5"]
-layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_font_sizes/font_size = 40
-text = "Poopsy
-Moopsy
-Blinky
-Clyde"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+text = "Music"
 
 [node name="Label2" type="Label" parent="Background/VBoxContainer"]
 layout_mode = 2
