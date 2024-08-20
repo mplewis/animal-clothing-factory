@@ -6,11 +6,11 @@ enum PlayState { MOVE_ANIMAL_IN, SIZING_CLOTHING, GETTING_DRESSED, MOVE_ANIMAL_O
 ## Width of the game window, in pixels
 const SCREEN_WIDTH_PX := 1920
 ## How far off-screen to start/end the animal motion, in pixels
-const OFF_SCREEN_ANIMAL_DISTANCE_PX := 300
+const OFF_SCREEN_ANIMAL_DISTANCE_PX := 800
 ## How far off-screen to start/end the grabber arm, in pixels. Must be large enough to handle tall items of clothing.
 const OFF_SCREEN_GRABBER_DISTANCE_PX := 500
 ## Speed of belt that moves animals in/out, in px/tick
-const BELT_SPEED := 20
+const BELT_SPEED := 25
 ## Speed of grabber arm moving up/down, in px/tick. Must be fast enough to load the clothing before the belt stops.
 const GRABBER_SPEED := 20
 ## How long to wait for the animal to wear the clothing before moving them along
@@ -26,7 +26,7 @@ const GROW_SHAKE_MAX_ROT := 10
 ## Max scale of clothing when growing
 const CLOTHING_MAX_SCALE := 3.0
 ## Min scale of clothing when shrinking
-const CLOTHING_MIN_SCALE := 0.2
+const CLOTHING_MIN_SCALE := 0.05
 
 ## How fast the feedback label floats up
 const FEEDBACK_RISE_SPEED := 2
@@ -90,6 +90,8 @@ var dressed_animals: Array[Animal] = []
 ## The label indicating the key for Shrink
 @onready var shrink_label: Label = $UI/HintShrink/KeyLabel
 
+## The animated belt scene
+@onready var conveyor: Conveyor = $Gameplay/Conveyor
 ## The sound of the belt moving
 @onready var belt_move_sound: AudioStreamPlayer2D = $Audio/BeltMove
 ## The sound of the score feedback SFX for Bad
@@ -210,14 +212,17 @@ func incr_score(points: int) -> void:
 func move_animal_on_belt() -> void:
 	match play_state:
 		PlayState.MOVE_ANIMAL_IN:
+			conveyor.playing = true
 			if belt_move_sound.playing == false:
 				belt_move_sound.play()
 			current_animal.position.x += BELT_SPEED
 			if current_animal.position.x > SCREEN_CENTER_X:
+				conveyor.playing = false
 				belt_move_sound.stop()
 				play_state = PlayState.SIZING_CLOTHING
 
 		PlayState.MOVE_ANIMAL_OUT:
+			conveyor.playing = true
 			if belt_move_sound.playing == false:
 				belt_move_sound.play()
 			current_animal.position.x += BELT_SPEED

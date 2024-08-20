@@ -159,7 +159,7 @@ bus = &"sfx"
 [node name="Gameplay" type="Node2D" parent="."]
 
 [node name="BeltHeight" type="Node2D" parent="Gameplay"]
-position = Vector2(952, 826)
+position = Vector2(952, 870)
 
 [node name="Conveyor" parent="Gameplay" instance=ExtResource("33_5bulk")]
 position = Vector2(915, 929)
@@ -298,10 +298,10 @@ vertical_alignment = 1
 [node name="HintGrow" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 137.0
-offset_top = -464.0
-offset_right = 229.0
-offset_bottom = -372.0
+offset_left = 270.0
+offset_top = 269.0
+offset_right = 362.0
+offset_bottom = 361.0
 
 [node name="Keycap" type="Sprite2D" parent="UI/HintGrow"]
 position = Vector2(46.0001, 54)
@@ -322,10 +322,10 @@ vertical_alignment = 1
 [node name="HintShrink" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1613.0
-offset_top = -462.0
-offset_right = 1705.0
-offset_bottom = -370.0
+offset_left = 1496.0
+offset_top = 278.0
+offset_right = 1588.0
+offset_bottom = 370.0
 
 [node name="Keycap" type="Sprite2D" parent="UI/HintShrink"]
 position = Vector2(46.0001, 54)
