@@ -12,7 +12,7 @@ func _on_game_shrink_sound_start() -> void:
 	if volume_tween:
 		volume_tween.kill()
 	volume_tween = create_tween()
-	volume_tween.tween_property($".", "volume_db", 10, 0.1)
+	volume_tween.tween_property($".", "volume_db", 6, 0.1)
 
 	# fade the pitch up
 	if pitch_tween:
