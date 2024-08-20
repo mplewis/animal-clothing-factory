@@ -34,7 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://dxp86cdbi544t" path="res://assets/sfx/clothing/clothing_foley_05.ogg" id="20_lf1vk"]
 [ext_resource type="AudioStream" uid="uid://dqxt7d5j8oc5j" path="res://assets/sfx/clothing/clothing_foley_06.ogg" id="21_as16d"]
 [ext_resource type="AudioStream" uid="uid://pj3krkcpsaqg" path="res://assets/sfx/clothing/clothing_foley_07.ogg" id="22_8byjv"]
-[ext_resource type="Texture2D" uid="uid://byhx3ey81ceh5" path="res://assets/images/conveyor_atlas.png" id="33_fk7nj"]
+[ext_resource type="PackedScene" uid="uid://dpmmxmh25m8m5" path="res://scenes/conveyor.tscn" id="33_5bulk"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5op4m"]
 loop = false
@@ -76,6 +76,7 @@ dressed_animal_anchor = NodePath("DressedAnimal")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
+scale = Vector2(1.3, 1.3)
 texture = ExtResource("2_iaqxi")
 region_enabled = true
 region_rect = Rect2(0, 0, 1920, 1080)
@@ -157,16 +158,12 @@ bus = &"sfx"
 
 [node name="Gameplay" type="Node2D" parent="."]
 
-[node name="ConveyorTreadsStatic" type="Sprite2D" parent="Gameplay"]
-use_parent_material = true
-position = Vector2(952, 949)
-scale = Vector2(1.30727, 1.30727)
-texture = ExtResource("33_fk7nj")
-region_enabled = true
-region_rect = Rect2(0, 160, 1910, 219)
-
 [node name="BeltHeight" type="Node2D" parent="Gameplay"]
 position = Vector2(952, 826)
+
+[node name="Conveyor" parent="Gameplay" instance=ExtResource("33_5bulk")]
+position = Vector2(915, 929)
+scale = Vector2(1.3, 1.3)
 
 [node name="Grabber" type="Node2D" parent="Gameplay"]
 position = Vector2(964, -86)
@@ -201,16 +198,18 @@ position = Vector2(-1, 217)
 scale = Vector2(0.416667, 0.416667)
 
 [node name="GrowTool" type="Node2D" parent="Gameplay"]
-position = Vector2(447, 251)
+position = Vector2(534, 242)
+scale = Vector2(1.29, 1.29)
 
 [node name="GrowToolSprite" type="Sprite2D" parent="Gameplay/GrowTool"]
-position = Vector2(59, 44)
+position = Vector2(-48, 95)
 texture = ExtResource("2_iaqxi")
 region_enabled = true
 region_rect = Rect2(518.732, 1137.55, 344.5, 213)
 
 [node name="ShrinkTool" type="Node2D" parent="Gameplay"]
-position = Vector2(1478, 157)
+position = Vector2(1640, 256)
+scale = Vector2(1.29, 1.29)
 
 [node name="ShrinkToolSprite" type="Sprite2D" parent="Gameplay/ShrinkTool"]
 position = Vector2(-99, 105)
@@ -299,10 +298,10 @@ vertical_alignment = 1
 [node name="HintGrow" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 231.0
-offset_top = 222.0
-offset_right = 323.0
-offset_bottom = 314.0
+offset_left = 137.0
+offset_top = -464.0
+offset_right = 229.0
+offset_bottom = -372.0
 
 [node name="Keycap" type="Sprite2D" parent="UI/HintGrow"]
 position = Vector2(46.0001, 54)
@@ -323,10 +322,10 @@ vertical_alignment = 1
 [node name="HintShrink" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1509.0
-offset_top = 248.0
-offset_right = 1601.0
-offset_bottom = 340.0
+offset_left = 1613.0
+offset_top = -462.0
+offset_right = 1705.0
+offset_bottom = -370.0
 
 [node name="Keycap" type="Sprite2D" parent="UI/HintShrink"]
 position = Vector2(46.0001, 54)
