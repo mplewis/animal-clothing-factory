@@ -4,8 +4,6 @@ class_name ObjectCreator
 
 ## The animals that this instance can create
 @export var PossibleAnimals: Array[PackedScene]
-## The clothing that this instance can create
-@export var PossibleClothing: Array[PackedScene]
 
 
 func _ready() -> void:
@@ -26,8 +24,8 @@ func create_random_animal() -> Animal:
 	return animal
 
 
-func create_random_clothing() -> Clothing:
-	var clothing_scene = PossibleClothing.pick_random()
+func create_random_clothing(animal: Animal) -> Clothing:
+	var clothing_scene = animal.PossibleClothing.pick_random()
 	var clothing = clothing_scene.instantiate()
 	add_child(clothing)
 	return clothing

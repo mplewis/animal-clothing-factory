@@ -1,6 +1,9 @@
 class_name Animal
 extends Node2D
 
+## The clothing scenes that this animal supports
+@export var PossibleClothing: Array[PackedScene]
+
 @export var anchor_base: Node2D
 @export var animation_player: AnimationPlayer
 @export var possible_colors: Array[Color] = []
@@ -10,10 +13,6 @@ const TWEEN_DURATION_SEC = 0.3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#self.play_dance()
-	pass
-	#self.attach_clothing(testTie)
-	#self.attach_clothing(testShirt)
 	if material is ShaderMaterial and possible_colors.size() > 0:
 		material = material.duplicate()
 		var inner_color: Color = possible_colors.pick_random()

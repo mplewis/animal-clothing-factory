@@ -171,7 +171,7 @@ func set_animal_to_start() -> void:
 	current_animal.global_position.y = belt_height.global_position.y
 	grabber.position.y = grabber_start_position.y - OFF_SCREEN_GRABBER_DISTANCE_PX
 	play_state = PlayState.MOVE_ANIMAL_IN
-	reset_clothing()
+	reset_clothing(current_animal)
 
 
 ## Get the human-readable key label for the given action
@@ -191,8 +191,8 @@ func set_hints() -> void:
 
 
 ## Reset the current piece of clothing to sit in the grabber arm.
-func reset_clothing() -> void:
-	current_clothing = object_creator.create_random_clothing()
+func reset_clothing(animal: Animal) -> void:
+	current_clothing = object_creator.create_random_clothing(animal)
 	current_clothing.global_position = new_clothing_anchor_node.global_position
 
 	var pct_change := randf_range(1.25, 1.75)
