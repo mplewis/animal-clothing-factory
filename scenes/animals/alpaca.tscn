@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="3_gquic"]
 [ext_resource type="PackedScene" path="res://scenes/clothing/alpaca_shirt.tscn" id="3_l6ebk"]
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_0nths"]
+[ext_resource type="Texture2D" uid="uid://ln6gawi6gx3h" path="res://assets/images/clothing_atlas.png" id="5_mngjh"]
 [ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="5_rvlk2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xx8tt"]
@@ -85,12 +86,12 @@ scale = Vector2(0.49, 0.49)
 texture = ExtResource("4_0nths")
 
 [node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
-visible = false
-position = Vector2(199.134, -371.016)
-rotation = 0.143117
-scale = Vector2(0.287, 0.287)
-texture = ExtResource("3_gquic")
-offset = Vector2(0, 89)
+use_parent_material = true
+position = Vector2(104.598, -231.766)
+scale = Vector2(1.3176, 1.3369)
+texture = ExtResource("5_mngjh")
+region_enabled = true
+region_rect = Rect2(430.455, -3.09085, 206.364, 229.657)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

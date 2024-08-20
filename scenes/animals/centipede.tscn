@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bscpv3p7l4eng" path="res://assets/images/animals_atlas.png" id="3_6s72d"]
 [ext_resource type="PackedScene" path="res://scenes/clothing/centi_shirt.tscn" id="3_vxp8q"]
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_xjvcc"]
-[ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="5_us3sm"]
+[ext_resource type="Texture2D" uid="uid://ln6gawi6gx3h" path="res://assets/images/clothing_atlas.png" id="5_mccw2"]
 [ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="6_4vm6w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xx8tt"]
@@ -41,11 +41,11 @@ texture = ExtResource("4_xjvcc")
 
 [node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(35, -112)
-rotation = -0.144234
-scale = Vector2(0.0988109, 0.0988109)
-texture = ExtResource("5_us3sm")
-offset = Vector2(0, 89)
+use_parent_material = true
+position = Vector2(38, -133)
+texture = ExtResource("5_mccw2")
+region_enabled = true
+region_rect = Rect2(484.275, 280.652, 27.3026, 31.6552)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

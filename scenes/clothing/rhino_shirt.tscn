@@ -16,6 +16,7 @@ script = ExtResource("1_mhf0i")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 use_parent_material = true
+position = Vector2(-961, -172)
 texture = ExtResource("3_1wh2f")
 region_enabled = true
 region_rect = Rect2(128.046, 7.16452, 293.075, 315.428)
