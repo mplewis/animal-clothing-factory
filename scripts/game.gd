@@ -24,7 +24,7 @@ const GROW_SHRINK_RATE := 0.01
 const GROW_SHAKE_MAX_ROT := 10
 
 ## Max scale of clothing when growing
-const CLOTHING_MAX_SCALE := 2.0
+const CLOTHING_MAX_SCALE := 3.0
 ## Min scale of clothing when shrinking
 const CLOTHING_MIN_SCALE := 0.2
 

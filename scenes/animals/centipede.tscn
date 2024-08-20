@@ -12,9 +12,8 @@ shader = ExtResource("1_jqg7v")
 shader_parameter/light_color = Color(0.90625, 0.90625, 0.90625, 1)
 shader_parameter/dark_color = Color(0.464844, 0.464844, 0.464844, 1)
 
-[node name="Alpaca" type="Node2D" node_paths=PackedStringArray("anchor_base", "animation_player")]
+[node name="Centipede" type="Node2D" node_paths=PackedStringArray("anchor_base", "animation_player")]
 material = SubResource("ShaderMaterial_xx8tt")
-position = Vector2(0, 617)
 script = ExtResource("2_xygwt")
 anchor_base = NodePath("ClothingAnchors")
 animation_player = NodePath("AnimationPlayer")
@@ -22,7 +21,7 @@ possible_colors = Array[Color]([Color(0.728917, 0.820312, 0.476804, 1), Color(0.
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 use_parent_material = true
-position = Vector2(14, -10)
+position = Vector2(14, -55.1424)
 scale = Vector2(0.678434, 0.678434)
 offset = Vector2(-958.877, -806.397)
 texture = ExtResource("3_6s72d")
@@ -30,19 +29,20 @@ polygon = PackedVector2Array(1115.02, 563.201, 1067.61, 658.015, 1046.76, 733.86
 uv = PackedVector2Array(1115.02, 563.201, 1067.61, 658.015, 1046.76, 733.867, 1042.96, 857.126, 1012.62, 906.43, 811.615, 900.741, 703.526, 840.06, 726.281, 777.482, 931.081, 804.03, 963.318, 603.023, 1080.89, 544.238)
 
 [node name="ClothingAnchors" type="Node2D" parent="."]
+position = Vector2(0, -45.1424)
 
 [node name="TieAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(36, -74)
-rotation = 0.508901
-scale = Vector2(0.220615, 0.207618)
+position = Vector2(58, -43)
+rotation = -0.171042
+scale = Vector2(0.307, 0.29)
 texture = ExtResource("4_xjvcc")
 
 [node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(41, -42)
+position = Vector2(40, -62)
 rotation = -0.144234
-scale = Vector2(0.0826633, 0.0826633)
+scale = Vector2(0.133, 0.133)
 texture = ExtResource("5_us3sm")
 offset = Vector2(0, 89)
 

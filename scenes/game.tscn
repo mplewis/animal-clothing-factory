@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
+[ext_resource type="Texture2D" uid="uid://crvrjm0w8wta3" path="res://assets/images/machinery_and_bkg_atlas.png" id="2_iaqxi"]
 [ext_resource type="AudioStream" uid="uid://caaj16u4gml3v" path="res://assets/sfx/hair_dryer_loop.ogg" id="3_1yd45"]
 [ext_resource type="Script" path="res://scripts/shrink_sound.gd" id="3_7l8gu"]
-[ext_resource type="Texture2D" uid="uid://bec8fjwttray7" path="res://assets/stock/grabby.png" id="3_lljhi"]
+[ext_resource type="PackedScene" uid="uid://l7d067uk73u7" path="res://scenes/animals/centipede.tscn" id="5_5sdqw"]
 [ext_resource type="AudioStream" uid="uid://blymo1uwy7s17" path="res://assets/sfx/grow_ray.ogg" id="5_kb2au"]
-[ext_resource type="Texture2D" uid="uid://d1ve7es8inw83" path="res://assets/stock/raygun.png" id="5_nco2n"]
-[ext_resource type="Texture2D" uid="uid://dh81r306ao3p" path="res://assets/stock/hairdryer.png" id="6_bvl5c"]
+[ext_resource type="PackedScene" uid="uid://d20wf6k5ng4n7" path="res://scenes/animals/lobster.tscn" id="6_bne8v"]
 [ext_resource type="AudioStream" uid="uid://bo25gto4pxs2v" path="res://assets/sfx/score_bad.ogg" id="7_2d34m"]
 [ext_resource type="AudioStream" uid="uid://h0eovlvokwdy" path="res://assets/sfx/ambience/ambience_loop_1.ogg" id="7_hi6i3"]
 [ext_resource type="AudioStream" uid="uid://bnf7nnt5qo5g0" path="res://assets/bgm/gameplay_music_intro.ogg" id="7_l8cit"]
+[ext_resource type="PackedScene" uid="uid://e7gcghoukl5u" path="res://scenes/animals/rhino.tscn" id="7_pvpqg"]
 [ext_resource type="AudioStream" uid="uid://cofgtp0cldsoa" path="res://assets/bgm/gameplay_music_loop.ogg" id="8_55luv"]
 [ext_resource type="AudioStream" uid="uid://rf57x1vb0aps" path="res://assets/sfx/ambience/ambience_loop_2.ogg" id="8_ebu58"]
 [ext_resource type="AudioStream" uid="uid://b2tgqm8rha3rs" path="res://assets/sfx/conveyor_belt_loop.ogg" id="8_m6ttv"]
@@ -27,7 +28,6 @@
 [ext_resource type="Script" path="res://scripts/object_creator.gd" id="16_1fh1g"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
 [ext_resource type="PackedScene" uid="uid://y2c0un4ly452" path="res://scenes/clothing/tie.tscn" id="18_n6kxj"]
-[ext_resource type="PackedScene" uid="uid://dx8ndchxtc5t5" path="res://scenes/animals/cat.tscn" id="18_y3c8k"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5op4m"]
 loop = false
@@ -63,16 +63,18 @@ object_creator = NodePath("ObjectCreator")
 belt_height = NodePath("Gameplay/Belt/BeltHeight")
 dressed_animal_anchor = NodePath("DressedAnimal")
 
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 1920.0
-offset_bottom = 1080.0
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_iaqxi")
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
 
 [node name="SecTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="ObjectCreator" type="Node" parent="."]
 script = ExtResource("16_1fh1g")
-PossibleAnimals = Array[PackedScene]([ExtResource("17_gal1w"), ExtResource("18_y3c8k")])
+PossibleAnimals = Array[PackedScene]([ExtResource("17_gal1w"), ExtResource("5_5sdqw"), ExtResource("6_bne8v"), ExtResource("7_pvpqg")])
 PossibleClothing = Array[PackedScene]([ExtResource("18_n6kxj"), ExtResource("13_fe3ex")])
 
 [node name="DressedAnimal" type="Node2D" parent="."]
@@ -156,31 +158,55 @@ texture = ExtResource("1_l8h0a")
 position = Vector2(264, -76)
 scale = Vector2(0.5, 0.5)
 
-[node name="Grabber" type="Sprite2D" parent="Gameplay"]
-position = Vector2(960, -58)
-scale = Vector2(0.416667, 0.416667)
-texture = ExtResource("3_lljhi")
+[node name="Grabber" type="Node2D" parent="Gameplay"]
+position = Vector2(964, -86)
+
+[node name="GrabberArm" type="Sprite2D" parent="Gameplay/Grabber"]
+position = Vector2(-1, -61)
+rotation = -1.5708
+texture = ExtResource("2_iaqxi")
+region_enabled = true
+region_rect = Rect2(1489.2, 1104.17, 416.462, 200.125)
+
+[node name="GrabberClaws" type="Node2D" parent="Gameplay/Grabber/GrabberArm"]
+position = Vector2(-186, -0.999998)
+rotation = 1.5708
+
+[node name="GrabberClawLeft" type="Sprite2D" parent="Gameplay/Grabber/GrabberArm/GrabberClaws"]
+position = Vector2(-34.0007, 38)
+rotation = 0.331613
+texture = ExtResource("2_iaqxi")
+region_enabled = true
+region_rect = Rect2(64.8388, 1134.23, 62.7599, 118.982)
+
+[node name="GrabberClawRight" type="Sprite2D" parent="Gameplay/Grabber/GrabberArm/GrabberClaws"]
+position = Vector2(40.9993, 35)
+rotation = -0.296706
+texture = ExtResource("2_iaqxi")
+region_enabled = true
+region_rect = Rect2(131.926, 1134.75, 57.312, 118.982)
 
 [node name="NewClothingAnchor" type="Node2D" parent="Gameplay/Grabber"]
-position = Vector2(0, 513.6)
+position = Vector2(-1, 217)
+scale = Vector2(0.416667, 0.416667)
 
 [node name="GrowTool" type="Node2D" parent="Gameplay"]
-position = Vector2(488, 158)
+position = Vector2(447, 251)
 
 [node name="GrowToolSprite" type="Sprite2D" parent="Gameplay/GrowTool"]
-position = Vector2(33, 54)
-rotation = 0.418879
-scale = Vector2(0.278, 0.278)
-texture = ExtResource("5_nco2n")
+position = Vector2(59, 44)
+texture = ExtResource("2_iaqxi")
+region_enabled = true
+region_rect = Rect2(518.732, 1137.55, 344.5, 213)
 
 [node name="ShrinkTool" type="Node2D" parent="Gameplay"]
 position = Vector2(1478, 157)
 
 [node name="ShrinkToolSprite" type="Sprite2D" parent="Gameplay/ShrinkTool"]
-position = Vector2(-18.9999, 104)
-rotation = -0.418879
-scale = Vector2(0.374332, 0.374332)
-texture = ExtResource("6_bvl5c")
+position = Vector2(-99, 105)
+texture = ExtResource("2_iaqxi")
+region_enabled = true
+region_rect = Rect2(906.218, 1111.21, 538.326, 247.082)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -263,10 +289,10 @@ vertical_alignment = 1
 [node name="HintGrow" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 267.0
-offset_top = 114.0
-offset_right = 359.0
-offset_bottom = 206.0
+offset_left = 231.0
+offset_top = 222.0
+offset_right = 323.0
+offset_bottom = 314.0
 
 [node name="Keycap" type="Sprite2D" parent="UI/HintGrow"]
 position = Vector2(46.0001, 54)
@@ -287,10 +313,10 @@ vertical_alignment = 1
 [node name="HintShrink" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1609.0
-offset_top = 175.0
-offset_right = 1701.0
-offset_bottom = 267.0
+offset_left = 1509.0
+offset_top = 248.0
+offset_right = 1601.0
+offset_bottom = 340.0
 
 [node name="Keycap" type="Sprite2D" parent="UI/HintShrink"]
 position = Vector2(46.0001, 54)

@@ -14,7 +14,8 @@ shader_parameter/dark_color = Color(0.464844, 0.464844, 0.464844, 1)
 
 [node name="Rhino" type="Node2D" node_paths=PackedStringArray("anchor_base", "animation_player")]
 material = SubResource("ShaderMaterial_xx8tt")
-position = Vector2(0, 617)
+position = Vector2(-1.00001, -1.99999)
+scale = Vector2(0.391291, 0.386533)
 script = ExtResource("2_cayjv")
 anchor_base = NodePath("ClothingAnchors")
 animation_player = NodePath("AnimationPlayer")
@@ -22,7 +23,7 @@ possible_colors = Array[Color]([Color(0.769034, 0.742347, 0.820312, 1), Color(0.
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 use_parent_material = true
-position = Vector2(36, -359)
+position = Vector2(37.6766, -335.394)
 scale = Vector2(0.678434, 0.678434)
 offset = Vector2(-829.167, -1422.52)
 texture = ExtResource("3_o2tot")
@@ -30,19 +31,19 @@ polygon = PackedVector2Array(831.147, 1945.62, 1115.67, 1998.39, 1163.85, 1957.0
 uv = PackedVector2Array(831.147, 1945.62, 1115.67, 1998.39, 1163.85, 1957.09, 1386.42, 1330.69, 1781.08, 1330.69, 1877.45, 1142.54, 1726.01, 823.6, 1260.22, 807.539, 1296.93, 993.395, 1051.42, 1096.65, 147.38, 1195.31, -72.8937, 1713.87, 195.565, 1975.45, 727.893, 1963.98)
 
 [node name="ClothingAnchors" type="Node2D" parent="."]
+position = Vector2(1.67661, 23.6056)
 
 [node name="TieAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(346, -29)
-rotation = 0.155206
-scale = Vector2(0.913973, 0.913973)
+position = Vector2(388, -363)
+scale = Vector2(0.704, 0.704)
 texture = ExtResource("4_31q6b")
 
 [node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(260, -118)
-rotation = 0.408792
-scale = Vector2(0.720631, 0.720631)
+position = Vector2(95, -371)
+rotation = 1.47306
+scale = Vector2(1.281, 1.281)
 texture = ExtResource("5_8d2lp")
 offset = Vector2(0, 89)
 
