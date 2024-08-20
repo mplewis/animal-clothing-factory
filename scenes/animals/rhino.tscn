@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://assets/colorizer.gdshader" id="1_6vxqe"]
 [ext_resource type="Script" path="res://scripts/animal.gd" id="2_cayjv"]
 [ext_resource type="Texture2D" uid="uid://bscpv3p7l4eng" path="res://assets/images/animals_atlas.png" id="3_o2tot"]
-[ext_resource type="PackedScene" path="res://scenes/clothing/rhino_shirt.tscn" id="3_vmm54"]
+[ext_resource type="PackedScene" uid="uid://srlw0rfl8l5y" path="res://scenes/clothing/rhino_shirt.tscn" id="3_vmm54"]
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_31q6b"]
 [ext_resource type="Texture2D" uid="uid://ln6gawi6gx3h" path="res://assets/images/clothing_atlas.png" id="5_ou7p5"]
 [ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="6_l3i0h"]
