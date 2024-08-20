@@ -1,6 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=42 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
+[ext_resource type="Shader" path="res://assets/colorizer.gdshader" id="2_1hncl"]
 [ext_resource type="Texture2D" uid="uid://crvrjm0w8wta3" path="res://assets/images/machinery_and_bkg_atlas.png" id="2_iaqxi"]
 [ext_resource type="AudioStream" uid="uid://caaj16u4gml3v" path="res://assets/sfx/hair_dryer_loop.ogg" id="3_1yd45"]
 [ext_resource type="Script" path="res://scripts/shrink_sound.gd" id="3_7l8gu"]
@@ -34,6 +35,11 @@
 [ext_resource type="AudioStream" uid="uid://pj3krkcpsaqg" path="res://assets/sfx/clothing/clothing_foley_07.ogg" id="22_8byjv"]
 [ext_resource type="PackedScene" uid="uid://dpmmxmh25m8m5" path="res://scenes/conveyor.tscn" id="33_5bulk"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vlcmk"]
+shader = ExtResource("2_1hncl")
+shader_parameter/light_color = Color(0.273438, 0.273438, 0.273438, 1)
+shader_parameter/dark_color = Color(0.167969, 0.167969, 0.167969, 1)
+
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5op4m"]
 loop = false
 fade_time = 0.0
@@ -65,6 +71,21 @@ stream_4/stream = ExtResource("20_lf1vk")
 stream_5/stream = ExtResource("21_as16d")
 stream_6/stream = ExtResource("22_8byjv")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nslov"]
+shader = ExtResource("2_1hncl")
+shader_parameter/light_color = Color(0.734375, 0.734375, 0.734375, 1)
+shader_parameter/dark_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sntpb"]
+shader = ExtResource("2_1hncl")
+shader_parameter/light_color = Color(0.550781, 0.550781, 0.550781, 1)
+shader_parameter/dark_color = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uv85l"]
+shader = ExtResource("2_1hncl")
+shader_parameter/light_color = Color(0.558594, 0.558594, 0.558594, 1)
+shader_parameter/dark_color = Color(0, 0, 0, 1)
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator", "belt_height", "dressed_animal_anchor")]
 script = ExtResource("1_dpgjl")
 new_clothing_anchor_node = NodePath("Gameplay/Grabber/NewClothingAnchor")
@@ -74,6 +95,7 @@ dressed_animal_anchor = NodePath("DressedAnimal")
 GAME_DURATION_SECS = null
 
 [node name="Background" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vlcmk")
 position = Vector2(960, 540)
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("2_iaqxi")
@@ -164,9 +186,11 @@ position = Vector2(915, 929)
 scale = Vector2(1.3, 1.3)
 
 [node name="Grabber" type="Node2D" parent="Gameplay"]
+material = SubResource("ShaderMaterial_nslov")
 position = Vector2(964, -86)
 
 [node name="GrabberArm" type="Sprite2D" parent="Gameplay/Grabber"]
+use_parent_material = true
 position = Vector2(-1, -61)
 rotation = -1.5708
 texture = ExtResource("2_iaqxi")
@@ -174,10 +198,12 @@ region_enabled = true
 region_rect = Rect2(1489.2, 1104.17, 416.462, 200.125)
 
 [node name="GrabberClaws" type="Node2D" parent="Gameplay/Grabber/GrabberArm"]
+use_parent_material = true
 position = Vector2(-186, -0.999998)
 rotation = 1.5708
 
 [node name="GrabberClawLeft" type="Sprite2D" parent="Gameplay/Grabber/GrabberArm/GrabberClaws"]
+use_parent_material = true
 position = Vector2(-34.0007, 38)
 rotation = 0.331613
 texture = ExtResource("2_iaqxi")
@@ -185,6 +211,7 @@ region_enabled = true
 region_rect = Rect2(64.8388, 1134.23, 62.7599, 118.982)
 
 [node name="GrabberClawRight" type="Sprite2D" parent="Gameplay/Grabber/GrabberArm/GrabberClaws"]
+use_parent_material = true
 position = Vector2(40.9993, 35)
 rotation = -0.296706
 texture = ExtResource("2_iaqxi")
@@ -200,6 +227,7 @@ position = Vector2(534, 242)
 scale = Vector2(1.29, 1.29)
 
 [node name="GrowToolSprite" type="Sprite2D" parent="Gameplay/GrowTool"]
+material = SubResource("ShaderMaterial_sntpb")
 position = Vector2(-48, 95)
 texture = ExtResource("2_iaqxi")
 region_enabled = true
@@ -210,6 +238,7 @@ position = Vector2(1640, 256)
 scale = Vector2(1.29, 1.29)
 
 [node name="ShrinkToolSprite" type="Sprite2D" parent="Gameplay/ShrinkTool"]
+material = SubResource("ShaderMaterial_uv85l")
 position = Vector2(-99, 105)
 texture = ExtResource("2_iaqxi")
 region_enabled = true
