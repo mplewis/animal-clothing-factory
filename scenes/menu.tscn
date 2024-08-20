@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_6j6hk"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="2_56t87"]
-[ext_resource type="AudioStream" uid="uid://bxpde5irijknb" path="res://assets/bgm/lazy_groove.mp3" id="2_b6a2n"]
+[ext_resource type="AudioStream" uid="uid://c0dk738f3my61" path="res://assets/bgm/menu.ogg" id="2_wad4o"]
 [ext_resource type="Texture2D" uid="uid://bgkrrao1q1p6a" path="res://assets/images/acf-logo.png" id="3_cf5wh"]
 [ext_resource type="PackedScene" uid="uid://beneujeoqq21o" path="res://scenes/credits.tscn" id="5_ydx75"]
 
@@ -13,7 +13,7 @@ volume_music_slider = NodePath("VBoxContainer/HBoxContainer/GridContainer/MusicS
 volume_ambience_slider = NodePath("VBoxContainer/HBoxContainer/GridContainer/AmbienceSlider")
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_b6a2n")
+stream = ExtResource("2_wad4o")
 volume_db = 15.0
 autoplay = true
 panning_strength = 0.0

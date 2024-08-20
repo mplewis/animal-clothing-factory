@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_waqm5"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="2_3rkn7"]
-[ext_resource type="AudioStream" uid="uid://c7v4yegs2aej0" path="res://assets/bgm/simple_beat.mp3" id="2_58ljt"]
+[ext_resource type="AudioStream" uid="uid://c0dk738f3my61" path="res://assets/bgm/menu.ogg" id="3_pjof6"]
 [ext_resource type="AudioStream" uid="uid://d05lnep7sr5ci" path="res://assets/sfx/finish_bell.ogg" id="4_ho4s5"]
 
 [node name="GameOver" type="Node" node_paths=PackedStringArray("animal_container")]
@@ -27,7 +27,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_58ljt")
+stream = ExtResource("3_pjof6")
 volume_db = 10.0
 autoplay = true
 panning_strength = 0.0
