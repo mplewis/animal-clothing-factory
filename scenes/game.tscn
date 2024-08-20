@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://04nkfngwj4ig"]
+[gd_scene load_steps=39 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
 [ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
@@ -26,8 +26,15 @@
 [ext_resource type="PackedScene" uid="uid://fe8if6tijgtj" path="res://scenes/clothing/shirt.tscn" id="13_fe3ex"]
 [ext_resource type="Theme" uid="uid://dal531wffb080" path="res://themes/default.tres" id="15_pex5s"]
 [ext_resource type="Script" path="res://scripts/object_creator.gd" id="16_1fh1g"]
+[ext_resource type="AudioStream" uid="uid://bnvhou83fcr37" path="res://assets/sfx/clothing/clothing_foley_01.ogg" id="16_d3dx3"]
+[ext_resource type="AudioStream" uid="uid://bq245ymky1jdb" path="res://assets/sfx/clothing/clothing_foley_02.ogg" id="17_0n0ep"]
 [ext_resource type="PackedScene" uid="uid://bt7dqqlwomcgr" path="res://scenes/animals/alpaca.tscn" id="17_gal1w"]
+[ext_resource type="AudioStream" uid="uid://mdcyp7btjvlq" path="res://assets/sfx/clothing/clothing_foley_03.ogg" id="18_eocql"]
 [ext_resource type="PackedScene" uid="uid://y2c0un4ly452" path="res://scenes/clothing/tie.tscn" id="18_n6kxj"]
+[ext_resource type="AudioStream" uid="uid://dv8metix63rfx" path="res://assets/sfx/clothing/clothing_foley_04.ogg" id="19_mm6tx"]
+[ext_resource type="AudioStream" uid="uid://dxp86cdbi544t" path="res://assets/sfx/clothing/clothing_foley_05.ogg" id="20_lf1vk"]
+[ext_resource type="AudioStream" uid="uid://dqxt7d5j8oc5j" path="res://assets/sfx/clothing/clothing_foley_06.ogg" id="21_as16d"]
+[ext_resource type="AudioStream" uid="uid://pj3krkcpsaqg" path="res://assets/sfx/clothing/clothing_foley_07.ogg" id="22_8byjv"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5op4m"]
 loop = false
@@ -51,10 +58,14 @@ stream_3/stream = ExtResource("10_mb3k5")
 stream_3/volume = 0.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_imbht"]
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_34k24"]
-stream_count = 1
-stream_0 = SubResource("AudioStreamRandomizer_imbht")
+streams_count = 7
+stream_0/stream = ExtResource("16_d3dx3")
+stream_1/stream = ExtResource("17_0n0ep")
+stream_2/stream = ExtResource("18_eocql")
+stream_3/stream = ExtResource("19_mm6tx")
+stream_4/stream = ExtResource("20_lf1vk")
+stream_5/stream = ExtResource("21_as16d")
+stream_6/stream = ExtResource("22_8byjv")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("new_clothing_anchor_node", "object_creator", "belt_height", "dressed_animal_anchor")]
 script = ExtResource("1_dpgjl")
@@ -95,8 +106,9 @@ autoplay = true
 bus = &"ambience"
 
 [node name="Clothing" type="AudioStreamPlayer" parent="Audio"]
-stream = SubResource("AudioStreamPlaylist_34k24")
+stream = SubResource("AudioStreamRandomizer_imbht")
 volume_db = -6.0
+bus = &"sfx"
 
 [node name="Grow" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(-477, 156)
