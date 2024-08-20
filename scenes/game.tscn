@@ -1,7 +1,6 @@
 [gd_scene load_steps=39 format=3 uid="uid://04nkfngwj4ig"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dpgjl"]
-[ext_resource type="Texture2D" uid="uid://drxero8ycr0du" path="res://assets/stock/belt.png" id="1_l8h0a"]
 [ext_resource type="Texture2D" uid="uid://crvrjm0w8wta3" path="res://assets/images/machinery_and_bkg_atlas.png" id="2_iaqxi"]
 [ext_resource type="AudioStream" uid="uid://caaj16u4gml3v" path="res://assets/sfx/hair_dryer_loop.ogg" id="3_1yd45"]
 [ext_resource type="Script" path="res://scripts/shrink_sound.gd" id="3_7l8gu"]
@@ -35,6 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://dxp86cdbi544t" path="res://assets/sfx/clothing/clothing_foley_05.ogg" id="20_lf1vk"]
 [ext_resource type="AudioStream" uid="uid://dqxt7d5j8oc5j" path="res://assets/sfx/clothing/clothing_foley_06.ogg" id="21_as16d"]
 [ext_resource type="AudioStream" uid="uid://pj3krkcpsaqg" path="res://assets/sfx/clothing/clothing_foley_07.ogg" id="22_8byjv"]
+[ext_resource type="Texture2D" uid="uid://byhx3ey81ceh5" path="res://assets/images/conveyor_atlas.png" id="33_fk7nj"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5op4m"]
 loop = false
@@ -71,7 +71,7 @@ stream_6/stream = ExtResource("22_8byjv")
 script = ExtResource("1_dpgjl")
 new_clothing_anchor_node = NodePath("Gameplay/Grabber/NewClothingAnchor")
 object_creator = NodePath("ObjectCreator")
-belt_height = NodePath("Gameplay/Belt/BeltHeight")
+belt_height = NodePath("Gameplay/BeltHeight")
 dressed_animal_anchor = NodePath("DressedAnimal")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -157,18 +157,16 @@ bus = &"sfx"
 
 [node name="Gameplay" type="Node2D" parent="."]
 
-[node name="Belt" type="Sprite2D" parent="Gameplay"]
-position = Vector2(424, 996)
-scale = Vector2(2, 2)
-texture = ExtResource("1_l8h0a")
+[node name="ConveyorTreadsStatic" type="Sprite2D" parent="Gameplay"]
+use_parent_material = true
+position = Vector2(952, 949)
+scale = Vector2(1.30727, 1.30727)
+texture = ExtResource("33_fk7nj")
+region_enabled = true
+region_rect = Rect2(0, 160, 1910, 219)
 
-[node name="Belt2" type="Sprite2D" parent="Gameplay/Belt"]
-position = Vector2(516, -0.5)
-texture = ExtResource("1_l8h0a")
-
-[node name="BeltHeight" type="Node2D" parent="Gameplay/Belt"]
-position = Vector2(264, -76)
-scale = Vector2(0.5, 0.5)
+[node name="BeltHeight" type="Node2D" parent="Gameplay"]
+position = Vector2(952, 826)
 
 [node name="Grabber" type="Node2D" parent="Gameplay"]
 position = Vector2(964, -86)
