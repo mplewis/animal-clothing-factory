@@ -43,30 +43,6 @@ theme_override_constants/h_separation = 80
 theme_override_constants/v_separation = 40
 columns = 2
 
-[node name="Name5" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Jason"
-horizontal_alignment = 2
-
-[node name="_Name5" type="LinkButton" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
-visible = false
-layout_mode = 2
-theme = ExtResource("1_4t0sn")
-theme_override_colors/font_color = Color(0, 0.427967, 0.754499, 1)
-theme_override_colors/font_pressed_color = Color(0, 0.353201, 0.628598, 1)
-theme_override_colors/font_hover_color = Color(5.10186e-05, 0.54291, 0.946286, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 49
-action_mode = 0
-text = "Jason"
-underline = 2
-
-[node name="Work5" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Music"
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
 alignment = 2
@@ -121,6 +97,30 @@ horizontal_alignment = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Art Design, Shader Programming"
+
+[node name="Name5" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Jason Shapiro"
+horizontal_alignment = 2
+
+[node name="_Name5" type="LinkButton" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_4t0sn")
+theme_override_colors/font_color = Color(0, 0.427967, 0.754499, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.353201, 0.628598, 1)
+theme_override_colors/font_hover_color = Color(5.10186e-05, 0.54291, 0.946286, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 49
+action_mode = 0
+text = "Jason"
+underline = 2
+
+[node name="Work5" type="Label" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Music"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Background/VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
