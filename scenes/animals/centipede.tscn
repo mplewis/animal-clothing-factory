@@ -29,7 +29,6 @@ polygon = PackedVector2Array(1115.02, 563.201, 1067.61, 658.015, 1046.76, 733.86
 uv = PackedVector2Array(1115.02, 563.201, 1067.61, 658.015, 1046.76, 733.867, 1042.96, 857.126, 1012.62, 906.43, 811.615, 900.741, 703.526, 840.06, 726.281, 777.482, 931.081, 804.03, 963.318, 603.023, 1080.89, 544.238)
 
 [node name="ClothingAnchors" type="Node2D" parent="."]
-position = Vector2(0, -45.1424)
 
 [node name="TieAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false

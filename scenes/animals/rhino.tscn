@@ -31,7 +31,7 @@ polygon = PackedVector2Array(831.147, 1945.62, 1115.67, 1998.39, 1163.85, 1957.0
 uv = PackedVector2Array(831.147, 1945.62, 1115.67, 1998.39, 1163.85, 1957.09, 1386.42, 1330.69, 1781.08, 1330.69, 1877.45, 1142.54, 1726.01, 823.6, 1260.22, 807.539, 1296.93, 993.395, 1051.42, 1096.65, 147.38, 1195.31, -72.8937, 1713.87, 195.565, 1975.45, 727.893, 1963.98)
 
 [node name="ClothingAnchors" type="Node2D" parent="."]
-position = Vector2(1.67661, 23.6056)
+position = Vector2(1.67661, 2.58708)
 
 [node name="TieAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
@@ -41,7 +41,7 @@ texture = ExtResource("4_31q6b")
 
 [node name="ShirtAnchor" type="Sprite2D" parent="ClothingAnchors"]
 visible = false
-position = Vector2(95, -371)
+position = Vector2(131.217, -380.304)
 rotation = 1.47306
 scale = Vector2(1.281, 1.281)
 texture = ExtResource("5_8d2lp")
