@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drxero8ycr0du"
-path="res://.godot/imported/belt.png-d55ecd80c577bdb54ddb46aeb5a57073.ctex"
+uid="uid://ln6gawi6gx3h"
+path="res://.godot/imported/clothing_atlas.png-58a2c2347d322d58b13f2633c28436fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stock/belt.png"
-dest_files=["res://.godot/imported/belt.png-d55ecd80c577bdb54ddb46aeb5a57073.ctex"]
+source_file="res://assets/images/clothing_atlas.png"
+dest_files=["res://.godot/imported/clothing_atlas.png-58a2c2347d322d58b13f2633c28436fd.ctex"]
 
 [params]
 
