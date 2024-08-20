@@ -29,7 +29,6 @@ vertical_alignment = 1
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_pjof6")
 volume_db = 10.0
-autoplay = true
 panning_strength = 0.0
 bus = &"music"
 parameters/looping = true
