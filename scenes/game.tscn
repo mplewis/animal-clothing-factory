@@ -272,10 +272,10 @@ vertical_alignment = 1
 [node name="FeedbackLabel" type="Label" parent="UI"]
 visible = false
 layout_mode = 0
-offset_left = 562.0
-offset_top = 391.0
-offset_right = 1362.0
-offset_bottom = 491.0
+offset_left = 1074.0
+offset_top = 157.0
+offset_right = 1874.0
+offset_bottom = 257.0
 theme = ExtResource("15_pex5s")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
