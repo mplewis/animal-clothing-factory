@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://7rtl461n60ou"]
+
+[ext_resource type="Shader" path="res://assets/colorizer.gdshader" id="1_adynw"]
+[ext_resource type="Script" path="res://scripts/clothing.gd" id="1_mhf0i"]
+[ext_resource type="Texture2D" uid="uid://ln6gawi6gx3h" path="res://assets/images/clothing_atlas.png" id="3_1wh2f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifx8w"]
+shader = ExtResource("1_adynw")
+shader_parameter/light_color = Color(0.754451, 0.453415, 0.917969, 1)
+shader_parameter/dark_color = Color(0.413964, 0.134562, 0.492188, 1)
+
+[node name="Shirt" type="Node2D"]
+material = SubResource("ShaderMaterial_ifx8w")
+position = Vector2(960, 172)
+script = ExtResource("1_mhf0i")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("3_1wh2f")
+region_enabled = true
+region_rect = Rect2(430.455, -3.09085, 206.364, 229.657)
