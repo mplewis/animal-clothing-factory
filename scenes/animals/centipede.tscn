@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://assets/colorizer.gdshader" id="1_jqg7v"]
 [ext_resource type="Script" path="res://scripts/animal.gd" id="2_xygwt"]
-[ext_resource type="Texture2D" uid="uid://bscpv3p7l4eng" path="res://assets/animals_atlas.png" id="3_6s72d"]
+[ext_resource type="Texture2D" uid="uid://bscpv3p7l4eng" path="res://assets/images/animals_atlas.png" id="3_6s72d"]
 [ext_resource type="Texture2D" uid="uid://eko7du068jko" path="res://assets/stock/tie.png" id="4_xjvcc"]
 [ext_resource type="Texture2D" uid="uid://c205ysdd7vsus" path="res://assets/stock/shirt.png" id="5_us3sm"]
 [ext_resource type="AnimationLibrary" uid="uid://1304fj2rua2b" path="res://animations/animal_animations.res" id="6_4vm6w"]

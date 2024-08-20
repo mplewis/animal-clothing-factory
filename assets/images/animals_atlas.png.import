@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bscpv3p7l4eng"
-path="res://.godot/imported/animals_atlas.png-642bcc629f0fb940a0c006266d21e4f2.ctex"
+path="res://.godot/imported/animals_atlas.png-88e5b3f57b115b1e754e28e72f01e448.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animals_atlas.png"
-dest_files=["res://.godot/imported/animals_atlas.png-642bcc629f0fb940a0c006266d21e4f2.ctex"]
+source_file="res://assets/images/animals_atlas.png"
+dest_files=["res://.godot/imported/animals_atlas.png-88e5b3f57b115b1e754e28e72f01e448.ctex"]
 
 [params]
 
